@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidosController">
+   <children>
+     
+      <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="-1.0" layoutY="71.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="720.0" promptText="PROCURAR PELO " />
+      <TextField fx:id="txtPedido" alignment="CENTER" layoutX="-6.0" layoutY="23.0" promptText="NUMERO DO PEDIDO" />
+      <TableView layoutX="1.0" layoutY="96.0" prefHeight="402.0" prefWidth="720.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colCliente" prefWidth="75.0" text="Cliente" />
+            <TableColumn fx:id="colTipo" prefWidth="75.0" text="Tipo" />
+            <TableColumn fx:id="colTotal" prefWidth="75.0" text="Total" />
+            <TableColumn fx:id="colPago" prefWidth="75.0" text="Pago" />
+            <TableColumn fx:id="colPagoVia" prefWidth="75.0" text="Pago Via" />
+            <TableColumn fx:id="colData" prefWidth="75.0" text="Data" />
+            <TableColumn fx:id="colUser" prefWidth="75.0" text="Utilizador" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

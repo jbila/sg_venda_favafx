@@ -1,0 +1,65 @@
+
+.button:hover{
+	
+	-fx-text-fill:#e9967a;
+	-fx-padding:0.0 0.0 0.0;
+	-fx-border-radius:10.0;
+	-fx-font-weight:bold;
+	-fx-font-size:15.0px;	
+	
+}
+
+
+
+ .MenuButton:hover {
+ 
+	-fx-text-fill:#e9967a;
+	-fx-padding: 0.0 0.0 0.0;
+	-fx-border-radius:10.0;
+	-fx-font-weight:bold;
+	-fx-font-size:15.0px;	
+}
+
+
+.MenuButton:pressed {
+ 
+	-fx-text-fill:#00008b;
+	-fx-font-weight:bold;
+	-fx-font-size:15.0px;	
+	-fx-background-color:#0000ff;
+}
+
+
+.MenuItem:hover{
+   
+	-fx-text-fill:#e9967a;
+	-fx-padding:0.0 0.0 0.0;
+	-fx-border-radius:10.0;
+	-fx-font-weight:bold;
+	-fx-font-size:18.0px;	
+}
+.text-field{
+	
+	-fx-text-fill: #008b8b;
+	-fx-alignment: center;
+	-fx-font-size:12.0px;
+}
+.combo-Box{
+	-fx-alignment:center;
+	-fx-text-fill:red;
+	-fx-font-size:10.0px;
+	-fx-font-weight:bold;
+}
+#buttonAdd{
+
+  /*-fx-background:  url('lupa.png')  center no-repeat;*/
+
+  		-fx-font-size:12.0px;
+		-fx-font-weight:bold;
+		-fx-color:white;
+		-fx-backgroud-color:black;
+	
+		}
+
+
+

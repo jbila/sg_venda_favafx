@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootFormasDePagamento" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="688.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLFormasPagamentoController">
+   <children>
+      <Pane layoutX="-2.0" prefHeight="70.0" prefWidth="693.0" style="-fx-background-color: #263238;">
+         <children>
+            <Label layoutX="10.0" layoutY="3.0" prefHeight="22.0" prefWidth="223.0" text="FORMAS DE PAGAMENTO" textFill="WHITE">
+               <font>
+                  <Font name="Garamond" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TextField fx:id="txtvalorApagar" alignment="CENTER" layoutX="10.0" layoutY="130.0" onKeyReleased="#calcularTrocos" prefHeight="25.0" prefWidth="198.0" promptText="VALOR RECEBIDO" />
+      <Separator layoutX="-3.0" layoutY="229.0" prefHeight="17.0" prefWidth="693.0" />
+      <Button fx:id="btnConfirmarPagemento" layoutX="435.0" layoutY="441.0" mnemonicParsing="false" onAction="#confirmarPagamento" prefHeight="33.0" prefWidth="246.0" text="CONFIRMAR O PAGAMENTO" />
+      <Text layoutX="464.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DADOS DO CLIENTE " wrappingWidth="222.99998718500137">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cboCliente" layoutX="464.0" layoutY="106.0" prefHeight="25.0" prefWidth="211.0" promptText="SELECIONE O CLIENTE" />
+      <ComboBox fx:id="cboFormaDePagamento" layoutX="8.0" layoutY="101.0" prefHeight="25.0" prefWidth="198.0" promptText="FORMA DE PAGAMENTO" />
+      <Button fx:id="btnCliente" layoutX="623.0" layoutY="72.0" mnemonicParsing="false" onAction="#clientes" prefHeight="25.0" prefWidth="50.0" text="****" textFill="#221010">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtNomeCliente" alignment="CENTER" editable="false" layoutX="464.0" layoutY="131.0" prefHeight="25.0" prefWidth="211.0" promptText="NOME DO CLIENTE" />
+      <TextField fx:id="txtTelefone" alignment="CENTER" editable="false" layoutX="464.0" layoutY="160.0" prefHeight="25.0" prefWidth="211.0" promptText="TELEFONE DO CLIENTE" />
+      <TextField fx:id="txtEmailCliente" alignment="CENTER" editable="false" layoutX="464.0" layoutY="198.0" prefHeight="25.0" prefWidth="211.0" promptText="EMAIL DO CLIENTE" />
+      <TextField fx:id="txtValorTotal" alignment="CENTER" editable="false" layoutX="5.0" layoutY="203.0" prefHeight="25.0" prefWidth="211.0" promptText="VALOR TOTAL A PAGAR" />
+      <Text layoutX="11.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAGAMENTO" wrappingWidth="197.99999010562897">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtTrocos" alignment="CENTER" editable="false" layoutX="7.0" layoutY="160.0" prefHeight="25.0" prefWidth="205.0" promptText="TROCOS" />
+      <Label fx:id="lblNumero" layoutX="231.0" layoutY="105.0" prefHeight="25.0" prefWidth="211.0" text="Label" />
+      <TextField fx:id="txtNumeroParcela" alignment="CENTER" layoutX="14.0" layoutY="244.0" promptText="Nº DE PARCELAS" />
+      <Button fx:id="btnParcelar" layoutX="257.0" layoutY="244.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="PARCELAR" />
+      <TableView fx:id="tblParcelamentos" layoutX="6.0" layoutY="280.0" prefHeight="130.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="colCodigoVenda" prefWidth="75.0" text="C.V" />
+          <TableColumn fx:id="colDataApagar" prefWidth="123.0" text="D. A LIQUIDAR" />
+            <TableColumn fx:id="colValor" prefWidth="47.0" text="VALOR" />
+            <TableColumn fx:id="colEstado" prefWidth="55.0" text="ESTADO" />
+            <TableColumn fx:id="colDataPagamento" prefWidth="135.0" text="D.PAGO" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

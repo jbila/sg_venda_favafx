@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #fffff0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLMenuController">
+	<children>
+		<BorderPane id="borderPane" fx:id="menuPane" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<left>
+				<VBox fx:id="vBoxMenuItems" prefHeight="943.0" prefWidth="200.0" spacing="1.0" style="-fx-background-color: #4682b4;" BorderPane.alignment="CENTER">
+					<children>
+						<Button fx:id="btnDashBord" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDashBoard" prefHeight="25.0" prefWidth="200.0" text="Dashboard" />
+						<Button fx:id="btnProducto" layoutX="10.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProducto" prefHeight="25.0" prefWidth="200.0" text="Producto" />
+						<Button fx:id="btnFornecedor" layoutX="10.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFornecedor" prefHeight="25.0" prefWidth="200.0" text="Fornecedor" />
+						<Button fx:id="btnCliente" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCliente" prefHeight="25.0" prefWidth="200.0" text="Cliente" />
+						<Button fx:id="btnCategoria" layoutX="10.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoria" prefHeight="25.0" prefWidth="200.0" text="Categoria" />
+						<Button fx:id="btnUtilizador" layoutX="10.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUtilizador" prefHeight="25.0" prefWidth="200.0" text="Utilizador" />
+						<Button fx:id="btnVendas" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVendas" prefHeight="25.0" prefWidth="200.0" text="Vendas" />
+						<Button fx:id="btnPedidos" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePedidos" prefHeight="25.0" prefWidth="200.0" text="Vendas Feitas" />
+						
+					</children>
+				</VBox>
+			</left>
+			<top>
+				<Pane fx:id="topMenuPane" prefHeight="56.0" prefWidth="750.0" style="-fx-background-color: #263238;" BorderPane.alignment="CENTER">
+					<children>
+						<Label alignment="CENTER" contentDisplay="CENTER" layoutX="44.0" layoutY="14.0" prefHeight="28.0" prefWidth="405.0" text="SISTEMA DE GESTÃO FARMACÊUTICA" textFill="IVORY">
+							<font>
+								<Font name="Franklin Gothic Book" size="24.0" />
+							</font>
+						</Label>
+					</children>
+				</Pane>
+			</top>
+         <bottom>
+            <Pane fx:id="buttomMenuPane" prefHeight="73.0" prefWidth="1920.0" style="-fx-background-color: #263238;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="lblUserName" prefHeight="26.0" prefWidth="200.0" text="userName" textFill="WHITE">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font></Label>
+                  <Label fx:id="lblType" layoutY="27.0" prefHeight="24.0" prefWidth="200.0" text="type" textFill="WHITE">
+                     <font>
+                        <Font name="Garamond Bold" size="14.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+         </bottom>
+		</BorderPane>
+	</children>
+</AnchorPane>
