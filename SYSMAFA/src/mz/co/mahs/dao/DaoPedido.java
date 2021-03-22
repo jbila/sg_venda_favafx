@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
@@ -23,7 +22,7 @@ public class DaoPedido {
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 	private static final String INSERT = "INSERT INTO tbl_pedido(idCliente,idUtilizador,idFormasPagamento,tipo,valorPago,valorDoPedido,dataRegisto) VALUES(?,?,?,?,?,?,?)";
-	private static final String LIST = "select * from  vw_pedidos order by id";
+	private static final String LIST = "SELECT * FROM  vw_pedidos order by id DESC";
 	private static final String DELETE = "{CALL ps_Pedido(?)}";
 	private static final String UPDATE = "UPDATE tbl_pedido set idCliente=?,idUtilizador=?,idFformasDepagamento=?,tipo=?,valorPago=?valorDoPedido=? WHERE idPedido=?";
 
@@ -33,7 +32,7 @@ public class DaoPedido {
 	private static ResultSet rs = null;
 
 	public static int add(Pedido pedido) {
-		 int lastId=0;
+		int lastId = 0;
 		try {
 			LocalDate localDate = LocalDate.now();
 			String dataRegisto = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
@@ -41,7 +40,7 @@ public class DaoPedido {
 			conn = Conexao.connect();
 			stmt = conn.prepareStatement(INSERT);
 			final PreparedStatement stmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-			//cliente,utilizador,formasPagamento,estado,valorPedido
+			// cliente,utilizador,formasPagamento,estado,valorPedido
 			stmt.setInt(1, pedido.getCliente().getIdCliente());
 			stmt.setInt(2, pedido.getUtilizador().getIdUtilizador());
 			stmt.setInt(3, pedido.getFormasDepagamento().getId());
@@ -50,12 +49,11 @@ public class DaoPedido {
 			stmt.setDouble(6, pedido.getValorPedido());
 			stmt.setString(7, dataRegisto);
 			stmt.executeUpdate();
-			
+
 			final ResultSet rs = stmt.getGeneratedKeys();
 			if (rs.next()) {
-			   lastId = rs.getInt(1);
-			  
-			    
+				lastId = rs.getInt(1);
+
 			}
 			alertInfo.setHeaderText("Information");
 			alertInfo.setContentText("pedido Feito ");
@@ -72,9 +70,9 @@ public class DaoPedido {
 
 				e.printStackTrace();
 			}
-			
+
 		}
-		   return lastId;
+		return lastId;
 	}
 //-------------------------------------------------------------------
 
@@ -144,7 +142,7 @@ public class DaoPedido {
 		List<Pedido> pedidos = new ArrayList<>();
 		try {
 			conn = Conexao.connect();
-			stmt = conn.prepareCall("SELECT *from vw_pedidos");
+			stmt = conn.prepareCall(LIST);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 
@@ -154,7 +152,7 @@ public class DaoPedido {
 				cliente.setNome(rs.getString("Cliente"));
 
 				Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
-				utilizador.setNome(rs.getString("Utilizador"));
+				utilizador.setUsername(rs.getString("Utilizador"));
 
 				FormasDePagamento formasDepagamento = new FormasDePagamento();// OBJECTO SECUNDARIO
 				formasDepagamento.setNome(rs.getString("Pago_via"));
@@ -174,7 +172,6 @@ public class DaoPedido {
 			alertErro.setHeaderText("Erro");
 			alertErro.setContentText("Erro ao listar  Pedidos  " + ex.getMessage());
 			alertErro.showAndWait();
-			//ex.printStackTrace();
 		} finally {
 			try {
 				rs.close();

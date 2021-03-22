@@ -109,9 +109,9 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [idPedido=" + idPedido + ", cliente=" + cliente + ", utilizador=" + utilizador
+		return "Pedido [idPedido=" + idPedido + ", cliente=" + cliente + ", utilizador=" + utilizador.getNome()
 				+ ", formasDepagamento=" + formasDepagamento + ", tipo=" + tipo + ", valorPedido=" + valorPedido
-				+ ", valorPago=" + valorPago + ", items=" + items + ", dataRegisto=" + dataRegisto + "]";
+				+ ", valorPago=" + valorPago + ", items=" + items + ", dataRegisto=" + dataRegisto + "\n]";
 	}
 
 

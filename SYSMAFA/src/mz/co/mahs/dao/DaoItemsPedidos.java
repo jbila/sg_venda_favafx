@@ -7,13 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
-import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.ItemsPedidos;
-import mz.co.mahs.models.Utilizador;
-import mz.co.mahs.models.Pedido;
+import mz.co.mahs.models.Producto;
 
 public class DaoItemsPedidos {
 
@@ -121,29 +120,31 @@ public class DaoItemsPedidos {
 	}
 //------------------------------------------------------------------------------
 
-	public static List<ItemsPedidos> getAll() {
+	public static List<ItemsPedidos> getAll(int codigoVenda) {
 		List<ItemsPedidos> itemsPedidos = new ArrayList<>();
 		try {
+			String SQL="SELECT IP.id,P.nome as Producto,IP.precoUnitario as Preco,IP.quantidade \r\n" + 
+					"FROM tbl_itemsPedidos AS IP\r\n" + 
+					"inner join tbl_producto as P\r\n" + 
+					"on  IP.idProducto=P.idProducto\r\n" + 
+					"where idPedido='"+codigoVenda+"';";
 			conn = Conexao.connect();
-			stmt = conn.prepareCall(LIST);
+			stmt = conn.prepareCall(SQL);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				Cliente cliente=new Cliente();
-				cliente.setNome(rs.getString("nome"));
-				Utilizador utilizador=new Utilizador();
-				utilizador.setNome(rs.getString("utilizador"));
-				Pedido pedido=new Pedido();
-				pedido.setDataRegisto(rs.getString("dataRegisto"));
-				
 				ItemsPedidos itemsPedido=new ItemsPedidos();
+				Producto producto =new Producto();
+				itemsPedido.setIdItemsPedido(rs.getInt("id"));
+				producto.setNome(rs.getString("Producto"));
 				itemsPedido.setQuantidade(rs.getInt("quantidade"));
+				itemsPedido.setPrecoUnitario(rs.getInt("Preco"));
+				itemsPedido.setProducto(producto);
 				itemsPedidos.add(itemsPedido);
-
 			}
 
 		} catch (SQLException ex) {
 			alertErro.setHeaderText("Erro");
-			alertErro.setContentText("Erro ao listar  items  " + ex.getMessage());
+			alertErro.setContentText("Erro ao listar  items do Pedido  " + ex.getMessage());
 			alertErro.showAndWait();
 		} finally {
 			try {
