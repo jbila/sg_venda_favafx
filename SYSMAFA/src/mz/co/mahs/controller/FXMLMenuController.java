@@ -65,7 +65,8 @@ public class FXMLMenuController implements Initializable {
 	    
 	    @FXML
 	    private Button btnPedidos;
-
+	    @FXML
+	    private Button btnProvinciaDistrito;
 	    @FXML
 	    private Pane topMenuPane,buttomMenuPane;
 	    @FXML
@@ -78,7 +79,7 @@ public class FXMLMenuController implements Initializable {
 	        
 	    }    
 	   //----------------------------------------------------------------------------
-	    @FXML
+	   @FXML
 	  private  void handleCategoria(ActionEvent event) {
 	    	openCategoria();
 	    }
@@ -121,7 +122,10 @@ public class FXMLMenuController implements Initializable {
     private void handlePedidos(ActionEvent event) {
         openPedidos();
    }
-  
+    @FXML
+	  private  void handleProvinciaDistrito(ActionEvent event) {
+    	openProvinciaDistrito();
+	    }
   
     @FXML
     private void handleOut(ActionEvent event) {
@@ -333,5 +337,26 @@ public class FXMLMenuController implements Initializable {
         	alertErro.showAndWait();
         }
         }
- 
+          //--------------------------------------------------------------------------
+          private void openProvinciaDistrito(){
+        	  Stage stage=new Stage();
+           try {
+               
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLProvinciaDistrito.fxml"));//FXMLSituacao_
+            Parent rootFormador = (Parent) fxmlLoader.load();
+           
+    		Scene scene = new Scene(rootFormador);
+    		scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+    		stage.setScene(scene);
+    		stage.initStyle(StageStyle.UNDECORATED);
+    		stage.initModality(Modality.APPLICATION_MODAL);
+    		menuPane.setCenter(rootFormador);
+    		menuPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    		//stage.show();
+        } catch(Exception e) {
+        	alertErro.setHeaderText("Erro");
+        	alertErro.setContentText("Erro ao Carregar o Ficheiro "+e);
+        	alertErro.showAndWait();
+        }
+        }
 }

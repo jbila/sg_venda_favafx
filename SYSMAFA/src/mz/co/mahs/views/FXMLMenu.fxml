@@ -20,8 +20,10 @@
 						<Button fx:id="btnCliente" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCliente" prefHeight="25.0" prefWidth="200.0" text="Cliente" />
 						<Button fx:id="btnCategoria" layoutX="10.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoria" prefHeight="25.0" prefWidth="200.0" text="Categoria" />
 						<Button fx:id="btnUtilizador" layoutX="10.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUtilizador" prefHeight="25.0" prefWidth="200.0" text="Utilizador" />
-						<Button fx:id="btnVendas" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVendas" prefHeight="25.0" prefWidth="200.0" text="Vendas" />
-						<Button fx:id="btnPedidos" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePedidos" prefHeight="25.0" prefWidth="200.0" text="Vendas Feitas" />
+						<Button fx:id="btnVendas" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVendas" prefHeight="25.0" prefWidth="200.0" text="Emitir Venda" />
+						<Button fx:id="btnPedidos" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePedidos" prefHeight="25.0" prefWidth="200.0" text="Vendas e pagamentos" />
+						<Button fx:id="btnProvinciaDistrito" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProvinciaDistrito" prefHeight="25.0" prefWidth="200.0" text="Registar Provincia e Distritos" />
+						
 						
 					</children>
 				</VBox>

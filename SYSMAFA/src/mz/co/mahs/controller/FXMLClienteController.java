@@ -4,6 +4,7 @@ package mz.co.mahs.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +23,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import mz.co.mahs.dao.DaoCliente;
+import mz.co.mahs.dao.DaoDistrito;
+import mz.co.mahs.dao.DaoProvincia;
 import mz.co.mahs.models.Cliente;
+import mz.co.mahs.models.Distrito;
+import mz.co.mahs.models.Provincia;
 import mz.co.mahs.models.Utilizador;
 
 public class FXMLClienteController implements Initializable, Crud {
@@ -63,8 +68,10 @@ public class FXMLClienteController implements Initializable, Crud {
 	private TableColumn<Cliente, String> colSexo;
 
 	@FXML
-	private TableColumn<Cliente, String> colEndereco;
+	private TableColumn<Cliente, String> colEndereco;//
 
+	@FXML
+	private TableColumn<Cliente, Distrito> colDistritoUrbano;
 	@FXML
 	private TableColumn<Cliente, Utilizador> colUtilizador;
 
@@ -82,7 +89,11 @@ public class FXMLClienteController implements Initializable, Crud {
 	ObservableList<String> sexo = FXCollections.observableArrayList("M", "F");
 
 	@FXML
-	private TextField txtID;
+	private ComboBox<Provincia> cboProvincia;
+	@FXML
+	private ComboBox<Distrito> cboDistrito;
+	@FXML
+	private TextField txtID;//cboProvincia
 
 	@FXML
 	private HBox hBoxButton;
@@ -137,12 +148,10 @@ public class FXMLClienteController implements Initializable, Crud {
 				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 				colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 				colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+				colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
 				colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 				colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 				tblCliente.setItems(obserList);
-			  
-			  
-
 		  });
 	 }
 	@FXML
@@ -154,6 +163,18 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 	}
 
+	 @FXML
+	   private void actionProvincia(ActionEvent event) {
+		 cboDistrito.getItems().clear();
+		 Provincia nome=cboProvincia.getValue();
+		List<Distrito> listDistrito=DaoDistrito.search(nome);
+		for (Distrito distrito : listDistrito) {
+			
+			cboDistrito.getItems().add(distrito);
+		}
+		
+	    }
+	 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cboSexo.setItems(sexo);
@@ -161,6 +182,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
 		txtID.setVisible(false);
+		fillProvincia();
 
 	}
 
@@ -169,6 +191,11 @@ public class FXMLClienteController implements Initializable, Crud {
 		// nome,genero,email,telefone,endereco
 		Cliente cliente = new Cliente();
 		Utilizador utilizador = new Utilizador();
+		Distrito distrito=new Distrito();
+		Distrito dis = (Distrito) cboDistrito.getSelectionModel().getSelectedItem();
+		final int idDistrito = dis.getIdDistrito();
+				distrito.setIdDistrito(idDistrito);
+
 		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		cliente.setNome(txtNome.getText().toUpperCase());
 		cliente.setApelido(txtApelido.getText().toUpperCase());
@@ -176,6 +203,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		cliente.setTelefone(txtTelefone.getText().toUpperCase());
 		cliente.setEndereco(txtEndereco.getText().toUpperCase());
 		cliente.setGenero(cboSexo.getValue().toLowerCase());
+		cliente.setDistrito(distrito);
 		cliente.setUtilizador(utilizador);
 		DaoCliente.addCliente(cliente);
 		limpar();
@@ -192,7 +220,15 @@ public class FXMLClienteController implements Initializable, Crud {
 	@Override
 	public void acessoUpdate() {
 		Cliente cliente = new Cliente();
+		
+		
 		Utilizador utilizador = new Utilizador();
+		
+		Distrito distrito=new Distrito();
+		Distrito dis = (Distrito) cboDistrito.getSelectionModel().getSelectedItem();
+		final int idDistrito = dis.getIdDistrito();
+				distrito.setIdDistrito(idDistrito);
+		
 		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		cliente.setNome(txtNome.getText().toUpperCase());
 		cliente.setApelido(txtApelido.getText().toUpperCase());
@@ -200,6 +236,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		cliente.setTelefone(txtTelefone.getText().toUpperCase());
 		cliente.setEndereco(txtEndereco.getText().toUpperCase());
 		cliente.setGenero(cboSexo.getValue().toUpperCase());
+		cliente.setDistrito(distrito);
 		cliente.setUtilizador(utilizador);
 		cliente.setIdCliente(Integer.parseInt(txtID.getText()));
 		DaoCliente.updateCliente(cliente);
@@ -239,10 +276,16 @@ public class FXMLClienteController implements Initializable, Crud {
 		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+		colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
 		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 		colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 		tblCliente.setItems(obserList);
 
+	}
+	private void  fillProvincia() {
+		List<Provincia> list = DaoProvincia.getAllprovincia();
+		for (Provincia items : list) 
+			cboProvincia.getItems().add(items);	
 	}
 
 }

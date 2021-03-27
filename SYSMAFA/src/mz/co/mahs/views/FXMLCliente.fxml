@@ -12,11 +12,12 @@
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="1883.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLClienteController">
 	<children>
-						<VBox layoutX="10.0" layoutY="40.0" prefHeight="102.0" prefWidth="67.0" spacing="15.0">
+						<VBox layoutX="10.0" layoutY="40.0" prefHeight="117.0" prefWidth="67.0" spacing="15.0">
 							<children>
 								<Label text="Nome" />
             <Label layoutX="10.0" layoutY="74.0" prefHeight="17.0" prefWidth="69.0" text="Apelido" />
 								<Label text="Email" />
+            <Label text="Provincia" />
 							</children>
 						</VBox>
 						<VBox layoutX="81.0" layoutY="44.0" prefHeight="88.0" prefWidth="255.0" spacing="5.0">
@@ -38,12 +39,14 @@
 						<TableColumn fx:id="colSexo" editable="false" prefWidth="51.0" sortable="false" text="Sexo" />
 						<TableColumn fx:id="colEndereco" editable="false" prefWidth="115.0" sortable="false" text="Endereço" />
 						<TableColumn fx:id="colUtilizador" editable="false" maxWidth="200.0" prefWidth="159.0" sortable="false" text="Utilizador" />
-                        <TableColumn fx:id="colDataRegisto" editable="false" maxWidth="115.0" prefWidth="108.0" sortable="false" text="Cliente desde" />
+						<TableColumn fx:id="colDistritoUrbano" editable="false" maxWidth="200.0" prefWidth="159.0" sortable="false" text="Distrito Urbano" />
+						<TableColumn fx:id="colDataRegisto" editable="false" maxWidth="115.0" prefWidth="108.0" sortable="false" text="Cliente desde" />
 					</columns>
 				</TableView>
 		
-		<VBox layoutX="435.0" layoutY="47.0" prefHeight="88.0" prefWidth="67.0" spacing="15.0">
+		<VBox layoutX="435.0" layoutY="18.0" prefHeight="117.0" prefWidth="67.0" spacing="15.0">
 			<children>
+            <Label prefHeight="17.0" prefWidth="69.0" text="Distrito" />
 				<Label text="Endereço" />
             <Label prefHeight="17.0" prefWidth="69.0" text="Telefone" />
             <Label prefHeight="17.0" prefWidth="69.0" text="Sexo" />
@@ -51,8 +54,11 @@
 		</VBox>
       <TextField fx:id="txtEndereco" alignment="CENTER" layoutX="513.0" layoutY="47.0" prefHeight="25.0" prefWidth="324.0" promptText="Introduza o Endereço" />
       <TextField fx:id="txtTelefone" alignment="CENTER" layoutX="513.0" layoutY="77.0" prefHeight="25.0" prefWidth="324.0" promptText="Introduza o Numero de Telefone" />
-      <ComboBox fx:id="cboSexo" layoutX="513.0" layoutY="107.0" prefHeight="25.0" prefWidth="316.0" promptText="Sexo" />
-      <TextField fx:id="txtID" alignment="CENTER" editable="false" layoutX="78.0" layoutY="132.0" prefHeight="25.0" prefWidth="67.0" promptText="ID" />
+      <ComboBox fx:id="cboSexo" layoutX="513.0" layoutY="107.0" prefHeight="25.0" prefWidth="324.0" promptText="Sexo" />
+            <ComboBox fx:id="cboProvincia" layoutX="77.0" layoutY="135.0" onAction="#actionProvincia" prefHeight="25.0" prefWidth="261.0" promptText="Provincia" />
+            <ComboBox fx:id="cboDistrito" layoutX="513.0" layoutY="14.0" prefHeight="25.0" prefWidth="316.0" promptText="Distrito" />
+      
+      <TextField fx:id="txtID" alignment="CENTER" editable="false" layoutX="81.0" layoutY="14.0" prefHeight="25.0" prefWidth="67.0" promptText="ID" />
       <HBox fx:id="hBoxButton" layoutX="519.0" layoutY="172.0" prefHeight="25.0" prefWidth="316.0">
          <children>
             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefWidth="100.0" text="Add" />

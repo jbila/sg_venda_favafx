@@ -9,7 +9,7 @@ public  abstract class Pessoa {
     private String email;
     private String telefone;
     private String endereco; 
-    //nome,genero,email,telefone,endereco
+    //nome,apelido,genero,email,telefone,endereco
     public Pessoa() {}
     
     

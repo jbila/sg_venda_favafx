@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.models.Cliente;
+import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Utilizador;
 
 public class FXMLAllClientsController {
@@ -48,6 +49,8 @@ public class FXMLAllClientsController {
 
 	@FXML
 	private TableColumn<Cliente, String> colEndereco;
+	@FXML
+	private TableColumn<Cliente, Distrito> colDistritoUrbano;
 
 	@FXML
 	private TableColumn<Cliente, String> colDataRegisto;
@@ -106,6 +109,7 @@ public class FXMLAllClientsController {
 		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+		colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
 		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 		colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 		tblCliente.setItems(obserList);

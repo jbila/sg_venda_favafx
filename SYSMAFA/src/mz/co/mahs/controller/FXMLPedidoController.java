@@ -1,6 +1,6 @@
 package mz.co.mahs.controller;
 
-import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -412,21 +412,28 @@ public class FXMLPedidoController {
 		tblItems.getItems().add(items);
 	}
 
-	private void deleteRow() {
+	private void deleteRow() { 
 		btnRemover.setOnAction(e -> {
 			ItemsPedidos selectedItem = tblItems.getSelectionModel().getSelectedItem();
-			int selecctedIndex = tblItems.getSelectionModel().getSelectedIndex();// seleciona o indice
-
+			double t=0.0;
 			for (int i = 0; i < tblItems.getItems().size(); i++) {
 				ItemsPedidos itemsPedido = new ItemsPedidos();
 				itemsPedido.setSubTotal(colSubTotal.getCellData(i));
-				diminuir = colSubTotal.getCellData(i);
-				if (selecctedIndex > 0)
-					tblItems.getItems().remove(selectedItem);
+				t=colSubTotal.getCellData(i);
+				//tblItems.getItems().remove(selectedItem);
+				//tblItems.getItems().remove(i);
+				//System.out.println(t);
+				tblItems.getItems().remove(selectedItem);
+		        System.out.println(t);
 
 			}
-			total = total - diminuir;
-			lblTotal.setText("" + total);
+				 
+			   
+			
+			
+			double temp=total-t;
+			
+			lblTotal.setText("" + temp);
 
 		});
 	}

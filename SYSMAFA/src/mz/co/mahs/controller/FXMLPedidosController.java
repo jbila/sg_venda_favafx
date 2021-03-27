@@ -152,12 +152,17 @@ public class FXMLPedidosController {
 		txtPedido.setText("" + pedido.getIdPedido());
 		tblItems.setVisible(false);
 		tblParcelas.setVisible(false);	
+		/*------------------------------*/
+		btnPagarParcela.setVisible(true);
+		btnVerItemDoPedido.setVisible(true);
     }
 
 	@FXML
     private void handleClikParcela(MouseEvent event) {
 		Parcela parcela = tblParcelas.getSelectionModel().getSelectedItem();
 		txtNumeroParcela.setText("" + parcela.getIdParcela());
+		btnLiquidar.setVisible(false);
+
 		
     }
 	@FXML
@@ -178,6 +183,9 @@ public class FXMLPedidosController {
 		tblItems.setVisible(false);
 		tblParcelas.setVisible(false);
 		txtNumeroParcela.setVisible(false);
+		
+		btnPagarParcela.setVisible(false);
+		btnVerItemDoPedido.setVisible(false);
 		btnLiquidar.setVisible(false);
 	}
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="rootProvinciaDistrito" prefHeight="500.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLProvinciaDistritoController">
+   <children>
+      <AnchorPane fx:id="rootDistrito" layoutX="392.0" layoutY="7.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #fffff0;">
+         <children>
+            <Label layoutX="1.0" layoutY="4.0" text="Registo de Distrito" />
+            <TextField fx:id="txtNomeDistrito" alignment="CENTER" layoutY="58.0" prefHeight="25.0" prefWidth="243.0" promptText="Nome do Distrito" />
+            <ComboBox fx:id="cboProvincia" layoutX="3.0" layoutY="92.0" prefHeight="25.0" prefWidth="243.0" promptText="Selecione o Nome da Provincia" />
+            <TextField fx:id="txtIdDistrito" layoutX="-1.0" layoutY="34.0" prefHeight="25.0" prefWidth="90.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="14.0" layoutY="6.0" text="Registo de Provincia" />
+      <TableView fx:id="tblProvincia" layoutX="3.0" layoutY="143.0" onMouseClicked="#handleProvincia" prefHeight="362.0" prefWidth="387.0">
+        <columns>
+          <TableColumn fx:id="colIDProvincia" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colProvinciaNome" prefWidth="310.0" text="Provincia" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblDistritoUrbano" layoutX="392.0" layoutY="143.0" onMouseClicked="#handleDistrito" prefHeight="362.0" prefWidth="407.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colIProv" prefWidth="75.0" text="Provincia" />
+            <TableColumn fx:id="colDistritoUrbano" prefWidth="256.0" text="Distrito Urbano" />
+         </columns>
+      </TableView>
+      <TextField fx:id="txtProvincia" alignment="CENTER" layoutX="24.0" layoutY="66.0" prefHeight="25.0" prefWidth="268.0" promptText="Nome de Provincia" />
+      <VBox layoutX="314.0" layoutY="63.0">
+         <children>
+            <Button fx:id="btnAddProvincia" mnemonicParsing="false" onAction="#addProvincia" prefHeight="25.0" prefWidth="75.0" text="Adiccionar" />
+            <Button fx:id="btnActualizarProvincia" mnemonicParsing="false" onAction="#updateProvincia" prefHeight="25.0" prefWidth="75.0" text="Actualizar" />
+            <Button fx:id="btnDelteProvincia" mnemonicParsing="false" onAction="#deleteProvincia" prefHeight="25.0" prefWidth="75.0" text="Apagar" />
+         </children>
+      </VBox>
+      <VBox layoutX="714.0" layoutY="63.0">
+         <children>
+            <Button fx:id="btnAdicionarDistrito" mnemonicParsing="false" onAction="#addDistrito" prefHeight="25.0" prefWidth="75.0" text="Adicionar" />
+            <Button fx:id="btnActualizarDistrito" mnemonicParsing="false" onAction="#updateDistrito" prefHeight="25.0" prefWidth="75.0" text="Actualizar" />
+            <Button fx:id="btnAgarDistrito" mnemonicParsing="false" onAction="#deleteDistrito" prefHeight="25.0" prefWidth="75.0" text="Apagar" />
+         </children>
+      </VBox>
+      <TextField fx:id="txtIdProvincia" layoutX="24.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" />
+      <AnchorPane fx:id="rootFuncao" layoutX="799.0" prefHeight="507.0" prefWidth="308.0">
+         <children>
+            <TableView fx:id="tblFuncao" layoutX="1.0" layoutY="144.0" onMouseClicked="#handleFuncao" prefHeight="362.0" prefWidth="300.0">
+              <columns>
+                <TableColumn fx:id="colIdFuncao" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="colNomeFuncao" prefWidth="222.0" text="Nome Fa Função" />
+              </columns>
+            </TableView>
+            <TextField fx:id="txtIdFuncao" alignment="CENTER" layoutX="14.0" layoutY="33.0" prefHeight="25.0" prefWidth="90.0" promptText="ID  Funcao" />
+            <TextField fx:id="txtNomeFuncao" alignment="CENTER" layoutX="14.0" layoutY="70.0" prefHeight="25.0" prefWidth="187.0" promptText="Nome da Funcao" />
+            <Label layoutX="20.0" layoutY="7.0" text="Registo de Função" />
+            <VBox layoutX="230.0" layoutY="59.0">
+               <children>
+                  <Button fx:id="btnAdicionarFuncao" mnemonicParsing="false" onAction="#addFuncao" prefHeight="25.0" prefWidth="75.0" text="Adicionar" />
+                  <Button fx:id="btnActualizarFuncao" mnemonicParsing="false" onAction="#updateFuncao" prefHeight="25.0" prefWidth="75.0" text="Actualizar" />
+                  <Button fx:id="btnApagarFuncao" mnemonicParsing="false" onAction="#deleteFuncao" prefHeight="25.0" prefWidth="75.0" text="Apagar" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
