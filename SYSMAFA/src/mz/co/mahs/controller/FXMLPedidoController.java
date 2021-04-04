@@ -1,6 +1,5 @@
 package mz.co.mahs.controller;
 
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -138,9 +137,9 @@ public class FXMLPedidoController {
 	List<FormasDePagamento> listFormasDePagamento = new ArrayList<>();
 	@FXML
 	private ComboBox<String> cboTipo;
-	ObservableList<String> tipo=FXCollections.observableArrayList("COMPLETA","PARCELADA");
+	ObservableList<String> tipo = FXCollections.observableArrayList("COMPLETA", "PARCELADA");
 	@FXML
-	Button btnAdicionar, btnCancelar, btnConfirmarPagamento, btnVoltar,btnRelatorio;
+	Button btnAdicionar, btnCancelar, btnConfirmarPagamento, btnVoltar, btnRelatorio;
 	@FXML
 	private Button btnRemover;
 	@FXML
@@ -174,7 +173,7 @@ public class FXMLPedidoController {
 		fillCliente();
 		fillFormasDePagamento();
 		total = 0;
-		
+
 		txtNumeroParcela.setVisible(false);
 		btnParcelar.setVisible(false);
 	}
@@ -207,29 +206,26 @@ public class FXMLPedidoController {
 	private void confirmarPagamento(ActionEvent event) {
 		addPedido();
 		/*
-		actualizarStock();
-		calcularParcelaII();
-		limpaCampos();
-		showInfo();*/
+		 * actualizarStock(); calcularParcelaII(); limpaCampos(); showInfo();
+		 */
 
 	}
+
 	/**
-	 * Este metodo assegura a seleccao de VENDA  de forma que quando a selecao
-	 * for parcelada o botao parcelar e o campo de numero de 
-	 * fique habilitado
-	 * parcelas
+	 * Este metodo assegura a seleccao de VENDA de forma que quando a selecao for
+	 * parcelada o botao parcelar e o campo de numero de fique habilitado parcelas
 	 * 
 	 */
 	@FXML
 	private void changeTipo(ActionEvent event) {
-				cboTipo.setOnAction(ev-> {
+		cboTipo.setOnAction(ev -> {
 			if ((cboTipo.getSelectionModel().getSelectedItem()).equalsIgnoreCase("PARCELADA")) {
 
 				txtNumeroParcela.setVisible(true);
 				btnParcelar.setVisible(true);
-				
+
 			} else {
-			
+
 				txtNumeroParcela.setVisible(false);
 				btnParcelar.setVisible(false);
 			}
@@ -239,7 +235,7 @@ public class FXMLPedidoController {
 
 	@FXML
 	private void changed(ActionEvent event) {
-				cboFormaDePagamento1.setOnAction(ev-> {
+		cboFormaDePagamento1.setOnAction(ev -> {
 		});
 
 	}
@@ -247,8 +243,8 @@ public class FXMLPedidoController {
 	/*------------------------------------*/
 	@FXML
 	private void parcelar(ActionEvent event) {
-		//tblParcelamentos.getItems().clear();
-			calcularParcela();
+		// tblParcelamentos.getItems().clear();
+		calcularParcela();
 	}
 
 	/*------------------------------------*/
@@ -264,18 +260,17 @@ public class FXMLPedidoController {
 	@FXML
 	private void calcularTrocos(KeyEvent event) {
 		try {
-		txtvalorApagar.setOnKeyReleased(e -> {
-			double trocos = (Double.parseDouble(txtvalorApagar.getText())
-					- (Double.parseDouble(txtValorTotal.getText())));
-			txtTrocos.setText("" + trocos);
-		});
-		}
-		catch(NumberFormatException e) {
+			txtvalorApagar.setOnKeyReleased(e -> {
+				double trocos = (Double.parseDouble(txtvalorApagar.getText())
+						- (Double.parseDouble(txtValorTotal.getText())));
+				txtTrocos.setText("" + trocos);
+			});
+		} catch (NumberFormatException e) {
 			alertErro.setTitle("Erro");
 			alertErro.setHeaderText("Erro de Validação");
 			alertErro.setContentText("Valor Introduzido invalido");
 			alertErro.showAndWait();
-			
+
 		}
 
 	}
@@ -330,19 +325,18 @@ public class FXMLPedidoController {
 	@FXML
 	private void calcularSubtotal(KeyEvent event) {
 		try {
-		if (txtQty.getText().equalsIgnoreCase("")) {
-			txtSutotal.setText("0.0");
-		} else {
-			subTotal = (Integer.parseInt(txtQty.getText()) * (Double.parseDouble(txtPreco.getText())));
-			txtSutotal.setText("" + subTotal);
-		}
-		}
-		catch(NumberFormatException e) {
+			if (txtQty.getText().equalsIgnoreCase("")) {
+				txtSutotal.setText("0.0");
+			} else {
+				subTotal = (Integer.parseInt(txtQty.getText()) * (Double.parseDouble(txtPreco.getText())));
+				txtSutotal.setText("" + subTotal);
+			}
+		} catch (NumberFormatException e) {
 			alertErro.setHeaderText("Erro");
 			alertErro.setHeaderText("Validação de dados");
 			alertErro.setContentText("Introduza um nùmero inteiro " + e);
 			alertErro.showAndWait();
-			
+
 		}
 
 	}
@@ -390,7 +384,6 @@ public class FXMLPedidoController {
 	}
 
 	// -------------------------------------------------------------------------
-	
 
 	private void fillCliente() {
 		listCliente = DaoCliente.getAllCliente();
@@ -433,27 +426,23 @@ public class FXMLPedidoController {
 		tblItems.getItems().add(items);
 	}
 
-	private void deleteRow() { 
+	private void deleteRow() {
 		btnRemover.setOnAction(e -> {
 			ItemsPedidos selectedItem = tblItems.getSelectionModel().getSelectedItem();
-			double t=0.0;
+			double t = 0.0;
 			for (int i = 0; i < tblItems.getItems().size(); i++) {
 				ItemsPedidos itemsPedido = new ItemsPedidos();
 				itemsPedido.setSubTotal(colSubTotal.getCellData(i));
-				t=colSubTotal.getCellData(i);
-				//tblItems.getItems().remove(selectedItem);
-				//tblItems.getItems().remove(i);
-				//System.out.println(t);
+				t = colSubTotal.getCellData(i);
+				// tblItems.getItems().remove(selectedItem);
+				// tblItems.getItems().remove(i);
+
 				tblItems.getItems().remove(selectedItem);
-		        System.out.println(t);
 
 			}
-				 
-			   
-			
-			
-			double temp=total-t;
-			
+
+			double temp = total - t;
+
 			lblTotal.setText("" + temp);
 
 		});
@@ -464,62 +453,62 @@ public class FXMLPedidoController {
 	 */
 	private void addPedido() {
 		try {
-		Pedido pedido = new Pedido();// OBJECTO PRINCIPAL
-		Cliente cliente = new Cliente();// OBJECTO SECUNDARIO
-		Cliente cli = (Cliente) cboCliente1.getSelectionModel().getSelectedItem();
-		final int idCliente = cli.getIdCliente();
-		cliente.setIdCliente(idCliente);
+			Pedido pedido = new Pedido();// OBJECTO PRINCIPAL
+			Cliente cliente = new Cliente();// OBJECTO SECUNDARIO
+			Cliente cli = (Cliente) cboCliente1.getSelectionModel().getSelectedItem();
+			final int idCliente = cli.getIdCliente();
+			cliente.setIdCliente(idCliente);
 
-		Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
-		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
+			Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
+			utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 
-		FormasDePagamento formasDepagamento = new FormasDePagamento();// OBJECTO SECUNDARIO
-		FormasDePagamento formasPagamento = (FormasDePagamento) cboFormaDePagamento1.getSelectionModel()
-				.getSelectedItem();
-		final int idFormasPagamento = formasPagamento.getId();
-		formasDepagamento.setId(idFormasPagamento);
+			FormasDePagamento formasDepagamento = new FormasDePagamento();// OBJECTO SECUNDARIO
+			FormasDePagamento formasPagamento = (FormasDePagamento) cboFormaDePagamento1.getSelectionModel()
+					.getSelectedItem();
+			final int idFormasPagamento = formasPagamento.getId();
+			formasDepagamento.setId(idFormasPagamento);
 
-		pedido.setFormasDepagamento(formasDepagamento);
-		pedido.setUtilizador(utilizador);
-		pedido.setCliente(cliente);
-		
-		if(cboTipo.getSelectionModel().getSelectedItem().equals("COMPLETA"))
-		pedido.setTipo("C");
-		if(cboTipo.getSelectionModel().getSelectedItem().equals("PARCELADA"))
-		pedido.setTipo("P");	
-		
-		pedido.setValorPedido(Double.parseDouble(lblTotal.getText()));
-		/**--------------------------------------------------------*/
-		if (cboTipo.getSelectionModel().getSelectedItem().equalsIgnoreCase("PARCELADA")) {
-			pedido.setValorPago(Double.parseDouble(lblTotal.getText())/(Integer.parseInt(txtNumeroParcela.getText())));
-		}
-		if (cboTipo.getSelectionModel().getSelectedItem().equalsIgnoreCase("COMPLETA"))
-		{
-			pedido.setValorPago(Double.parseDouble(lblTotal.getText()));
-		}		
+			pedido.setFormasDepagamento(formasDepagamento);
+			pedido.setUtilizador(utilizador);
+			pedido.setCliente(cliente);
 
-		/**---------------------------------------------------------*/
-		idPedido = DaoPedido.add(pedido);
-		addItmes(idPedido);
-		/*--------------------------------------------*/
-		actualizarStock();
-		calcularParcelaII();
-		limpaCampos();
-		showInfo();
-		
-		}
-		catch(NullPointerException ex) {
+			if (cboTipo.getSelectionModel().getSelectedItem().equals("COMPLETA"))
+				pedido.setTipo("C");
+			if (cboTipo.getSelectionModel().getSelectedItem().equals("PARCELADA"))
+				pedido.setTipo("P");
+
+			pedido.setValorPedido(Double.parseDouble(lblTotal.getText()));
+			/** -------------------------------------------------------- */
+			if (cboTipo.getSelectionModel().getSelectedItem().equalsIgnoreCase("PARCELADA")) {
+				pedido.setValorPago(
+						Double.parseDouble(lblTotal.getText()) / (Integer.parseInt(txtNumeroParcela.getText())));
+			}
+			if (cboTipo.getSelectionModel().getSelectedItem().equalsIgnoreCase("COMPLETA")) {
+				pedido.setValorPago(Double.parseDouble(lblTotal.getText()));
+			}
+
+			/** --------------------------------------------------------- */
+			idPedido = DaoPedido.add(pedido);
+			addItmes(idPedido);
+			DaoRelatorio.fatura(idPedido);
+			/*--------------------------------------------*/
+			actualizarStock();
+			calcularParcelaII();
+			limpaCampos();
+			showInfo();
+
+		} catch (NullPointerException ex) {
 			alertWarning.setTitle("Aviso");
 			alertWarning.setHeaderText("Verificação de Dados");
-			alertWarning.setContentText("Selecione a Formas de Pagamento ou o cliente"+"\n");
+			alertWarning.setContentText("Selecione a Formas de Pagamento ou o cliente" + "\n");
 			alertWarning.showAndWait();
-			
+
 		}
-		
-		
+
 	}
-	/**ADICIONA PEDIDO PARCELADO*/
-		
+
+	/** ADICIONA PEDIDO PARCELADO */
+
 	/**
 	 * Este medido adicona o items do pedido
 	 */
@@ -541,8 +530,7 @@ public class FXMLPedidoController {
 			listItem.add(itemsPedido);
 		}
 		DaoItemsPedidos.add(listItem);
-		System.out.println(idPedido);
-		DaoRelatorio.fatura(idPedido);
+
 		total = 0.0;
 		lblTotal.setText(total + "0.0");
 	}
@@ -592,18 +580,56 @@ public class FXMLPedidoController {
 	}
 
 //-----------------------------------------------------------------------
-	private void calcularParcela() {	
+	private void calcularParcela() {
 		tblParcelamentos.getItems().clear();
-		List<Parcela> parcelas = new ArrayList<>();//esta lista contem as parcelas dos pedidos
-
+		List<Parcela> parcelas = new ArrayList<>();// esta lista contem as parcelas dos pedidos
 
 		if (Double.parseDouble(txtValorTotal.getText()) > 1000)
 
 		{
-			if(Integer.parseInt(txtNumeroParcela.getText())>1) {
-			
-			for (int i = 0; i < Integer.parseInt(txtNumeroParcela.getText()); i++) {
+			if (Integer.parseInt(txtNumeroParcela.getText()) > 1) {
 
+				for (int i = 0; i < Integer.parseInt(txtNumeroParcela.getText()); i++) {
+
+					Parcela parcela = new Parcela();
+					Pedido pedido = new Pedido();
+					pedido.setIdPedido(idPedido);
+
+					LocalDate localDate = LocalDate.now();
+					String dataPrevista = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate.plusDays(30 * i));
+
+					double divida = Double.parseDouble(txtValorTotal.getText())
+							/ Integer.parseInt(txtNumeroParcela.getText());
+					parcela.setDataPrevista(dataPrevista);
+					parcela.setValorApagar(divida);
+					parcela.setPedido(pedido);
+					parcelas.add(parcela);
+				} // fecha o for
+			} // fecha a condicao de entrada de numeros menores que 1
+			else {
+				alertInfo.setHeaderText("Informacao");
+				alertInfo.setContentText("O numero de Parcelas deve ser maior que 1");
+				alertInfo.showAndWait();
+			}
+
+			colCodigoVenda.setCellValueFactory(new PropertyValueFactory<>("pedido"));
+			colDataApagar.setCellValueFactory(new PropertyValueFactory<>("dataPrevista"));
+			colValor.setCellValueFactory(new PropertyValueFactory<>("valorApagar"));
+			colDataPagamento.setCellValueFactory(new PropertyValueFactory<>("dataPagamento"));
+			colEstado.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+			tblParcelamentos.getItems().addAll(parcelas);
+		} else {
+			alertInfo.setHeaderText("Informacao");
+			alertInfo.setContentText("Lamentamos, so podes parcelar apartir de 1000 MT");
+			alertInfo.showAndWait();
+		} // fecha o else
+	}// closes methods
+
+	private void calcularParcelaII() {
+		try {
+			List<Parcela> parcelas = new ArrayList<>();// esta lista contem as parcelas dos pedido
+
+			for (int i = 0; i < Integer.parseInt(txtNumeroParcela.getText()); i++) {
 				Parcela parcela = new Parcela();
 				Pedido pedido = new Pedido();
 				pedido.setIdPedido(idPedido);
@@ -617,70 +643,25 @@ public class FXMLPedidoController {
 				parcela.setValorApagar(divida);
 				parcela.setPedido(pedido);
 				parcelas.add(parcela);
-			}// fecha o for
-			}//fecha a condicao de entrada de numeros menores que 1
-			else
-			{
-				alertInfo.setHeaderText("Informacao");
-				alertInfo.setContentText("O numero de Parcelas deve ser maior que 1");
-				alertInfo.showAndWait();
-			}
 
-			colCodigoVenda.setCellValueFactory(new PropertyValueFactory<>("pedido"));
-			colDataApagar.setCellValueFactory(new PropertyValueFactory<>("dataPrevista"));
-			colValor.setCellValueFactory(new PropertyValueFactory<>("valorApagar"));
-			colDataPagamento.setCellValueFactory(new PropertyValueFactory<>("dataPagamento"));
-			colEstado.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-			tblParcelamentos.getItems().addAll(parcelas);
-		} 
-			else {
-			alertInfo.setHeaderText("Informacao");
-			alertInfo.setContentText("Lamentamos, so podes parcelar apartir de 1000 MT");
-			alertInfo.showAndWait();
-		}//fecha o else
+			} // fecha o for
+
+			if (cboTipo.getSelectionModel().getSelectedItem().equals("PARCELADA"))
+				DaoParcela.add(parcelas);
+			tblParcelamentos.getItems().clear();
+		} catch (NullPointerException e) {
+
+		} catch (NumberFormatException ex) {
+
+		}
 	}// closes methods
-private void calcularParcelaII() {
-	try {
-	List<Parcela> parcelas = new ArrayList<>();//esta lista contem as parcelas dos pedido
-		
-		for (int i = 0; i < Integer.parseInt(txtNumeroParcela.getText()); i++) {
-			Parcela parcela = new Parcela();
-			Pedido pedido = new Pedido();
-			pedido.setIdPedido(idPedido);
 
-			LocalDate localDate = LocalDate.now();
-			String dataPrevista = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate.plusDays(30 * i));
+	@FXML
+	private void relatorio(ActionEvent event) {
+		FormasDePagamento forma = cboFormaDePagamento1.getSelectionModel().getSelectedItem();
+		String formaDePagamento = forma.getNome();
+		DaoRelatorio.vendasFP(formaDePagamento);
 
-			double divida = Double.parseDouble(txtValorTotal.getText())
-					/ Integer.parseInt(txtNumeroParcela.getText());
-			parcela.setDataPrevista(dataPrevista);
-			parcela.setValorApagar(divida);
-			parcela.setPedido(pedido);
-			parcelas.add(parcela);
-				
-
-		}// fecha o for
-			
-		if(cboTipo.getSelectionModel().getSelectedItem().equals("PARCELADA"))
-			DaoParcela.add(parcelas);
-		tblParcelamentos.getItems().clear();
 	}
-	catch(NullPointerException e) {
-		
-	}
-}// closes methods
-@FXML
-private void relatorio(ActionEvent event) {
-	 FormasDePagamento forma =cboFormaDePagamento1.getSelectionModel().getSelectedItem();
-	 String formaDePagamento=forma.getNome();
-	 //System.out.println(formaDePagamento);
-	 DaoRelatorio.vendasFP(formaDePagamento);
 
-}
-/**/
-private void fatura() {
-	
-}
-
-
-	}//fecha a clase
+}// fecha a clase

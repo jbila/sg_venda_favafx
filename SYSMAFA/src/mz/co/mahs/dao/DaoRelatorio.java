@@ -1,7 +1,9 @@
 package mz.co.mahs.dao;
+
 import java.sql.Connection;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -47,8 +49,8 @@ public class DaoRelatorio {
 				JOptionPane.YES_NO_OPTION);
 		if (confirm == JOptionPane.YES_NO_OPTION) {
 			try {
-				String caminho = "C:/Reports/sysmafa/clientes.jasper";
-				JasperPrint print = JasperFillManager.fillReport(caminho, null, conn);
+				String path = "C:/Reports/sysmafa/clientes.jasper";
+				JasperPrint print = JasperFillManager.fillReport(path, null, conn);
 				JasperViewer.viewReport(print, false);
 				conn.close();
 
@@ -73,8 +75,8 @@ public class DaoRelatorio {
 				JOptionPane.YES_NO_OPTION);
 		if (confirm == JOptionPane.YES_NO_OPTION) {
 			try {
-				String caminho = "C:/Reports/sysmafa/fornecedor.jasper";
-				JasperPrint print = JasperFillManager.fillReport(caminho, null, conn);
+				String path = "C:/Reports/sysmafa/fornecedor.jasper";
+				JasperPrint print = JasperFillManager.fillReport(path, null, conn);
 				JasperViewer.viewReport(print, false);
 				conn.close();
 
@@ -90,112 +92,95 @@ public class DaoRelatorio {
 
 	}
 //--------------------------------------------------------------------------------------------
-	@SuppressWarnings("rawtypes")
-	public static void vendasReport(LocalDate data1, LocalDate data2){
-		Connection conn=null;
-		conn = Conexao.connect();
-		
-		
-		int confirm= JOptionPane.showConfirmDialog(null, "Confirma a emissao deste relatorio?","Atencao",JOptionPane.YES_NO_OPTION);
-			if(confirm==JOptionPane.YES_NO_OPTION){
-				try{
-					
-					
-					HashMap parametro=new HashMap<>();
-					parametro.put("DataInicio",data1 );
-					parametro.put("DataFim", data2);
-					
-					
-					//String caminho="src/bila/co/mz/Reports/Vendas.jasper";
-					String caminho01="C:/Reports/sysmafa/vendasCompletas.jasper";
-					JasperPrint print=JasperFillManager.fillReport(caminho01,parametro,conn);
-					JasperViewer.viewReport(print,false);
-					conn.close();
-					
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatorio de Venda "+ex);
-					
-				}
-				catch(java.lang.NoClassDefFoundError e){
-					JOptionPane.showMessageDialog(null, "ERRO "+e);
-					
 
-				}
-				
-			} 
-					
+	public static void vendasReport(String data1, String data2) {
+		Connection conn = null;
+		conn = Conexao.connect();
+
+		int confirm = JOptionPane.showConfirmDialog(null, "Confirma a emissao deste relatorio?", "Atencao",
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_NO_OPTION) {
+			try {
+
+				Map<String, Object> parametro = new HashMap<>();
+				parametro.put("DataInicio", data1);
+				parametro.put("DataFim", data2);
+
+				String path = "C:/Reports/sysmafa/vendasCompletas.jasper";
+				JasperPrint print = JasperFillManager.fillReport(path, parametro, conn);
+				JasperViewer.viewReport(print, false);
+				conn.close();
+
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatorio de Venda " + ex);
+
+			} catch (java.lang.NoClassDefFoundError e) {
+				JOptionPane.showMessageDialog(null, "ERRO " + e);
+
+			}
+
 		}
+
+	}
+
 //-------------------------------------------------------------------------------------------------------------------------
-	public static void vendasFP(String formaDePagamento){
-		Connection conn=null;
+	public static void vendasFP(String formaDePagamento) {
+		Connection conn = null;
 		conn = Conexao.connect();
-		
-		
-		int confirm= JOptionPane.showConfirmDialog(null, "Confirma a emissao deste relatorio?","Atencao",JOptionPane.YES_NO_OPTION);
-			if(confirm==JOptionPane.YES_NO_OPTION){
-				try{
-					
-					
-					HashMap parametro=new HashMap<>();
-					parametro.put("FP",formaDePagamento );
-					
-					
-					//String caminho="src/bila/co/mz/Reports/Vendas.jasper";
-					String caminho01="C:/Reports/sysmafa/VendasPorFP.jasper";
-					JasperPrint print=JasperFillManager.fillReport(caminho01,parametro,conn);
-					JasperViewer.viewReport(print,false);
-					conn.close();
-					
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatorio de Venda "+ex);
-					
-				}
-				catch(java.lang.NoClassDefFoundError e){
-					JOptionPane.showMessageDialog(null, "ERRO "+e);
-					
 
-				}
-				
-			} 
-					
+		int confirm = JOptionPane.showConfirmDialog(null, "Confirma a emissao deste relatorio?", "Atencao",
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_NO_OPTION) {
+			try {
+
+				Map<String, Object> parametro = new HashMap<>();
+				parametro.put("FP", formaDePagamento);
+
+				String path = "C:/Reports/sysmafa/VendasPorFP.jasper";
+				JasperPrint print = JasperFillManager.fillReport(path, parametro, conn);
+				JasperViewer.viewReport(print, false);
+				conn.close();
+
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatorio de Venda " + ex);
+
+			} catch (java.lang.NoClassDefFoundError e) {
+				JOptionPane.showMessageDialog(null, "ERRO " + e);
+
+			}
+
 		}
+
+	}
+
 //---------------------------------------------------------------------
-	public static void fatura(int numero){
-		Connection conn=null;
+	public static void fatura(int numero) {
+		Connection conn = null;
 		conn = Conexao.connect();
-		
-		
-		int confirm= JOptionPane.showConfirmDialog(null, "Confirma a emissao deste relatorio?","Atencao",JOptionPane.YES_NO_OPTION);
-			if(confirm==JOptionPane.YES_NO_OPTION){
-				try{
-					
-					
-					HashMap parametro=new HashMap<>();
-					parametro.put("Introduza o codigo da venda",numero );
-					
-					
-					//String caminho="src/bila/co/mz/Reports/Vendas.jasper";
-					String caminho01="C:/Reports/sysmafa/fatura.jasper";
-					JasperPrint print=JasperFillManager.fillReport(caminho01,parametro,conn);
-					JasperViewer.viewReport(print,false);
-					conn.close();
-					
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatorio de Venda "+ex);
-					
-				}
-				catch(java.lang.NoClassDefFoundError e){
-					JOptionPane.showMessageDialog(null, "ERRO "+e);
-					
 
-				}
-				
-			} 
-					
+		int confirm = JOptionPane.showConfirmDialog(null, "Confirma a emissao deste relatorio?", "Atencao",
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_NO_OPTION) {
+			try {
+
+				Map<String, Object> parametro = new HashMap<>();
+				parametro.put("NumeroVenda", numero);
+
+				String path = "C:/Reports/sysmafa/fatura.jasper";
+				JasperPrint print = JasperFillManager.fillReport(path, parametro, conn);
+				JasperViewer.viewReport(print, false);
+				conn.close();
+
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatorio de Venda " + ex);
+
+			} catch (java.lang.NoClassDefFoundError e) {
+				JOptionPane.showMessageDialog(null, "ERRO " + e);
+
+			}
+
 		}
 
+	}
 
 }

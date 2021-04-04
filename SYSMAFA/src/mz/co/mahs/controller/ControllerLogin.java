@@ -36,7 +36,10 @@ public class ControllerLogin implements Initializable {
 	public static String perfil="";
 	public static String username="";
 	public  String password="";
+	private void sysout() {
+		// TODO Auto-generated method stub
 
+	}
 	
 	@FXML
 	private HBox hboximage;

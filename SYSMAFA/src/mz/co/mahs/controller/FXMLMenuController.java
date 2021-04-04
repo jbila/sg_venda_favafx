@@ -4,7 +4,6 @@ package mz.co.mahs.controller;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -187,11 +186,10 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
    private void handleRelatorioDiario(ActionEvent event) {
-    	String data1="2021/02/8",data2="2021/04/02";
-    	LocalDate d1,d2;
-    	d1=LocalDate.now();
-    	d2=LocalDate.now();
-    	DaoRelatorio.vendasReport(d1, d2);
+    	String data1="2021/04/04";
+    	String data2="2021/04/04";
+    	
+    	DaoRelatorio.vendasReport(data1, data2);
     }
 
     @FXML
