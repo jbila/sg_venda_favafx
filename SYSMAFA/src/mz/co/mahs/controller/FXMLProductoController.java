@@ -38,14 +38,15 @@ import mz.co.mahs.models.Producto;
 import mz.co.mahs.models.Utilizador;
 
 public class FXMLProductoController implements Initializable, Crud {
-	static Alert alertInfo = new Alert(AlertType.INFORMATION);
-	static Alert alertErro = new Alert(AlertType.ERROR);
+	 Alert alertInfo = new Alert(AlertType.INFORMATION);
+	 Alert alertWarning = new Alert(AlertType.WARNING);
+	Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
+
 	int idProducto = 0;
 
 	int ultimoIdProducto = 0;
 
-	Alert alert = new Alert(AlertType.INFORMATION);
-	Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
+	
 
 	@FXML
 	private AnchorPane rootProducto;
@@ -187,13 +188,13 @@ public class FXMLProductoController implements Initializable, Crud {
 	private void delete(ActionEvent event) {
 
 		if (txtId.getText().isEmpty()) {
-			alert.setTitle("Warning");
-			alert.setHeaderText("Validacao");
-			alert.setContentText("selecione a linha a apagar");
-			alert.showAndWait();
+			alertInfo.setTitle("Informação");
+			alertInfo.setHeaderText("Informação da Remoção");
+			alertInfo.setContentText("selecione a linha a apagar");
+			alertInfo.showAndWait();
 		} else {
 			alertConfirm.setTitle("Confirmacao");
-			alertConfirm.setHeaderText(" Dialogo de Confirmacao");
+			alertConfirm.setHeaderText("Confirmação da Remoção");
 			alertConfirm.setContentText("Eliminar o Registo?");
 
 			Optional<ButtonType> result = alertConfirm.showAndWait();
@@ -221,6 +222,7 @@ public class FXMLProductoController implements Initializable, Crud {
 
 	@Override
 	public void acessoAdd() {
+		try {
 		Producto producto = new Producto();
 		Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
 		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
@@ -260,6 +262,21 @@ public class FXMLProductoController implements Initializable, Crud {
 		alertInfo.setContentText("producto adicionado ");
 		alertInfo.showAndWait();
 		limpar();
+		}
+		catch(NullPointerException ex) {
+			alertWarning.setTitle("Aviso");
+			alertWarning.setHeaderText("Validação de dados");
+			alertWarning.setContentText("Selecione a categoria ou Fornecedor ");
+			alertWarning.showAndWait();
+		}
+		catch(NumberFormatException e) {
+			txtQty.setStyle("-fx-text-fill: red;");
+			txtValorCompra.setStyle("-fx-text-fill: red;");
+			txtValorVenda.setStyle("-fx-text-fill: red;");
+			alertWarning.setHeaderText("Infomação");
+			alertWarning.setContentText("Quantidade, preco compra e preco venda não pode ser String ou vazio"+"\n");
+			alertWarning.showAndWait();
+		}
 	}
 
 	@Override
@@ -269,6 +286,7 @@ public class FXMLProductoController implements Initializable, Crud {
 
 	@Override
 	public void acessoUpdate() {
+		try {
 		Producto producto = new Producto();// OBJECTO PRINCIPAL
 		Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
 		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
@@ -296,6 +314,14 @@ public class FXMLProductoController implements Initializable, Crud {
 		producto.setIdProducto(Integer.parseInt(txtId.getText()));
 		DaoProducto.update(producto);
 		limpar();
+		}
+		catch(NullPointerException ex) {
+			cboCategoria.setStyle(" -fx-text-fill: red;");
+			alertWarning.setHeaderText("Infomação");
+			alertWarning.setContentText("Selecione a categoria ou Fornecedor ");
+			alertWarning.showAndWait();
+		}
+		
 	}
 
 	@Override

@@ -65,6 +65,7 @@
             <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="delete" />
          </children>
       </HBox>
+      <Button fx:id="btnRelatorio" layoutX="466.0" layoutY="47.0" mnemonicParsing="false" onAction="#relatorio" text="Relatorio" />
 	</children>
    <padding>
       <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

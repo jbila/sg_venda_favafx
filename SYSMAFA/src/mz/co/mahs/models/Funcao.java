@@ -31,5 +31,9 @@ public class Funcao {
 	public void setDataRegisto(String dataRegisto) {
 		this.dataRegisto = dataRegisto;
 	}
+	@Override
+	public String toString() {
+		return getNome();
+	}
 
 }

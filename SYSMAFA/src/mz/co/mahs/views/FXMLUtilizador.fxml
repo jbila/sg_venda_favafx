@@ -20,20 +20,7 @@
             	<children>
             		<VBox layoutX="8.0">
             			<children>
-            				<Pane prefHeight="252.0" prefWidth="0.0" style="-fx-background-color: #ffffff;">
-            					<children>
-            						<VBox layoutX="85.0" layoutY="48.0" prefHeight="177.0" prefWidth="287.0" spacing="5.0">
-            							<children>
-                                    <TextField fx:id="txtNome" alignment="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="324.0" promptText="Nome " />
-                                    <TextField fx:id="txtApelido" alignment="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="324.0" promptText="apelido" />
-                                    <ComboBox fx:id="cboSexo" onAction="#changedAction" prefHeight="25.0" prefWidth="297.0" promptText="Sexo" />
-            								<TextField fx:id="txtEmail" alignment="CENTER" prefHeight="25.0" prefWidth="324.0" promptText="Introduza o Email" />
-            								<TextField fx:id="txtTelefone" alignment="CENTER" layoutX="10.0" layoutY="72.0" prefHeight="25.0" prefWidth="324.0" promptText="Introduza o Numero de Telefone" />
-                                    <TextField fx:id="txtEndereco" alignment="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="324.0" promptText="Introduza a Morada" />
-            							</children>
-            						</VBox>
-            					</children>
-            				</Pane>
+            				<Pane prefHeight="252.0" prefWidth="0.0" style="-fx-background-color: #ffffff;" />
             			</children>
             		</VBox>
             		<Pane layoutX="-2.0" layoutY="235.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="1132.0" style="-fx-background-color: FFFFFF;">
@@ -42,11 +29,7 @@
             				<TableView fx:id="tblUtilizador" layoutX="2.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="252.0" prefWidth="1132.0">
             					<columns>
             						<TableColumn fx:id="colID" editable="false" maxWidth="54.0" prefWidth="54.0" sortable="false" text="ID" />
-            						<TableColumn fx:id="colNome" editable="false" maxWidth="128.0" prefWidth="128.0" sortable="false" text="Nome" />
-            						<TableColumn fx:id="colEmail" editable="false" maxWidth="152.0" minWidth="100.0" prefWidth="152.0" sortable="false" text="Email" />
-            						<TableColumn fx:id="colEndereco" editable="false" maxWidth="145.0" minWidth="93.0" prefWidth="93.0" text="Endereço" />
-            						<TableColumn fx:id="ColTelefone" editable="false" maxWidth="173.0" prefWidth="128.0" sortable="false" text="Telefone" />
-            						<TableColumn fx:id="colSexo" editable="false" maxWidth="120.0" prefWidth="47.0" sortable="false" text="Sexo" />
+            						<TableColumn fx:id="colFuncionarioNome" editable="false" maxWidth="128.0" prefWidth="128.0" sortable="false" text="Nome" />
             						<TableColumn fx:id="ColUserName" editable="false" maxWidth="224.0" prefWidth="147.0" sortable="false" text="UserName" />
             						<TableColumn fx:id="ColEstado" editable="false" maxWidth="331.0" prefWidth="207.0" sortable="false" text="Estado" />
             						<TableColumn fx:id="colPerfil" editable="false" maxWidth="489.0" prefWidth="175.0" sortable="false" text="Perfil" />
@@ -54,39 +37,31 @@
             				</TableView>
             			</children>
             		</Pane>
-            		<VBox layoutX="395.0" layoutY="47.0" prefHeight="145.0" prefWidth="137.0" spacing="15.0">
+            		<VBox layoutX="5.0" layoutY="47.0" prefHeight="145.0" prefWidth="100.0" spacing="15.0">
             			<children>
+                  <Label text="Funcionario" />
             				<Label text="Username" />
             				<Label text="Perfil" />
             				<Label text="Estado" />
             				<Label prefHeight="17.0" prefWidth="69.0" text="Password" />
             			</children>
             		</VBox>
-            		<VBox layoutX="533.0" layoutY="47.0" prefHeight="118.0" prefWidth="287.0" spacing="5.0">
+            		<VBox layoutX="125.0" layoutY="47.0" prefHeight="118.0" prefWidth="247.0" spacing="5.0">
             			<children>
+                  <ComboBox fx:id="cboFuncionario" prefHeight="25.0" prefWidth="247.0" promptText="Selecione o Funcionario" />
             				<TextField fx:id="txtuserName" alignment="CENTER" prefHeight="25.0" prefWidth="437.0" promptText="userName" />
             				<ComboBox fx:id="cboPerfil" prefHeight="25.0" prefWidth="287.0" promptText="Selecione o Perfil" />
             				<ComboBox fx:id="cboEstado" layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="287.0" promptText="Selecione o Estado" />
             				<PasswordField fx:id="txtPassword" alignment="CENTER" promptText="Password" />
             			</children>
             		</VBox>
-      						<VBox layoutX="9.0" layoutY="47.0" prefHeight="126.0" prefWidth="84.0" spacing="15.0">
-      							<children>
-      								<Label text="Nome" />
-                        <Label prefHeight="17.0" prefWidth="69.0" text="Apelido" />
-      								<Label prefHeight="17.0" prefWidth="69.0" text="Genero" />
-      								<Label text="Email" />
-                        <Label text="Telefone" />
-                        <Label prefHeight="17.0" prefWidth="69.0" text="Endereço" />
-      							</children>
-      						</VBox>
-                  <TextField fx:id="txtID" alignment="CENTER" editable="false" layoutX="94.0" layoutY="12.0" prefHeight="25.0" prefWidth="95.0" promptText="ID" />
+                  <TextField fx:id="txtID" alignment="CENTER" editable="false" layoutX="4.0" layoutY="12.0" prefHeight="25.0" prefWidth="95.0" promptText="ID" />
                   <ImageView fx:id="imagePhoto" fitHeight="100.0" fitWidth="108.0" layoutX="980.0" layoutY="50.0" pickOnBounds="true">
                      <image>
                         <Image url="@../resources/John%20VuliGate1.jpg" />
                      </image>
                   </ImageView>
-                  <HBox fx:id="hBoxButton" layoutX="527.0" layoutY="180.0" prefHeight="25.0" prefWidth="300.0">
+                  <HBox fx:id="hBoxButton" layoutX="527.0" layoutY="110.0" prefHeight="25.0" prefWidth="300.0">
                      <children>
                         <Button id="buttonAdd" fx:id="btnAdd" minWidth="-Infinity" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="100.0" text="Add" />
                         <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="100.0" text="update" />

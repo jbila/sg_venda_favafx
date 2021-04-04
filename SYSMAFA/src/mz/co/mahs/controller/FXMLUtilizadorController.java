@@ -26,33 +26,21 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import mz.co.mahs.dao.DaoFuncionario;
 import mz.co.mahs.dao.DaoUtilizador;
+import mz.co.mahs.models.Funcionario;
 import mz.co.mahs.models.Utilizador;
 
 public class FXMLUtilizadorController implements Initializable, Crud {
 	Alert alert = new Alert(AlertType.INFORMATION);
 	Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
+	Alert alertWarning = new Alert(AlertType.WARNING);
+
 	@FXML
 	private AnchorPane rootUtilizador;
 
 	@FXML
 	private TextField txtNome, txtProcurar;
-
-	@FXML
-	private TextField txtApelido;
-
-	@FXML
-	private ComboBox<String> cboSexo;
-	ObservableList<String> sexo = FXCollections.observableArrayList("M", "F");
-	@FXML
-	private TextField txtEmail;
-
-	@FXML
-	private TextField txtTelefone;
-
-	@FXML
-	private TextField txtEndereco;
-
 	@FXML
 	private TableView<Utilizador> tblUtilizador;
 
@@ -60,19 +48,7 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 	private TableColumn<Utilizador, Integer> colID;
 
 	@FXML
-	private TableColumn<Utilizador, String> colNome;
-
-	@FXML
-	private TableColumn<Utilizador, String> colEmail;
-
-	@FXML
-	private TableColumn<Utilizador, String> colEndereco;
-
-	@FXML
-	private TableColumn<Utilizador, String> ColTelefone;
-
-	@FXML
-	private TableColumn<Utilizador, String> colSexo;
+	private TableColumn<Utilizador, Funcionario> colFuncionarioNome;
 
 	@FXML
 	private TableColumn<Utilizador, String> ColUserName;
@@ -82,6 +58,7 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 
 	@FXML
 	private TableColumn<Utilizador, String> colPerfil;
+	
 
 	@FXML
 	private TextField txtuserName;
@@ -89,6 +66,9 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 	@FXML
 	private ComboBox<String> cboPerfil;
 	ObservableList<String> perfil = FXCollections.observableArrayList("STANDARD", "ADMINISTRADOR", "GUEST");
+	@FXML
+	private ComboBox<Funcionario> cboFuncionario;
+
 
 	@FXML
 	private ComboBox<String> cboEstado;
@@ -161,11 +141,6 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 
 		Utilizador utilizador = tblUtilizador.getSelectionModel().getSelectedItem();
 		txtID.setText("" + utilizador.getIdUtilizador());
-		txtNome.setText("" + utilizador.getNome());
-		txtApelido.setText("" + utilizador.getApelido());
-		txtEmail.setText("" + utilizador.getEmail());
-		txtTelefone.setText("" + utilizador.getTelefone());
-		txtEndereco.setText("" + utilizador.getEndereco());
 		txtuserName.setText("" + utilizador.getUsername());
 		btnAdd.setVisible(false);
 		btnUpdate.setVisible(true);
@@ -177,11 +152,7 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 		List<Utilizador> list = DaoUtilizador.getUtilizadorList(txtProcurar.getText());
 		final ObservableList<Utilizador> obserList = FXCollections.observableArrayList(list);
 		colID.setCellValueFactory(new PropertyValueFactory<>("idUtilizador"));
-		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		colEndereco.setCellValueFactory(new PropertyValueFactory<>("morada"));
-		ColTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-		colSexo.setCellValueFactory(new PropertyValueFactory<>("genero"));
+		colFuncionarioNome.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
 		ColUserName.setCellValueFactory(new PropertyValueFactory<>("username"));
 		ColEstado.setCellValueFactory(new PropertyValueFactory<>("status"));
 		colPerfil.setCellValueFactory(new PropertyValueFactory<>("perfil"));
@@ -225,32 +196,41 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		cboPerfil.setItems(perfil);
-		cboSexo.setItems(sexo);
+		cboPerfil.setValue("STANDARD");
 		cboEstado.setItems(estado);
+		cboEstado.setValue("INACTIVO");
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
 		txtID.setVisible(false);
 		showInfo();
-
+		fillFuncionario();
 	}
 
 //--------------------------------------------------------------
 	@Override
 	public void acessoAdd() {
+		try {
 		Utilizador utilizador = new Utilizador();
-		utilizador.setNome(txtNome.getText().toUpperCase());
-		utilizador.setApelido(txtApelido.getText().toUpperCase());
-		utilizador.setEmail(txtEmail.getText().toLowerCase());
-		utilizador.setTelefone(txtTelefone.getText().toUpperCase());
-		utilizador.setEndereco(txtEndereco.getText().toUpperCase());
+		/*----------------------------------------*/
+		Funcionario funcionario=new Funcionario();
+		Funcionario func=(Funcionario)cboFuncionario.getSelectionModel().getSelectedItem();
+		final int idFuncionario = func.getIdFuncionario();
+		funcionario.setIdFuncionario(idFuncionario);
+		/*-----------------------------------------*/
+		utilizador.setFuncionario(funcionario);
 		utilizador.setPerfil(cboPerfil.getValue().toUpperCase());
 		utilizador.setUsername(txtuserName.getText().toLowerCase());
 		utilizador.setPassword(txtPassword.getText());
 		utilizador.setStatus(cboEstado.getValue().toUpperCase());
-		utilizador.setGenero(cboSexo.getValue().toUpperCase());
-
 		DaoUtilizador.addUtilizador(utilizador);
 		limpar();
+		}
+		catch(NullPointerException ex) {
+			alertWarning.setHeaderText("Infomação");
+			alertWarning.setHeaderText("Verificação de Dados");
+			alertWarning.setContentText("Selecione o Funcionario ");
+			alertWarning.showAndWait();
+		}
 	}
 
 	@Override
@@ -260,16 +240,18 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 
 	@Override
 	public void acessoUpdate() {
+		try {
 		Utilizador utilizador = new Utilizador();
-		utilizador.setNome(txtNome.getText().toUpperCase());
-		utilizador.setApelido(txtApelido.getText().toUpperCase());
-		utilizador.setEmail(txtEmail.getText().toUpperCase());
-		utilizador.setTelefone(txtTelefone.getText().toUpperCase());
-		utilizador.setEndereco(txtEndereco.getText().toUpperCase());
+		/*----------------------------------------*/
+		Funcionario funcionario=new Funcionario();
+		Funcionario func=(Funcionario)cboFuncionario.getSelectionModel().getSelectedItem();
+		final int idFuncionario = func.getIdFuncionario();
+		funcionario.setIdFuncionario(idFuncionario);
+		/*-----------------------------------------*/
+		utilizador.setFuncionario(funcionario);
 		utilizador.setPerfil(cboPerfil.getValue());
 		utilizador.setUsername(txtuserName.getText().toLowerCase());
 		utilizador.setPassword(txtPassword.getText());
-		utilizador.setGenero(cboSexo.getValue());
 		utilizador.setStatus(cboEstado.getValue().toUpperCase());
 
 		utilizador.setIdUtilizador(Integer.parseInt(txtID.getText()));
@@ -278,17 +260,20 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
 		btnAdd.setVisible(true);
+		}
+		catch(NullPointerException ex) {
+			alertWarning.setHeaderText("Infomação");
+			alertWarning.setHeaderText("Verificação de Dados");
+			alertWarning.setContentText("Selecione o Funcionario ");
+			alertWarning.showAndWait();
+		}
 	}
 
 	@Override
 	public void limpar() {
-		txtNome.setText("");
 		txtID.setText("");
-		txtEmail.setText("");
-		txtTelefone.setText("");
 		txtPassword.setText("");
 		txtuserName.setText("");
-		txtApelido.setText("");
 	}
 
 	@Override
@@ -300,7 +285,6 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
 		btnAdd.setVisible(true);
-
 	}
 
 	@Override
@@ -309,15 +293,18 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 
 		final ObservableList<Utilizador> obserList = FXCollections.observableArrayList(list);
 		colID.setCellValueFactory(new PropertyValueFactory<>("idUtilizador"));
-		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		colEndereco.setCellValueFactory(new PropertyValueFactory<>("morada"));
-		ColTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-		colSexo.setCellValueFactory(new PropertyValueFactory<>("genero"));
+		colFuncionarioNome.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
 		ColUserName.setCellValueFactory(new PropertyValueFactory<>("username"));
 		ColEstado.setCellValueFactory(new PropertyValueFactory<>("status"));
 		colPerfil.setCellValueFactory(new PropertyValueFactory<>("perfil"));
 		tblUtilizador.setItems(obserList);
-
 	}
+	/*-------------------------------------------------------*/
+	private void fillFuncionario() {
+		List<Funcionario> list = DaoFuncionario.getAllFuncionario();
+		for (Funcionario items : list)
+			cboFuncionario.getItems().add(items);
+	}
+	/*-------------------------------------------------------*/
+
 }

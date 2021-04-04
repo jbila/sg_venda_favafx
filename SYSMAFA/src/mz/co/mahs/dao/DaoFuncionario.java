@@ -158,7 +158,7 @@ public class DaoFuncionario {
 				Distrito distrito = new Distrito();
 				distrito.setNome(rs.getString("Distrito"));
 				funcionario.setIdFuncionario(rs.getInt("idFuncionario"));
-				funcionario.setNome(rs.getString("Funcionario"));
+				funcionario.setNome(rs.getString("nome"));
 				funcionario.setApelido(rs.getString("apelido"));
 				funcionario.setGenero(rs.getString("genero"));
 				funcionario.setEmail(rs.getString("email"));

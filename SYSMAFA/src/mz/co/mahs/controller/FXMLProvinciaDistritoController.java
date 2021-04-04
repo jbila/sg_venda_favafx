@@ -6,11 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +24,8 @@ import mz.co.mahs.models.Funcao;
 import mz.co.mahs.models.Provincia;
 
 public class FXMLProvinciaDistritoController {
+	Alert alterWarning = new Alert(AlertType.WARNING);
+
 	@FXML
 	private AnchorPane rootProvinciaDistrito;
 	@FXML
@@ -78,7 +82,7 @@ public class FXMLProvinciaDistritoController {
 		showDistrito();
 		showProvincia();
 		showFuncao();
-		
+
 		txtIdDistrito.setVisible(false);
 		txtIdFuncao.setVisible(false);
 		txtIdProvincia.setVisible(false);
@@ -113,7 +117,7 @@ public class FXMLProvinciaDistritoController {
 		Distrito distrito = tblDistritoUrbano.getSelectionModel().getSelectedItem();
 		txtIdDistrito.setText("" + distrito.getIdDistrito());
 		txtNomeDistrito.setText("" + distrito.getNome());
-		
+
 		btnAdicionarDistrito.setVisible(false);
 		btnActualizarDistrito.setVisible(true);
 		btnAgarDistrito.setVisible(true);
@@ -132,19 +136,34 @@ public class FXMLProvinciaDistritoController {
 	// Event Listener on Button[#btnAddProvincia].onAction
 	@FXML
 	public void addProvincia(ActionEvent event) {
-		addProvincia();
-		showProvincia();
+		if (!(txtProvincia.getText().isEmpty())) {
+			addProvincia();
+			showProvincia();
+		} else {
+			alterWarning.setTitle("Aviso");
+			alterWarning.setHeaderText("Verificação de Dados");
+			alterWarning.setContentText("Introduza o nome da Provincia");
+			alterWarning.showAndWait();
+		}
 	}
 
 	// Event Listener on Button[#btnActualizarProvincia].onAction
 	@FXML
 	public void updateProvincia(ActionEvent event) {
-		updateProvincia();
-		showProvincia();
-		
-		btnAddProvincia.setVisible(true);
-		btnActualizarProvincia.setVisible(false);
-		btnDelteProvincia.setVisible(false);
+		if (!(txtProvincia.getText().isEmpty())) {
+
+			updateProvincia();
+			showProvincia();
+			btnAddProvincia.setVisible(true);
+			btnActualizarProvincia.setVisible(false);
+			btnDelteProvincia.setVisible(false);
+		} else {
+			alterWarning.setTitle("Aviso");
+			alterWarning.setHeaderText("Verificação de Dados");
+			alterWarning.setContentText("Introduza o nome da Provincia");
+			alterWarning.showAndWait();
+		}
+
 	}
 
 	// Event Listener on Button[#btnDelteProvincia].onAction
@@ -152,7 +171,7 @@ public class FXMLProvinciaDistritoController {
 	public void deleteProvincia(ActionEvent event) {
 		deleteProvincia();
 		showProvincia();
-		
+
 		btnAddProvincia.setVisible(true);
 		btnActualizarProvincia.setVisible(false);
 		btnDelteProvincia.setVisible(false);
@@ -161,21 +180,34 @@ public class FXMLProvinciaDistritoController {
 
 	@FXML
 	public void addFuncao(ActionEvent event) {
-		addFuncao();
-		showFuncao();
-		
+		if (!(txtNomeFuncao.getText().isEmpty())) {
+			addFuncao();
+			showFuncao();
+		} else {
+			alterWarning.setTitle("Aviso");
+			alterWarning.setHeaderText("Verificação de Dados");
+			alterWarning.setContentText("Introduza o Nome da  Função");
+			alterWarning.showAndWait();
+		}
+
 	}
 
 	// Event Listener on Button[#btnActualizarProvincia].onAction
 	@FXML
 	public void updateFuncao(ActionEvent event) {
-		updateFuncao();
-		showFuncao();
-		btnApagarFuncao.setVisible(false);
-		btnActualizarFuncao.setVisible(false);
-		btnAdicionarFuncao.setVisible(true);
-		
-		
+		if (!(txtNomeFuncao.getText().isEmpty())) {
+			updateFuncao();
+			showFuncao();
+			btnApagarFuncao.setVisible(false);
+			btnActualizarFuncao.setVisible(false);
+			btnAdicionarFuncao.setVisible(true);
+		} else {
+			alterWarning.setTitle("Aviso");
+			alterWarning.setHeaderText("Verificação de Dados");
+			alterWarning.setContentText("O campo não pode estar vazio");
+			alterWarning.showAndWait();
+		}
+
 	}
 
 	// Event Listener on Button[#btnDelteProvincia].onAction
@@ -213,17 +245,18 @@ public class FXMLProvinciaDistritoController {
 		btnAdicionarDistrito.setVisible(true);
 		btnActualizarDistrito.setVisible(false);
 		btnAgarDistrito.setVisible(false);
-		
+
 	}
 
 	private void addProvincia() {
 		Provincia provincia = new Provincia();
 		provincia.setNome(txtProvincia.getText().toUpperCase());
 		DaoProvincia.add(provincia);
-		
+
 	}
 
 	private void updateProvincia() {
+
 		Provincia provincia = new Provincia();
 		provincia.setNome(txtProvincia.getText());
 		provincia.setIdProvincia(Integer.parseInt(txtIdProvincia.getText().toUpperCase()));
@@ -240,31 +273,47 @@ public class FXMLProvinciaDistritoController {
 	}
 
 	private void addDistrito() {
+		try {
 
-		Distrito distrito = new Distrito();
-		Provincia provincia = new Provincia();
-		Provincia pro = (Provincia) cboProvincia.getSelectionModel().getSelectedItem();
-		final int idPro = pro.getIdProvincia();
-		provincia.setIdProvincia(idPro);
-		distrito.setNome(txtNomeDistrito.getText().toUpperCase());
-		distrito.setProvincia(provincia);
-		DaoDistrito.add(distrito);
-		limparDistrito();
+			Distrito distrito = new Distrito();
+			Provincia provincia = new Provincia();
+			Provincia pro = (Provincia) cboProvincia.getSelectionModel().getSelectedItem();
+			final int idPro = pro.getIdProvincia();
+			provincia.setIdProvincia(idPro);
+			distrito.setNome(txtNomeDistrito.getText().toUpperCase());
+			distrito.setProvincia(provincia);
+			DaoDistrito.add(distrito);
+			limparDistrito();
+		} catch (NullPointerException ex) {
+			alterWarning.setTitle("Aviso");
+			alterWarning.setHeaderText("Verificação de Dados");
+			alterWarning.setContentText("Selecione a Provincia");
+			alterWarning.showAndWait();
+
+		}
 
 	}
 
 	private void updateDistrito() {
+		try {
 
-		Distrito distrito = new Distrito();
-		Provincia provincia = new Provincia();
-		Provincia pro = (Provincia) cboProvincia.getSelectionModel().getSelectedItem();
-		final int idPro = pro.getIdProvincia();
-		provincia.setIdProvincia(idPro);
-		distrito.setNome(txtNomeDistrito.getText().toUpperCase());
-		distrito.setProvincia(provincia);
-		distrito.setIdDistrito(Integer.parseInt(txtIdDistrito.getText()));
-		DaoDistrito.update(distrito);
-		limparDistrito();
+			Distrito distrito = new Distrito();
+			Provincia provincia = new Provincia();
+			Provincia pro = (Provincia) cboProvincia.getSelectionModel().getSelectedItem();
+			final int idPro = pro.getIdProvincia();
+			provincia.setIdProvincia(idPro);
+			distrito.setNome(txtNomeDistrito.getText().toUpperCase());
+			distrito.setProvincia(provincia);
+			distrito.setIdDistrito(Integer.parseInt(txtIdDistrito.getText()));
+			DaoDistrito.update(distrito);
+			limparDistrito();
+		} catch (NullPointerException ex) {
+			alterWarning.setTitle("Aviso");
+			alterWarning.setHeaderText("Verificação de Dados");
+			alterWarning.setContentText("Selecione a Provincia");
+			alterWarning.showAndWait();
+
+		}
 
 	}
 
@@ -278,14 +327,14 @@ public class FXMLProvinciaDistritoController {
 
 	// funcao
 	private void addFuncao() {
-		Funcao funcao=new Funcao();
+		Funcao funcao = new Funcao();
 		funcao.setNome(txtNomeFuncao.getText().toUpperCase());
 		DaoFuncao.add(funcao);
 		limparFuncao();
 	}
 
 	private void updateFuncao() {
-		Funcao funcao=new Funcao();
+		Funcao funcao = new Funcao();
 		funcao.setNome(txtNomeFuncao.getText().toUpperCase());
 		funcao.setIdFuncao(Integer.parseInt(txtIdFuncao.getText()));
 		DaoFuncao.update(funcao);
@@ -293,7 +342,7 @@ public class FXMLProvinciaDistritoController {
 	}
 
 	private void deleteFuncao() {
-		Funcao funcao=new Funcao();
+		Funcao funcao = new Funcao();
 		funcao.setIdFuncao(Integer.parseInt(txtIdFuncao.getText()));
 		DaoFuncao.delete(funcao);
 		limparFuncao();
@@ -333,19 +382,21 @@ public class FXMLProvinciaDistritoController {
 		tblFuncao.setItems(obserList);
 
 	}
-	
+
 	private void limparFuncao() {
 		txtIdFuncao.clear();
 		txtNomeFuncao.clear();
 	}
-	private void  limparProvincia() {
+
+	private void limparProvincia() {
 		txtIdProvincia.clear();
 		txtProvincia.clear();
 	}
-	private void  limparDistrito() {
+
+	private void limparDistrito() {
 		txtIdDistrito.clear();
 		txtNomeDistrito.clear();
-		//cboProvincia.getItems().clear();
+		// cboProvincia.getItems().clear();
 	}
-	
+
 }

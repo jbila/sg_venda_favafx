@@ -114,9 +114,10 @@ public class DaoParcela {
 			stmt.setString(2, dataPagamento);
 			stmt.setInt(3, parcela.getIdParcela());
 			stmt.executeUpdate();
+			/*
 			alertInfo.setHeaderText("Informacao");
 			alertInfo.setContentText("Parcela  Pago com sucesso ");
-			alertInfo.showAndWait();
+			alertInfo.showAndWait();*/
 		}
 
 		catch (SQLException ex) {
@@ -136,6 +137,85 @@ public class DaoParcela {
 	}
 
 //-------------------------------------------------------------------------------------------
+		public static List<Parcela> getAll02() {
+			List<Parcela> parcelas = new ArrayList<>();
+			try {
+				final String SQL="SELECT PA.idParcela,PA.idPedido, PA.valor,PA.estado,PA.dataPagamento,PA.dataPrevista\r\n" + 
+						" FROM tbl_parcela AS PA \r\n" + 
+						"inner join tbl_pedido AS p\r\n" + 
+						"on  PA.idPedido=P.idPedido";
+				conn = Conexao.connect();
+				stmt = conn.prepareCall(SQL);
+				rs = stmt.executeQuery();
+				while (rs.next()) {
+					Parcela parcela = new Parcela();// objecto principal
+					//Pedido pedido=new Pedido();
+					//pedido.setIdPedido(rs.getInt("idPedido"));
+					parcela.setIdParcela(rs.getInt("idParcela"));
+					parcela.setValorApagar(rs.getDouble("valor"));
+					parcela.setDataPagamento(rs.getString("dataPagamento"));
+					parcela.setDataPrevista(rs.getString("dataPrevista"));
+					parcela.setEstado(rs.getString("estado"));
+					parcelas.add(parcela);
+				}
+
+			} catch (SQLException ex) {
+				alertErro.setHeaderText("Erro");
+				alertErro.setContentText("Erro ao listar  parcelas " + ex.getMessage());
+				alertErro.showAndWait();
+			} finally {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+
+			}
+
+			return parcelas;
+		}
+	//-----------------------------------------------------------------------------------------
+		public static double getValor(int idParcela) {
+			double valor=0;
+			conn = Conexao.connect();
+			try {
+				stmt = conn.prepareStatement("SELECT valor FROM tbl_parcela WHERE idParcela='"+idParcela+"'");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}				
+			try {
+				rs = stmt.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				if (rs.next()) {
+					valor = (rs.getDouble("valor"));
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				stmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			return  valor;
+			
+		}// closes the method
+
 
 
 

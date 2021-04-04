@@ -7,11 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-
-import com.sun.glass.ui.Screen;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,14 +29,14 @@ import mz.co.mahs.conection.Conexao;
 
 public class ControllerLogin implements Initializable {
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
+	Alert alertErro = new Alert(AlertType.ERROR);
 
 	public static int idUsuario =0;// it will be used in other class
 	public   String status="";
 	public static String perfil="";
 	public static String username="";
 	public  String password="";
-	//public static int idUtilizador = 0;
-	Alert alertErro = new Alert(AlertType.ERROR);
+
 	
 	@FXML
 	private HBox hboximage;

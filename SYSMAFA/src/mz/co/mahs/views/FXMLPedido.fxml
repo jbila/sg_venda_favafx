@@ -115,6 +115,7 @@
             </TableView>
             <Button fx:id="btnVoltar" layoutX="11.0" layoutY="479.0" mnemonicParsing="false" onAction="#voltar" text="VOLTAR" />
             <ComboBox fx:id="cboTipo" layoutX="238.0" layoutY="101.0" onAction="#changeTipo" prefWidth="150.0" promptText="SELECIONE O TIPO" />
+            <Button fx:id="btnRelatorio" layoutX="231.0" layoutY="72.0" mnemonicParsing="false" onAction="#relatorio" text="Relatorio" />
          </children>
       </AnchorPane>
    </children>

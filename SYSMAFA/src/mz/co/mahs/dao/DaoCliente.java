@@ -225,7 +225,7 @@ public class DaoCliente {
 				// nome,apelido,genero,email,telefone,endereco,idUtilizador
 				Cliente cliente = new Cliente();
 				Utilizador utilizador = new Utilizador();
-				utilizador.setNome(rs.getString("utilizador"));
+				utilizador.setUsername(rs.getString("utilizador"));
 				cliente.setIdCliente(rs.getInt("idCliente"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setApelido(rs.getString("apelido"));

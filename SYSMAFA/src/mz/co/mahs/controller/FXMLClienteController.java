@@ -25,6 +25,7 @@ import javafx.scene.layout.HBox;
 import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.dao.DaoDistrito;
 import mz.co.mahs.dao.DaoProvincia;
+import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Provincia;
@@ -33,6 +34,8 @@ import mz.co.mahs.models.Utilizador;
 public class FXMLClienteController implements Initializable, Crud {
 	Alert alert = new Alert(AlertType.INFORMATION);
 	Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
+	Alert alertWarning = new Alert(AlertType.WARNING);
+
 
 	@FXML
 	private AnchorPane rootPane;
@@ -44,7 +47,7 @@ public class FXMLClienteController implements Initializable, Crud {
 	private TextField txtApelido;
 
 	@FXML
-	private TextField txtEmail,txtProcurar;
+	private TextField txtEmail, txtProcurar;
 
 	@FXML
 	private TableView<Cliente> tblCliente;
@@ -93,7 +96,7 @@ public class FXMLClienteController implements Initializable, Crud {
 	@FXML
 	private ComboBox<Distrito> cboDistrito;
 	@FXML
-	private TextField txtID;//cboProvincia
+	private TextField txtID;// cboProvincia
 
 	@FXML
 	private HBox hBoxButton;
@@ -105,7 +108,7 @@ public class FXMLClienteController implements Initializable, Crud {
 	private Button btnUpdate;
 
 	@FXML
-	private Button btnDelete;
+	private Button btnDelete,btnRelatorio;
 
 	@FXML
 	private void add(ActionEvent event) {
@@ -124,7 +127,7 @@ public class FXMLClienteController implements Initializable, Crud {
 
 	@FXML
 	private void handleMouseClickAction(MouseEvent event) {
-		
+
 		Cliente cliente = tblCliente.getSelectionModel().getSelectedItem();
 		txtID.setText("" + cliente.getIdCliente());
 		txtNome.setText("" + cliente.getNome());
@@ -136,24 +139,26 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnUpdate.setVisible(true);
 		btnDelete.setVisible(true);
 	}
-	 @FXML
-	 private void procurar(KeyEvent event) {
-		 txtProcurar.setOnKeyReleased(e->{
-			   List<Cliente> listCliente = DaoCliente.search(txtProcurar.getText());
-				final ObservableList<Cliente> obserList = FXCollections.observableArrayList(listCliente);
-				colId.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
-				colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-				colApelido.setCellValueFactory(new PropertyValueFactory<>("apelido"));
-				colSexo.setCellValueFactory(new PropertyValueFactory<>("genero"));
-				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-				colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-				colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-				colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
-				colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
-				colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
-				tblCliente.setItems(obserList);
-		  });
-	 }
+
+	@FXML
+	private void procurar(KeyEvent event) {
+		txtProcurar.setOnKeyReleased(e -> {
+			List<Cliente> listCliente = DaoCliente.search(txtProcurar.getText());
+			final ObservableList<Cliente> obserList = FXCollections.observableArrayList(listCliente);
+			colId.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
+			colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+			colApelido.setCellValueFactory(new PropertyValueFactory<>("apelido"));
+			colSexo.setCellValueFactory(new PropertyValueFactory<>("genero"));
+			colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+			colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+			colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+			colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
+			colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
+			colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
+			tblCliente.setItems(obserList);
+		});
+	}
+
 	@FXML
 	private void update(ActionEvent event) {
 		acessoUpdate();
@@ -163,21 +168,19 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 	}
 
-	 @FXML
-	   private void actionProvincia(ActionEvent event) {
-		 cboDistrito.getItems().clear();
-		 Provincia nome=cboProvincia.getValue();
-		List<Distrito> listDistrito=DaoDistrito.search(nome);
-		for (Distrito distrito : listDistrito) {
-			
+	@FXML
+	private void actionProvincia(ActionEvent event) {
+		cboDistrito.getItems().clear();
+		Provincia nome = cboProvincia.getValue();
+		List<Distrito> listDistrito = DaoDistrito.search(nome);
+		for (Distrito distrito : listDistrito) 
 			cboDistrito.getItems().add(distrito);
-		}
-		
-	    }
-	 
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cboSexo.setItems(sexo);
+		cboSexo.setValue("M");
 		showInfo();
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
@@ -188,13 +191,14 @@ public class FXMLClienteController implements Initializable, Crud {
 
 	@Override
 	public void acessoAdd() {
+		try {
 		// nome,genero,email,telefone,endereco
 		Cliente cliente = new Cliente();
 		Utilizador utilizador = new Utilizador();
-		Distrito distrito=new Distrito();
+		Distrito distrito = new Distrito();
 		Distrito dis = (Distrito) cboDistrito.getSelectionModel().getSelectedItem();
 		final int idDistrito = dis.getIdDistrito();
-				distrito.setIdDistrito(idDistrito);
+		distrito.setIdDistrito(idDistrito);
 
 		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		cliente.setNome(txtNome.getText().toUpperCase());
@@ -210,6 +214,14 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnAdd.setVisible(true);
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
+		}
+		catch(NullPointerException ex) {
+			alertWarning.setTitle("Aviso");
+			alertWarning.setHeaderText("Verificação de Dados");
+			alertWarning.setContentText("Selecione a Provincia e o distrito");
+			alertWarning.showAndWait();
+			
+		}
 	}
 
 	@Override
@@ -219,16 +231,16 @@ public class FXMLClienteController implements Initializable, Crud {
 
 	@Override
 	public void acessoUpdate() {
+		try {
 		Cliente cliente = new Cliente();
-		
-		
+
 		Utilizador utilizador = new Utilizador();
-		
-		Distrito distrito=new Distrito();
+
+		Distrito distrito = new Distrito();
 		Distrito dis = (Distrito) cboDistrito.getSelectionModel().getSelectedItem();
 		final int idDistrito = dis.getIdDistrito();
-				distrito.setIdDistrito(idDistrito);
-		
+		distrito.setIdDistrito(idDistrito);
+
 		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		cliente.setNome(txtNome.getText().toUpperCase());
 		cliente.setApelido(txtApelido.getText().toUpperCase());
@@ -241,6 +253,14 @@ public class FXMLClienteController implements Initializable, Crud {
 		cliente.setIdCliente(Integer.parseInt(txtID.getText()));
 		DaoCliente.updateCliente(cliente);
 		limpar();
+		}
+		catch(NullPointerException ex) {
+			alertWarning.setTitle("Aviso");
+			alertWarning.setHeaderText("Verificação de Dados");
+			alertWarning.setContentText("Selecione a Provincia e o distrito");
+			alertWarning.showAndWait();
+			
+		}
 
 	}
 
@@ -282,10 +302,14 @@ public class FXMLClienteController implements Initializable, Crud {
 		tblCliente.setItems(obserList);
 
 	}
-	private void  fillProvincia() {
-		List<Provincia> list = DaoProvincia.getAllprovincia();
-		for (Provincia items : list) 
-			cboProvincia.getItems().add(items);	
-	}
 
+	private void fillProvincia() {
+		List<Provincia> list = DaoProvincia.getAllprovincia();
+		for (Provincia items : list)
+			cboProvincia.getItems().add(items);
+	}
+	@FXML
+	private void relatorio(ActionEvent event) {
+		DaoRelatorio.clienteReport();
+	}
 }

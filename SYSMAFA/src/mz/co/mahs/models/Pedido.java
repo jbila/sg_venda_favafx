@@ -106,14 +106,14 @@ public class Pedido {
 	public void setValorPago(double valorPago) {
 		this.valorPago = valorPago;
 	}
-
+/*
 	@Override
 	public String toString() {
-		return "Pedido [idPedido=" + idPedido + ", cliente=" + cliente + ", utilizador=" + utilizador.getNome()
+		return "Pedido [idPedido=" + idPedido + ", cliente=" + cliente + ", utilizador=" + utilizador.getUsername()
 				+ ", formasDepagamento=" + formasDepagamento + ", tipo=" + tipo + ", valorPedido=" + valorPedido
 				+ ", valorPago=" + valorPago + ", items=" + items + ", dataRegisto=" + dataRegisto + "\n]";
 	}
-
+*/
 
 
 	

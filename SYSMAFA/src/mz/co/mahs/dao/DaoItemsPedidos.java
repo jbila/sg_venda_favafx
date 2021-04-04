@@ -41,8 +41,9 @@ public class DaoItemsPedidos {
 			stmt.setDouble(4, itemsPedidos2.getPrecoUnitario());
 			stmt.executeUpdate();
 				}
-			alertInfo.setHeaderText("Information");
-			alertInfo.setContentText("item adicionada ");
+			alertInfo.setHeaderText("Informação");
+			alertInfo.setHeaderText("Validação da Venda");
+			alertInfo.setContentText("Venda Feita Com êxito ");
 			alertInfo.showAndWait();
 			//
 		} catch (SQLException ex) {

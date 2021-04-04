@@ -28,7 +28,7 @@
 							</children>
 						</VBox>
 		
-				<TextField fx:id="txtProcurar" alignment="CENTER" layoutX="-2.0" layoutY="230.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1112.0" promptText="Procurar Utilizador" />
+				<TextField fx:id="txtProcurar" alignment="CENTER" layoutX="-2.0" layoutY="230.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1112.0" promptText="Procurar Cliente  pelo nome" />
 				<TableView fx:id="tblCliente" layoutX="-2.0" layoutY="257.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="246.0" prefWidth="1112.0" style="-fx-background-color: #ffffff;">
 					<columns>
 						<TableColumn fx:id="colId" editable="false" maxWidth="50.0" prefWidth="36.000030517578125" sortable="false" text="ID" />
@@ -66,6 +66,7 @@
             <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="delete" />
          </children>
       </HBox>
+      <Button fx:id="btnRelatorio" layoutX="851.0" layoutY="14.0" mnemonicParsing="false" onAction="#relatorio" text="Relatorio" />
 	</children>
 
 </AnchorPane>

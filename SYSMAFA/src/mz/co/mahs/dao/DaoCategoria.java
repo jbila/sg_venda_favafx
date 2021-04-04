@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Categoria;
+import mz.co.mahs.models.Funcionario;
 import mz.co.mahs.models.Utilizador;
 
 public class DaoCategoria {
@@ -137,7 +138,8 @@ public class DaoCategoria {
 			while (rs.next()) {
 				Categoria categoria = new Categoria();
 				Utilizador utilizador = new Utilizador();
-				utilizador.setUsername(rs.getString("utilizador"));
+				utilizador.setUsername(rs.getString("username"));
+				categoria.setUtilizador(utilizador);
 				categoria.setIdCategoria(rs.getInt("idCategoria"));
 				categoria.setNome(rs.getString("nome"));
 				categoria.setDescricao(rs.getString("descricao"));
@@ -178,8 +180,11 @@ public class DaoCategoria {
 
 			while (rs.next()) {
 				Categoria categoria = new Categoria();
+				
+				
 				Utilizador utilizador = new Utilizador();
-				utilizador.setUsername(rs.getString("utilizador"));
+				utilizador.setUsername(rs.getString("username"));
+				
 				categoria.setIdCategoria(rs.getInt("idCategoria"));
 				categoria.setNome(rs.getString("nome"));
 				categoria.setDescricao(rs.getString("descricao"));

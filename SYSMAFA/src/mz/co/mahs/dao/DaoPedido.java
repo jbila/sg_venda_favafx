@@ -55,9 +55,10 @@ public class DaoPedido {
 				lastId = rs.getInt(1);
 
 			}
+			/*
 			alertInfo.setHeaderText("Information");
 			alertInfo.setContentText("pedido Feito ");
-			alertInfo.showAndWait();
+			alertInfo.showAndWait();*/
 			//
 		} catch (SQLException ex) {
 			alertInfo.setHeaderText("Information");
@@ -246,4 +247,33 @@ public class DaoPedido {
 		return pedidos;
 	}
 //----------------------------------------------------------------------------------------
+	public static void updateValorPago(Pedido pedido) {
+		try {
+
+			conn = Conexao.connect();
+			stmt = conn.prepareStatement("UPDATE tbl_pedido SET valorPago=valorPago+? WHERE idPedido =?");
+			stmt.setDouble(1,pedido.getValorPago());
+			stmt.setInt(2,pedido.getIdPedido());
+			stmt.executeUpdate();
+
+			alertInfo.setHeaderText("Information");
+			alertInfo.setHeaderText("Confirmação de pagamento");
+			alertInfo.setContentText("Valor  devido actualizado ");
+			alertInfo.showAndWait();
+		}
+
+		catch (SQLException ex) {
+			alertErro.setHeaderText("Error");
+			alertErro.setContentText("Erro ao actualizar o valor  do pedido: " + ex.getMessage());
+			alertErro.showAndWait();
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

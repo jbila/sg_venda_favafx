@@ -9,9 +9,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
+import mz.co.mahs.models.Funcionario;
 import mz.co.mahs.models.Utilizador;
 
 
@@ -19,11 +21,10 @@ public class DaoUtilizador {
 	static Alert alertErro = new Alert(AlertType.ERROR); 
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 	
-	private static final String INSERT = "INSERT INTO tbl_utilizador(nome,apelido,genero,email,telefone,endereco,status,perfil,username,password,dataRegisto) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	//SELECT u.idUtilizador,u.nome,u.genero,u.email,u.endereco,u.telefone,u.username,u.status,u.perfil FROM tbl_Utilizador AS u order by u.idUtilizador desc
+	private static final String INSERT = "INSERT INTO tbl_utilizador(idFuncionario,status,perfil,username,password,dataRegisto) VALUES(?,?,?,?,?,?)";
 	private static final String LIST = "select * from vw_listutilizador";
 	private static final String DELETE = "{CALL sp_Delete_Utlizador(?)}";
-	private static final String UPDATE = "UPDATE tbl_utilizador SET nome=?, apelido=?,genero=?,email=?,telefone=?,endereco=?,status=?,perfil=?,username=?,password=? WHERE idUtilizador=? ";
+	private static final String UPDATE = "UPDATE tbl_utilizador SET idFuncionario=?,status=?,perfil=?,username=?,password=? WHERE idUtilizador=? ";
 	
 	private static Connection conn = null;
 	private static PreparedStatement stmt;
@@ -69,23 +70,18 @@ public class DaoUtilizador {
                 String dataRegisto = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
                 
                 conn = Conexao.connect();
-              //nome,apelido,genero,email,telefone,endereco,status,perfil,password,dataRegisto
+              //idFuncionario,status,perfil,password,dataRegisto
                 stmt = conn.prepareStatement(INSERT);
-                stmt.setString(1, u.getNome());
-                stmt.setString(2, u.getApelido());
-                stmt.setString(3, u.getGenero());
-                stmt.setString(4, u.getEmail());
-                stmt.setString(5, u.getTelefone());
-                stmt.setString(6, u.getEndereco());
-                stmt.setString(7, u.getStatus());
-                stmt.setString(8, u.getPerfil());
-                stmt.setString(9, u.getUsername());
-                stmt.setString(10, u.getPassword());
-                stmt.setString(11, dataRegisto);
+                stmt.setInt(1, u.getFuncionario().getIdFuncionario());
+                stmt.setString(2, u.getStatus());
+                stmt.setString(3, u.getPerfil());
+                stmt.setString(4, u.getUsername());
+                stmt.setString(5, u.getPassword());
+                stmt.setString(6, dataRegisto);
                 stmt.executeUpdate();
                
-                alertInfo.setHeaderText("Informa��o");
-                alertInfo.setContentText("Utilizador Registado com �xito ");
+                alertInfo.setHeaderText("Informação");
+                alertInfo.setContentText("Utilizador Registado com êxito ");
                 alertInfo.showAndWait();
             } catch (SQLException ex) {
             	alertErro.setHeaderText("Erro");
@@ -136,17 +132,12 @@ public class DaoUtilizador {
 			conn = Conexao.connect();
 			stmt = conn.prepareStatement(UPDATE);
 			
-			stmt.setString(1, u.getNome());
-            stmt.setString(2, u.getApelido());
-            stmt.setString(3, ""+u.getGenero());
-            stmt.setString(4, u.getEmail());
-            stmt.setString(5, u.getTelefone());
-            stmt.setString(6, u.getEndereco());
-            stmt.setString(7, u.getStatus());
-            stmt.setString(8, u.getPerfil());
-            stmt.setString(9, u.getUsername());
-            stmt.setString(10, u.getPassword());
-            stmt.setInt(11, u.getIdUtilizador());
+			stmt.setInt(1, u.getFuncionario().getIdFuncionario());
+            stmt.setString(2, u.getStatus());
+            stmt.setString(3, u.getPerfil());
+            stmt.setString(4, u.getUsername());
+            stmt.setString(5, u.getPassword());
+            stmt.setInt(6, u.getIdUtilizador());
 			stmt.executeUpdate();
 			/*
 			alertInfo.setHeaderText("Informação");
@@ -171,23 +162,21 @@ public class DaoUtilizador {
 	}
 //------------------------------------------------------------------------------
 	 //nome,genero,email,telefone,endereco
-        public static  List<Utilizador> getUtilizadorList(String nome){
+        public static  List<Utilizador> getUtilizadorList(String username){
 			List<Utilizador> utilizadorList = new ArrayList<>(); 
 		      
 			try {
 				conn = Conexao.connect();
-				stmt= conn.prepareStatement("select * from vw_listutilizador WHERE nome like'"+nome+"%'");
+				stmt= conn.prepareStatement("select * from vw_listutilizador WHERE username like'"+username+"%'");
 				 rs=stmt.executeQuery();
 			
 
 				while (rs.next()) {
 					Utilizador utilizador = new Utilizador();
 					utilizador.setIdUtilizador(rs.getInt("idUtilizador"));
-					utilizador.setNome(rs.getString("nome"));
-					utilizador.setGenero(rs.getString("genero"));
-					utilizador.setEmail(rs.getString("email"));
-					utilizador.setTelefone(rs.getString("telefone"));
-					utilizador.setEndereco(rs.getString("endereco"));
+					Funcionario funcionario=new Funcionario();
+					funcionario.setNome(rs.getString("nome"));
+					utilizador.setFuncionario(funcionario);
 					utilizador.setUsername(rs.getString("username"));
 					utilizador.setStatus(rs.getString("status"));
 					utilizador.setPerfil(rs.getString("perfil"));
@@ -228,12 +217,10 @@ public class DaoUtilizador {
 
 				while (rs.next()) {
 					Utilizador utilizador = new Utilizador();
+					Funcionario funcionario=new Funcionario();
+					funcionario.setNome(rs.getString("nome"));
+					utilizador.setFuncionario(funcionario);
 					utilizador.setIdUtilizador(rs.getInt("idUtilizador"));
-					utilizador.setNome(rs.getString("nome"));
-					utilizador.setGenero(rs.getString("genero"));
-					utilizador.setEmail(rs.getString("email"));
-					utilizador.setTelefone(rs.getString("telefone"));
-					utilizador.setEndereco(rs.getString("endereco"));
 					utilizador.setUsername(rs.getString("username"));
 					utilizador.setStatus(rs.getString("status"));
 					utilizador.setPerfil(rs.getString("perfil"));

@@ -35,10 +35,10 @@
       <Button fx:id="btnVerItemDoPedido" layoutX="497.0" layoutY="46.0" mnemonicParsing="false" onAction="#verItems" prefWidth="100.0" text="items" />
       <TableView fx:id="tblParcelas" layoutX="604.0" layoutY="96.0" onMouseClicked="#handleClikParcela" prefHeight="402.0" prefWidth="263.0">
         <columns>
-          <TableColumn fx:id="colParcelaValor" prefWidth="55.0" text="Valor" />
-          <TableColumn fx:id="colParcelaPrevisao" prefWidth="60.0" text="Previsão" />
-            <TableColumn fx:id="colParcelaDataPagamento" prefWidth="75.0" text="D.paga" />
-            <TableColumn fx:id="colParcelaEstado" maxWidth="100.0" prefWidth="75.0" text="Estado" />
+          <TableColumn fx:id="colParcelaValor" prefWidth="41.0" text="Valor" />
+          <TableColumn fx:id="colParcelaPrevisao" text="Previsão" />
+            <TableColumn fx:id="colParcelaDataPagamento" prefWidth="81.0" text="D.paga" />
+            <TableColumn fx:id="colParcelaEstado" maxWidth="100.0" prefWidth="63.0" text="Estado" />
         </columns>
       </TableView>
       <Button fx:id="btnLiquidar" layoutX="763.0" layoutY="59.0" mnemonicParsing="false" onAction="#liquidar" prefWidth="100.0" text="Liquidar" />

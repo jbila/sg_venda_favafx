@@ -22,11 +22,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import mz.co.mahs.dao.DaoFornecedor;
+import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.models.Fornecedor;
 import mz.co.mahs.models.Utilizador;
 
 public class FXMLFornecedorController implements Initializable,Crud {
 	Alert alert = new Alert(AlertType.INFORMATION);
+	Alert alertWarining = new Alert(AlertType.WARNING);
 	Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
 	@FXML
 	private AnchorPane rootFornecedor;
@@ -76,7 +78,7 @@ public class FXMLFornecedorController implements Initializable,Crud {
 	private Button btnUpdate;
 
 	@FXML
-	private Button btnDelete;
+	private Button btnDelete,btnRelatorio;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -88,11 +90,21 @@ public class FXMLFornecedorController implements Initializable,Crud {
 	}
 	@FXML
 	private void add(ActionEvent event) {
+		if(!(txtNome.getText().isEmpty()&& txtEmail.getText().isEmpty()&& txtEndereco.getText().isEmpty()&& txtTelefone.getText().isEmpty()))
+		{
 		acessoAdd();
 		showInfo();
 		btnAdd.setVisible(true);
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
+		}
+		else {
+			alertWarining.setTitle("Aviso");
+			alertWarining.setHeaderText("Verificação de Dados");
+			alertWarining.setContentText("Preencha os campos devidamente");
+			alertWarining.showAndWait();
+
+		}
 	}
 
 	@FXML
@@ -215,6 +227,9 @@ public class FXMLFornecedorController implements Initializable,Crud {
 		
 	}
 
-	
+	@FXML
+	private void relatorio(ActionEvent event) {
+		DaoRelatorio.fornecedorReport();
+	}
 
 }

@@ -4,6 +4,8 @@ package mz.co.mahs.controller;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -16,8 +18,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -26,6 +30,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mz.co.mahs.conection.Conexao;
+import mz.co.mahs.dao.DaoRelatorio;
 
 
 
@@ -38,6 +43,9 @@ public class FXMLMenuController implements Initializable {
 
 	    @FXML
 	    private   BorderPane menuPane;
+	    
+	    @FXML
+	    private   BorderPane menuFuncionario;
 
 	    @FXML
 	    private VBox vBoxMenuItems;
@@ -62,6 +70,26 @@ public class FXMLMenuController implements Initializable {
 
 	    @FXML
 	    private Button btnVendas;
+	    @FXML
+	    private Button btnFuncionario;
+	    /*---------------------------*/
+	    @FXML
+	    private SplitMenuButton splitMenuButtonRelatorio;
+
+	    @FXML
+	    private MenuItem btnRelatorioFuncionario;
+
+	    @FXML
+	    private MenuItem btnRelatorioCliente;
+
+	    @FXML
+	    private MenuItem btnRelatorioFornecedor;
+
+	    @FXML
+	    private MenuItem btnRelatorioVendaFP;
+
+	    @FXML
+	    private MenuItem btnRelatorioDiario;
 	    
 	    @FXML
 	    private Button btnPedidos;
@@ -123,6 +151,10 @@ public class FXMLMenuController implements Initializable {
         openPedidos();
    }
     @FXML
+    private void handleFuncionario(ActionEvent event) {
+        openFuncionario();
+   }
+    @FXML
 	  private  void handleProvinciaDistrito(ActionEvent event) {
     	openProvinciaDistrito();
 	    }
@@ -146,7 +178,38 @@ public class FXMLMenuController implements Initializable {
     	}
     		
     }
-   
+   /*-------------------*/
+    @FXML
+    void handleRelatorioCliente(ActionEvent event) {
+    	DaoRelatorio.clienteReport();
+
+    }
+
+    @FXML
+   private void handleRelatorioDiario(ActionEvent event) {
+    	String data1="2021/02/8",data2="2021/04/02";
+    	LocalDate d1,d2;
+    	d1=LocalDate.now();
+    	d2=LocalDate.now();
+    	DaoRelatorio.vendasReport(d1, d2);
+    }
+
+    @FXML
+   private void handleRelatorioFornecedor(ActionEvent event) {
+    	DaoRelatorio.fornecedorReport();
+    }
+
+    @FXML
+    private void handleRelatorioFuncionario(ActionEvent event) {
+    	DaoRelatorio.funcionarioReport();
+    }
+
+    @FXML
+   private void handleRelatorioPorFP(ActionEvent event) {
+    	String formaDePagamento="POS";
+    	DaoRelatorio.vendasFP(formaDePagamento);
+
+    }
      
      private void openFornecedor(){
      Stage stage=new Stage();
@@ -359,4 +422,29 @@ public class FXMLMenuController implements Initializable {
         	alertErro.showAndWait();
         }
         }
+          //-----------------------------------------------------
+          private void openFuncionario(){
+          	Stage stage=new Stage();
+         try {
+             
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLFuncionario.fxml"));
+          Parent rootFuncionario = (Parent) fxmlLoader.load();
+
+  		Scene scene = new Scene(rootFuncionario);
+  		scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+  		stage.setScene(scene);
+  		stage.initStyle(StageStyle.UNDECORATED);
+  		stage.initModality(Modality.APPLICATION_MODAL);
+  		menuPane.setCenter(rootFuncionario);
+  		menuPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+  	
+  		
+  		// stage.show();
+      } catch(Exception e) {
+      	alertErro.setHeaderText("Erro");
+      	alertErro.setContentText("Erro ao Carregar o Ficheiro "+e);
+      	alertErro.showAndWait();
+      	e.printStackTrace();
+      }
+      } 
 }
