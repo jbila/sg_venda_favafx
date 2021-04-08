@@ -288,8 +288,8 @@ public class FXMLProductoController implements Initializable, Crud {
 	public void acessoUpdate() {
 		try {
 		Producto producto = new Producto();// OBJECTO PRINCIPAL
-		Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
-		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
+		//Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
+	//	utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 
 		Fornecedor fornecedor = new Fornecedor();// OBJECTO SECUNDARIO
 		Fornecedor fornecedoro = (Fornecedor) cboFornecedor.getSelectionModel().getSelectedItem();
@@ -310,7 +310,7 @@ public class FXMLProductoController implements Initializable, Crud {
 		producto.setPrecoFinal(Double.parseDouble(txtValorVenda.getText()));
 		producto.setCategoria(categoria);
 		producto.setFornecedor(fornecedor);
-		producto.setUtilizador(utilizador);
+		//producto.setUtilizador(utilizador);
 		producto.setIdProducto(Integer.parseInt(txtId.getText()));
 		DaoProducto.update(producto);
 		limpar();

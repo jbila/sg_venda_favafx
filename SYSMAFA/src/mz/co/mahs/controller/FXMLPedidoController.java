@@ -94,9 +94,9 @@ public class FXMLPedidoController {
 	@FXML
 	private TextField txtSutotal;
 	@FXML
-	private TextField txtTrocos, txtValorApagar, txtNumeroParcela, txtvalorApagar, txtValorTotal;
+	private TextField txtTrocos, txtValorApagar, txtNumeroParcela, txtvalorApagar, txtValorTotal, txtQuantidadeNoStock;
 	@FXML
-	private TextField txtProcurar;
+	private TextField txtProcurar, txtValidade;
 	/** usada para pesquisar dentro da tabela */
 
 	/** SEGUNDA TABELA items */
@@ -167,6 +167,8 @@ public class FXMLPedidoController {
 		txtProcurar.setVisible(true);
 		cboTipo.setItems(tipo);
 		cboTipo.setValue("COMPLETA");
+		txtQuantidadeNoStock.setVisible(false);
+		txtValidade.setVisible(false);
 
 		showInfo();
 		txtId.setVisible(false);// este e id de producto
@@ -218,7 +220,7 @@ public class FXMLPedidoController {
 	 */
 	@FXML
 	private void changeTipo(ActionEvent event) {
-		cboTipo.setOnAction(ev -> {
+		//cboTipo.setOnAction(ev -> {
 			if ((cboTipo.getSelectionModel().getSelectedItem()).equalsIgnoreCase("PARCELADA")) {
 
 				txtNumeroParcela.setVisible(true);
@@ -229,7 +231,7 @@ public class FXMLPedidoController {
 				txtNumeroParcela.setVisible(false);
 				btnParcelar.setVisible(false);
 			}
-		});
+		//});
 
 	}
 
@@ -281,6 +283,9 @@ public class FXMLPedidoController {
 		txtId.setText("" + producto.getIdProducto());
 		txtNome.setText("" + producto.getNome());
 		txtPreco.setText("" + producto.getPrecoFinal());
+		txtQuantidadeNoStock.setText("" + producto.getQuantidade());
+		txtValidade.setText("" + producto.getValidade());
+
 	}
 
 	//
@@ -292,8 +297,7 @@ public class FXMLPedidoController {
 			alertInfo.showAndWait();
 		} else {
 			addRow();// este metodo adiciona uma linha na tabela de itens
-			total = (total + subTotal);
-			lblTotal.setText("" + total);
+
 			txtQty.setText("0");
 			txtNome.clear();
 			txtSutotal.clear();
@@ -343,7 +347,7 @@ public class FXMLPedidoController {
 
 	/** Este metodo adiciona producto que estao na base de dados */
 	public void showInfo() {
-		List<Producto> list = DaoProducto.getAll();
+		List<Producto> list = DaoProducto.getAllPratileira();
 		colIdProducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
 		colCodigoProducto.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		colNomeProducto.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -400,52 +404,64 @@ public class FXMLPedidoController {
 
 	/** Este metodo adiciona itens na tabela */
 	private void addRow() {
+		if ((Integer.parseInt(txtQty.getText()) <= (Integer.parseInt(txtQuantidadeNoStock.getText()))
+				&& (Integer.parseInt(txtQty.getText()) != 0))) {
+			LocalDate localToday = LocalDate.now();
+			LocalDate localValidade = LocalDate.parse(txtValidade.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			if (localToday.isBefore(localValidade)) {
+				//System.out.println("Da para vender");
+				ItemsPedidos items = new ItemsPedidos();
+				Producto producto = new Producto();
+				producto.setNome(txtNome.getText());
+				producto.setIdProducto(Integer.parseInt(txtId.getText()));
 
-		ItemsPedidos items = new ItemsPedidos();
-		Producto producto = new Producto();
-		producto.setNome(txtNome.getText());
-		producto.setIdProducto(Integer.parseInt(txtId.getText()));
+				items.setProducto(producto);
+				items.setPrecoUnitario(Double.parseDouble(txtPreco.getText()));
+				items.setQuantidade(Integer.parseInt(txtQty.getText()));
+				items.setSubTotal(Double.parseDouble(txtPreco.getText()) * Integer.parseInt(txtQty.getText()));
+				items.setIdp(Integer.parseInt(txtId.getText()));
+				data.add(items);
+				int row = data.size();
 
-		items.setProducto(producto);
-		items.setPrecoUnitario(Double.parseDouble(txtPreco.getText()));
-		items.setQuantidade(Integer.parseInt(txtQty.getText()));
-		items.setSubTotal(Double.parseDouble(txtPreco.getText()) * Integer.parseInt(txtQty.getText()));
-		items.setIdp(Integer.parseInt(txtId.getText()));
-		data.add(items);
-		int row = data.size();
+				tblItems.requestFocus();
+				tblItems.getSelectionModel().select(row);
+				tblItems.getFocusModel().focus(row);
 
-		tblItems.requestFocus();
-		tblItems.getSelectionModel().select(row);
-		tblItems.getFocusModel().focus(row);
+				colId.setCellValueFactory(new PropertyValueFactory<>("idp"));
+				colNome.setCellValueFactory(new PropertyValueFactory<>("producto"));
+				colQty.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+				colPreco.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
+				colSubTotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
+				tblItems.getItems().add(items);
+				total = (total + subTotal);
+				lblTotal.setText("" + total);
 
-		colId.setCellValueFactory(new PropertyValueFactory<>("idp"));
-		colNome.setCellValueFactory(new PropertyValueFactory<>("producto"));
-		colQty.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-		colPreco.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
-		colSubTotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
-		tblItems.getItems().add(items);
-	}
-
-	private void deleteRow() {
-		btnRemover.setOnAction(e -> {
-			ItemsPedidos selectedItem = tblItems.getSelectionModel().getSelectedItem();
-			double t = 0.0;
-			for (int i = 0; i < tblItems.getItems().size(); i++) {
-				ItemsPedidos itemsPedido = new ItemsPedidos();
-				itemsPedido.setSubTotal(colSubTotal.getCellData(i));
-				t = colSubTotal.getCellData(i);
-				// tblItems.getItems().remove(selectedItem);
-				// tblItems.getItems().remove(i);
-
-				tblItems.getItems().remove(selectedItem);
+			} else {
+				alertWarning.setTitle("Aviso");
+				alertWarning.setHeaderText("Verificação de Validade");
+				alertWarning.setContentText("Esse Producto já venceu." + "\n");
+				alertWarning.showAndWait();
 
 			}
 
-			double temp = total - t;
+		} else {
+			alertWarning.setTitle("Aviso");
+			alertWarning.setHeaderText("Verificação de Quantidades do Stock");
+			alertWarning.setContentText("A Quantidade  introduzida é Superior ao existente  ou é Zero" + "\n");
+			alertWarning.showAndWait();
+		}
+	}
 
-			lblTotal.setText("" + temp);
-
-		});
+	private void deleteRow() {
+			ItemsPedidos selectedItem = tblItems.getSelectionModel().getSelectedItem();
+			for (int i = 0; i < tblItems.getItems().size(); i++) {
+				ItemsPedidos itemsPedido = new ItemsPedidos();
+				itemsPedido.setSubTotal(colSubTotal.getCellData(i));
+			}
+		tblItems.getItems().remove(selectedItem);	
+		double subtotal=selectedItem.getQuantidade()*selectedItem.getPrecoUnitario();
+		total=total-subtotal;
+		lblTotal.setText(""+total);
 	}
 
 	/**
@@ -538,7 +554,7 @@ public class FXMLPedidoController {
 	/** procurador */
 	@FXML
 	private void procurador(KeyEvent event) {
-		List<Producto> list = DaoProducto.searchAll(txtProcurar.getText());
+		List<Producto> list = DaoProducto.searchAllPratileira(txtProcurar.getText());
 		final ObservableList<Producto> obserList = FXCollections.observableArrayList(list);
 		colId.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
 		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -573,7 +589,6 @@ public class FXMLPedidoController {
 			Producto producto = new Producto();
 			producto.setQuantidade(colQty.getCellData(i));
 			producto.setIdProducto(colId.getCellData(i));
-
 			idItems.add(producto);
 		}
 		DaoProducto.updateQty(idItems);

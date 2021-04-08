@@ -47,7 +47,7 @@
 				<TextField fx:id="txtSearch" alignment="CENTER" layoutY="2.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1131.0" promptText="Procurar Curso" />
 				<TableView fx:id="tblCategoria" layoutX="-3.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="246.0" prefWidth="1131.0">
 					<columns>
-						<TableColumn fx:id="colId" editable="false" maxWidth="100.0" prefWidth="76.0" text="ID" />
+						<TableColumn fx:id="colId" editable="false" maxWidth="100.0" prefWidth="76.0" sortable="false" text="ID" />
 						<TableColumn fx:id="colNome" editable="false" maxWidth="277.0" prefWidth="277.0" sortable="false" text="Nome" />
 						<TableColumn fx:id="colDescricao" editable="false" maxWidth="919.0000152587891" prefWidth="585.9999694824219" sortable="false" text="Descrição" />
                   <TableColumn fx:id="colUtilizador" prefWidth="191.0" text="Utilizador" />

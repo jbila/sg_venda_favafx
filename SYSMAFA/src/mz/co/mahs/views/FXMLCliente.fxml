@@ -34,7 +34,7 @@
 						<TableColumn fx:id="colId" editable="false" maxWidth="50.0" prefWidth="36.000030517578125" sortable="false" text="ID" />
 						<TableColumn fx:id="colNome" editable="false" maxWidth="115.0" prefWidth="108.0" sortable="false" text="Nome" />
 						<TableColumn fx:id="colApelido" editable="false" maxWidth="115.0" prefWidth="108.0" sortable="false" text="Apelido" />
-						<TableColumn fx:id="colEmail" maxWidth="154.0" minWidth="-Infinity" prefWidth="154.0" sortable="false" text="Email" />
+						<TableColumn fx:id="colEmail" editable="false" maxWidth="154.0" minWidth="-Infinity" prefWidth="154.0" sortable="false" text="Email" />
 						<TableColumn fx:id="colTelefone" editable="false" maxWidth="110.0" prefWidth="88.0" sortable="false" text="Telefone" />
 						<TableColumn fx:id="colSexo" editable="false" prefWidth="51.0" sortable="false" text="Sexo" />
 						<TableColumn fx:id="colEndereco" editable="false" prefWidth="115.0" sortable="false" text="Endereço" />

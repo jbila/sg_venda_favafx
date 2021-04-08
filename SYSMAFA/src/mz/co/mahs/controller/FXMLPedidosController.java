@@ -131,6 +131,7 @@ public class FXMLPedidosController {
 				Parcela parcela = new Parcela();
 				parcela.setEstado("PAID");
 				parcela.setIdParcela(Integer.parseInt(txtNumeroParcela.getText()));
+				System.out.println(valorApagar);
 				DaoParcela.updateParcela(parcela);
 
 				Pedido parcelas = new Pedido();
@@ -140,7 +141,16 @@ public class FXMLPedidosController {
 				showInfo();
 				btnLiquidar.setVisible(false);
 				showParcelas();
-			} else {
+				tblParcelas.setVisible(false);
+			} 
+			 else if (valorT == valorP) {
+				 	alertWarning.setTitle("Aviso");
+					alertWarning.setHeaderText("Estado do Pagamento II");
+					alertWarning.setContentText("Pagamento Completo");
+					alertWarning.showAndWait();
+			}
+			
+			else {
 				alertWarning.setTitle("Aviso");
 				alertWarning.setHeaderText("Estado do Pagamento");
 				alertWarning.setContentText("Pagamento Completo");

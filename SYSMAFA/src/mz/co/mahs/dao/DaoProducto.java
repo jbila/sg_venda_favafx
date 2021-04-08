@@ -26,7 +26,7 @@ public class DaoProducto {
 	private static final String INSERT = "INSERT INTO tbl_producto(nome,codigo,descricao,quantidade,precofinal,precoFornecedor,validade,idCategoria,idUtilizador,dataRegisto) VALUES(?,?,?,?,?,?,?,?,?,?)";
 	private static final String LIST = "SELECT * FROM vw_listProducto";
 	private static final String DELETE = "{CALL sp_Delete_Producto(?)}";
-	private static final String UPDATE = "UPDATE tbl_producto SET nome=?,codigo=?,descricao=?,quantidade=?,precoFinal,precoFornecedor=?,validade=? WHERE idProducto=?";
+	private static final String UPDATE = "UPDATE tbl_producto SET nome=?,codigo=?,descricao=?,quantidade=?,precoFinal,precoFornecedor=?,validade=?,idCategoria=? WHERE idProducto=?";
 
 	private static Connection conn = null;
 	private static CallableStatement cs = null;
@@ -53,7 +53,7 @@ public class DaoProducto {
 
 		return retorno;
 	}
-	// --------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------
 
 	public static int add(Producto producto) {
 		int lastId=0;
@@ -95,7 +95,7 @@ public class DaoProducto {
 return lastId;
 	}
 
-	// --------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 	public static void delete(Producto producto) {
 
 		try {
@@ -121,12 +121,13 @@ return lastId;
 		}
 	}
 
-//------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 	public static void update(Producto producto) {
 		try {
 
 			conn = Conexao.connect();
 			stmt = conn.prepareStatement(UPDATE);
+			//nome=?,codigo=?,descricao=?,quantidade=?,precoFinal,precoFornecedor=?,validade=?,idCategoria
 
 			stmt.setString(1, producto.getNome());
 			stmt.setString(2, producto.getCodigo());
@@ -136,8 +137,7 @@ return lastId;
 			stmt.setDouble(6, producto.getPrecoFornecedor());
 			stmt.setString(7, producto.getValidade());
 			stmt.setInt(8, producto.getCategoria().getIdCategoria());
-			stmt.setInt(9, producto.getUtilizador().getIdUtilizador());
-			stmt.setInt(10, producto.getIdProducto());
+			stmt.setInt(9, producto.getIdProducto());
 			stmt.executeUpdate();
 
 			alertInfo.setHeaderText("Information");
@@ -191,7 +191,7 @@ return lastId;
 
 	
 
-//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 	public static List<Producto> getAll() {
 		List<Producto> productos = new ArrayList<>();
@@ -255,7 +255,122 @@ return lastId;
 		List<Producto> productos = new ArrayList<>();
 		try {
 			conn = Conexao.connect();
-			stmt = conn.prepareCall("SELECT * FROM vw_listProducto WHERE nome LIKE '"+nome+"%' OR codigo LIKE'"+nome+"%' ");
+			stmt = conn.prepareCall("SELECT * FROM vw_listproducto WHERE nome LIKE '"+nome+"%' OR codigo LIKE'"+nome+"%' ");
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				Producto producto = new Producto();// objecto principal
+
+				Categoria categoria = new Categoria();
+				categoria.setNome(rs.getString("categoria"));
+
+				Fornecedor fornecedor = new Fornecedor();
+				fornecedor.setNome(rs.getString("fornecedor"));
+				Utilizador utilizador = new Utilizador(); // OBJECTO SECUNDARIO
+				utilizador.setUsername(rs.getString("utilizador"));
+
+				producto.setIdProducto(rs.getInt("idProducto"));
+				producto.setCodigo(rs.getString("codigo"));
+				producto.setNome(rs.getString("nome"));
+				producto.setQuantidade(rs.getInt("quantidade"));
+				producto.setPrecoFinal(Double.parseDouble(rs.getString("precoFinal")));
+				producto.setPrecoFornecedor(Double.parseDouble(rs.getString("precoFornecedor")));
+				producto.setValidade(rs.getString("validade"));
+				producto.setDescricao(rs.getString("descricao"));
+				producto.setDataRegisto(rs.getString("dataRegisto"));
+				producto.setCategoria(categoria);
+				producto.setFornecedor(fornecedor);
+				producto.setUtilizador(utilizador);
+				productos.add(producto);
+
+			}
+
+		} catch (SQLException ex) {
+			alertErro.setHeaderText("Erro");
+			alertErro.setContentText("Erro ao listar  Producto  " + ex.getMessage());
+			alertErro.showAndWait();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+		}
+
+		return productos;
+	}
+//--------------------------------------------------------------------------------------------------
+		public static List<Producto> searchAllPratileira(String nome) {
+			List<Producto> productos = new ArrayList<>();
+			try {
+				conn = Conexao.connect();
+				stmt = conn.prepareCall("SELECT * FROM vw_listproductopratileira WHERE nome LIKE '"+nome+"%' OR codigo LIKE'"+nome+"%' ");
+				rs = stmt.executeQuery();
+				while (rs.next()) {
+
+					Producto producto = new Producto();// objecto principal
+
+					Categoria categoria = new Categoria();
+					categoria.setNome(rs.getString("categoria"));
+
+					Fornecedor fornecedor = new Fornecedor();
+					fornecedor.setNome(rs.getString("fornecedor"));
+					Utilizador utilizador = new Utilizador(); // OBJECTO SECUNDARIO
+					utilizador.setUsername(rs.getString("utilizador"));
+
+					producto.setIdProducto(rs.getInt("idProducto"));
+					producto.setCodigo(rs.getString("codigo"));
+					producto.setNome(rs.getString("nome"));
+					producto.setQuantidade(rs.getInt("quantidade"));
+					producto.setPrecoFinal(Double.parseDouble(rs.getString("precoFinal")));
+					producto.setPrecoFornecedor(Double.parseDouble(rs.getString("precoFornecedor")));
+					producto.setValidade(rs.getString("validade"));
+					producto.setDescricao(rs.getString("descricao"));
+					producto.setDataRegisto(rs.getString("dataRegisto"));
+					producto.setCategoria(categoria);
+					producto.setFornecedor(fornecedor);
+					producto.setUtilizador(utilizador);
+					productos.add(producto);
+
+				}
+
+			} catch (SQLException ex) {
+				alertErro.setHeaderText("Erro");
+				alertErro.setContentText("Erro ao listar  Producto  " + ex.getMessage());
+				alertErro.showAndWait();
+			} finally {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+
+			}
+
+			return productos;
+		}
+	//--------------------------------------------------------------------------------------------------
+
+	public static List<Producto> getAllPratileira() {
+		List<Producto> productos = new ArrayList<>();
+		try {
+			conn = Conexao.connect();
+			stmt = conn.prepareCall("SELECT * FROM vw_listproductopratileira");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 
@@ -308,7 +423,7 @@ return lastId;
 		return productos;
 	}
 
-//-------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 	
 
 	public static Integer ultimoIdProducto() {
@@ -377,4 +492,5 @@ return lastId;
 			alertInfo.showAndWait();
 		}
 	}
+//--------------------------------------------------------------------------------------------------------
 }

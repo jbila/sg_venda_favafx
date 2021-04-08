@@ -21,13 +21,13 @@
       <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="-8.0" layoutY="104.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="695.0" promptText="Procurar  Cliente" />
       <TableView fx:id="tblCliente" layoutX="-6.0" layoutY="129.0" onMouseClicked="#handleMouseClickAction" prefHeight="350.0" prefWidth="695.0">
         <columns>
-          <TableColumn fx:id="colId" maxWidth="142.0" prefWidth="50.0" text="ID" />
-          <TableColumn fx:id="colNome" maxWidth="206.0" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="colApelido" maxWidth="207.0" prefWidth="75.0" text="Apelido" />
-            <TableColumn fx:id="colGenero" maxWidth="212.0" prefWidth="49.0" text="Genero" />
-            <TableColumn fx:id="colEmail" maxWidth="324.0" prefWidth="100.0" text="Email" />
-            <TableColumn fx:id="colTelefone" maxWidth="352.0" prefWidth="100.0" text="Telefone" />
-            <TableColumn fx:id="colEndereco" maxWidth="234.0" prefWidth="100.0" text="Endereço" />
+          <TableColumn fx:id="colId" editable="false" maxWidth="142.0" prefWidth="50.0" sortable="false" text="ID" />
+          <TableColumn fx:id="colNome" editable="false" maxWidth="206.0" prefWidth="75.0" sortable="false" text="Nome" />
+            <TableColumn fx:id="colApelido" editable="false" maxWidth="207.0" prefWidth="75.0" sortable="false" text="Apelido" />
+            <TableColumn fx:id="colGenero" editable="false" maxWidth="212.0" prefWidth="49.0" sortable="false" text="Genero" />
+            <TableColumn fx:id="colEmail" editable="false" maxWidth="324.0" prefWidth="100.0" sortable="false" text="Email" />
+            <TableColumn fx:id="colTelefone" editable="false" maxWidth="352.0" prefWidth="100.0" sortable="false" text="Telefone" />
+            <TableColumn fx:id="colEndereco" editable="false" maxWidth="234.0" prefWidth="100.0" sortable="false" text="Endereço" />
             <TableColumn fx:id="colDistritoUrbano" editable="false" maxWidth="200.0" prefWidth="159.0" sortable="false" text="Distrito Urbano" />
             <TableColumn fx:id="colDataRegisto" maxWidth="237.0" prefWidth="63.0" text="Registo" />
             <TableColumn fx:id="colUtilizador" prefWidth="82.0" text="Utilizador" />

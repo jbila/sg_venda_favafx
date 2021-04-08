@@ -22,15 +22,15 @@
       <Label layoutX="14.0" layoutY="6.0" text="Registo de Provincia" />
       <TableView fx:id="tblProvincia" layoutX="3.0" layoutY="143.0" onMouseClicked="#handleProvincia" prefHeight="362.0" prefWidth="387.0">
         <columns>
-          <TableColumn fx:id="colIDProvincia" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="colProvinciaNome" prefWidth="310.0" text="Provincia" />
+          <TableColumn fx:id="colIDProvincia" editable="false" prefWidth="75.0" sortable="false" text="ID" />
+          <TableColumn fx:id="colProvinciaNome" editable="false" prefWidth="310.0" sortable="false" text="Provincia" />
         </columns>
       </TableView>
       <TableView fx:id="tblDistritoUrbano" layoutX="392.0" layoutY="143.0" onMouseClicked="#handleDistrito" prefHeight="362.0" prefWidth="407.0">
          <columns>
-            <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="colIProv" prefWidth="75.0" text="Provincia" />
-            <TableColumn fx:id="colDistritoUrbano" prefWidth="256.0" text="Distrito Urbano" />
+            <TableColumn fx:id="colId" editable="false" prefWidth="75.0" sortable="false" text="ID" />
+            <TableColumn fx:id="colIProv" editable="false" prefWidth="75.0" sortable="false" text="Provincia" />
+            <TableColumn fx:id="colDistritoUrbano" editable="false" prefWidth="256.0" sortable="false" text="Distrito Urbano" />
          </columns>
       </TableView>
       <TextField fx:id="txtProvincia" alignment="CENTER" layoutX="24.0" layoutY="66.0" prefHeight="25.0" prefWidth="268.0" promptText="Nome de Provincia" />
@@ -53,8 +53,8 @@
          <children>
             <TableView fx:id="tblFuncao" layoutX="1.0" layoutY="144.0" onMouseClicked="#handleFuncao" prefHeight="362.0" prefWidth="300.0">
               <columns>
-                <TableColumn fx:id="colIdFuncao" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="colNomeFuncao" prefWidth="222.0" text="Nome Fa Função" />
+                <TableColumn fx:id="colIdFuncao" editable="false" prefWidth="75.0" sortable="false" text="ID" />
+                <TableColumn fx:id="colNomeFuncao" editable="false" prefWidth="222.0" sortable="false" text="Nome Fa Função" />
               </columns>
             </TableView>
             <TextField fx:id="txtIdFuncao" alignment="CENTER" layoutX="14.0" layoutY="33.0" prefHeight="25.0" prefWidth="90.0" promptText="ID  Funcao" />

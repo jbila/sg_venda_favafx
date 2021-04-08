@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -16,15 +18,18 @@
 			<left>
 				<VBox fx:id="vBoxMenuItems" prefHeight="943.0" prefWidth="200.0" spacing="1.0" style="-fx-background-color: #4682b4;" BorderPane.alignment="CENTER">
 					<children>
-						<Button fx:id="btnDashBord" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDashBoard" prefHeight="25.0" prefWidth="200.0" text="Dashboard" />
+						<Button fx:id="btnDashBord" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDashBoard" prefHeight="25.0" prefWidth="200.0" text="Dashboard">
+                     <graphic>
+                         <ImageView />
+                     </graphic></Button>
+						<Button fx:id="btnCliente" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCliente" prefHeight="25.0" prefWidth="200.0" text="Cliente" />
+						<Button fx:id="btnVendas" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVendas" prefHeight="25.0" prefWidth="200.0" text="Emitir Venda" />
+						<Button fx:id="btnPedidos" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePedidos" prefHeight="25.0" prefWidth="200.0" text="Vendas e pagamentos" />
 						<Button fx:id="btnProducto" layoutX="10.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProducto" prefHeight="25.0" prefWidth="200.0" text="Producto" />
 						<Button fx:id="btnFornecedor" layoutX="10.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFornecedor" prefHeight="25.0" prefWidth="200.0" text="Fornecedor" />
-						<Button fx:id="btnCliente" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCliente" prefHeight="25.0" prefWidth="200.0" text="Cliente" />
 						<Button fx:id="btnCategoria" layoutX="10.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCategoria" prefHeight="25.0" prefWidth="200.0" text="Categoria" />
 						<Button fx:id="btnFuncionario" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFuncionario" prefHeight="25.0" prefWidth="200.0" text="Registar Funcionario" />
 						<Button fx:id="btnUtilizador" layoutX="10.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUtilizador" prefHeight="25.0" prefWidth="200.0" text="Utilizador" />
-						<Button fx:id="btnVendas" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVendas" prefHeight="25.0" prefWidth="200.0" text="Emitir Venda" />
-						<Button fx:id="btnPedidos" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePedidos" prefHeight="25.0" prefWidth="200.0" text="Vendas e pagamentos" />
 						<Button fx:id="btnProvinciaDistrito" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProvinciaDistrito" prefHeight="25.0" prefWidth="200.0" text="Registar Provincia e Distritos" />
                   <SplitMenuButton fx:id="splitMenuButtonRelatorio" mnemonicParsing="false" prefHeight="25.0" prefWidth="202.0" text="Relatórios">
                     <items>
@@ -33,9 +38,19 @@
                         <MenuItem fx:id="btnRelatorioFornecedor" mnemonicParsing="false" onAction="#handleRelatorioFornecedor" text="Relatório de  Fornecedores" />
                         <MenuItem fx:id="btnRelatorioVendaFP" mnemonicParsing="false" onAction="#handleRelatorioPorFP" text="Relatório de  Vendas Por FP" />
                         <MenuItem fx:id="btnRelatorioDiario" mnemonicParsing="false" onAction="#handleRelatorioDiario" text="Relatório de  de Venda Diarias" />
+                        <MenuItem fx:id="btnRelatorioProductoAcabados" mnemonicParsing="false" onAction="#handleRelatorioProductosAcabados" text="Relatório de Producto Acabados" />
+                        <MenuItem fx:id="btnRelatorioProductoVencidos" mnemonicParsing="false" onAction="#handleRelatorioProductosVencidos" text="Relatório de Producto Acabados" />
+                        
+                        
                     </items>
                   </SplitMenuButton>
-						
+                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="205.0" text="LogOut" />
+                  <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/Accounts_main.png" />
+                     </image>
+                  </ImageView>	
+					
 						
 					</children>
 				</VBox>
@@ -52,16 +67,22 @@
 				</Pane>
 			</top>
          <bottom>
-            <Pane fx:id="buttomMenuPane" prefHeight="73.0" prefWidth="1920.0" style="-fx-background-color: #263238;" BorderPane.alignment="CENTER">
+            <Pane fx:id="buttomMenuPane" prefHeight="80.0" prefWidth="1920.0" style="-fx-background-color: #263238;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblUserName" prefHeight="26.0" prefWidth="200.0" text="userName" textFill="WHITE">
+                  <Pane>
+                     <children>
+                        <Label fx:id="lblUserName" prefHeight="26.0" prefWidth="200.0" text="userName" textFill="WHITE">
+                           <font>
+                              <Font name="Garamond Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Label fx:id="lblType" layoutY="42.0" prefHeight="24.0" prefWidth="200.0" text="type" textFill="WHITE">
                      <font>
                         <Font name="Garamond Bold" size="14.0" />
-                     </font></Label>
-                  <Label fx:id="lblType" layoutY="27.0" prefHeight="24.0" prefWidth="200.0" text="type" textFill="WHITE">
-                     <font>
-                        <Font name="Garamond Bold" size="14.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </bottom>

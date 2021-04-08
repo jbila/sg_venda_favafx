@@ -53,11 +53,11 @@
       <Button fx:id="btnParcelar" layoutX="257.0" layoutY="244.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="PARCELAR" />
       <TableView fx:id="tblParcelamentos" layoutX="6.0" layoutY="280.0" prefHeight="130.0" prefWidth="674.0">
         <columns>
-          <TableColumn fx:id="colCodigoVenda" prefWidth="75.0" text="C.V" />
-          <TableColumn fx:id="colDataApagar" prefWidth="123.0" text="D. A LIQUIDAR" />
-            <TableColumn fx:id="colValor" prefWidth="47.0" text="VALOR" />
-            <TableColumn fx:id="colEstado" prefWidth="55.0" text="ESTADO" />
-            <TableColumn fx:id="colDataPagamento" prefWidth="135.0" text="D.PAGO" />
+          <TableColumn fx:id="colCodigoVenda" editable="false" prefWidth="75.0" sortable="false" text="C.V" />
+          <TableColumn fx:id="colDataApagar" editable="false" prefWidth="123.0" sortable="false" text="D. A LIQUIDAR" />
+            <TableColumn fx:id="colValor" editable="false" prefWidth="47.0" sortable="false" text="VALOR" />
+            <TableColumn fx:id="colEstado" editable="false" prefWidth="55.0" sortable="false" text="ESTADO" />
+            <TableColumn fx:id="colDataPagamento" editable="false" prefWidth="135.0" sortable="false" text="D.PAGO" />
         </columns>
       </TableView>
    </children>
