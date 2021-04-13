@@ -1,5 +1,6 @@
 package mz.co.mahs.controller;
 
+import java.lang.Thread.State;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -145,7 +146,7 @@ public class FXMLPedidoController {
 	@FXML
 	public Label lblTotal = new Label();
 	@FXML
-	private Button btnGoPagamento;
+	private Button btnGoPagamento,btnAddCliente;
 	@FXML
 	private Button btnCliente, btnCliente1, btnParcelar;
 	@FXML
@@ -175,11 +176,44 @@ public class FXMLPedidoController {
 		fillCliente();
 		fillFormasDePagamento();
 		total = 0;
-
+		
 		txtNumeroParcela.setVisible(false);
 		btnParcelar.setVisible(false);
 	}
+	@FXML
+	private void addcliente(ActionEvent event) {
+		openCliente();
+		
+		
+	}
+	/**Esta funcao chama o formulario de cliente para
+	 * se poder adicionar, caso nao esteja registado
+	 * */
+	
+	private void openCliente() {
+		Stage stage = new Stage();
+		try {
 
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLCliente.fxml"));
+			Parent rootCliente = (Parent) fxmlLoader.load();
+			Scene scene = new Scene(rootCliente);
+			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+	        stage.initStyle(StageStyle.UNDECORATED);//DECORATED
+
+			 stage.show();
+		} catch (Exception e) {
+			alertErro.setHeaderText("Erro");
+			alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
+			alertErro.showAndWait();
+		}
+		
+	}
+	
+	
+	
+	
 	/**
 	 * Esta metodo chama o formulario de formas de pagamento que inclui o total da
 	 * venda,nome do cliente as formas de pagamento
@@ -207,6 +241,8 @@ public class FXMLPedidoController {
 	@FXML
 	private void confirmarPagamento(ActionEvent event) {
 		addPedido();
+		voltar(event);
+		showInfo();
 		/*
 		 * actualizarStock(); calcularParcelaII(); limpaCampos(); showInfo();
 		 */
@@ -348,6 +384,7 @@ public class FXMLPedidoController {
 	/** Este metodo adiciona producto que estao na base de dados */
 	public void showInfo() {
 		List<Producto> list = DaoProducto.getAllPratileira();
+		ObservableList<Producto> obserList=FXCollections.observableArrayList(list);
 		colIdProducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
 		colCodigoProducto.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		colNomeProducto.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -355,7 +392,8 @@ public class FXMLPedidoController {
 		colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		colPrecoProducto.setCellValueFactory(new PropertyValueFactory<>("precoFinal"));
-		tblProducto.getItems().addAll(list);
+		//tblProducto.getItems().addAll(list); tambem pode ser usado
+		tblProducto.setItems(obserList);
 	}
 
 	// -------------------------------------------------------------------------------
@@ -376,7 +414,7 @@ public class FXMLPedidoController {
 			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.DECORATED);
-			stage.initModality(Modality.APPLICATION_MODAL);
+			//stage.initModality(Modality.APPLICATION_MODAL);
 			stage.centerOnScreen();
 			stage.show();
 		} catch (Exception e) {
@@ -477,7 +515,6 @@ public class FXMLPedidoController {
 
 			Utilizador utilizador = new Utilizador();// OBJECTO SECUNDARIO
 			utilizador.setIdUtilizador(ControllerLogin.idUsuario);
-
 			FormasDePagamento formasDepagamento = new FormasDePagamento();// OBJECTO SECUNDARIO
 			FormasDePagamento formasPagamento = (FormasDePagamento) cboFormaDePagamento1.getSelectionModel()
 					.getSelectedItem();
@@ -501,6 +538,8 @@ public class FXMLPedidoController {
 			}
 			if (cboTipo.getSelectionModel().getSelectedItem().equalsIgnoreCase("COMPLETA")) {
 				pedido.setValorPago(Double.parseDouble(lblTotal.getText()));
+				pedido.setValorPago(Double.parseDouble(lblTotal.getText()));
+
 			}
 
 			/** --------------------------------------------------------- */
@@ -511,7 +550,7 @@ public class FXMLPedidoController {
 			actualizarStock();
 			calcularParcelaII();
 			limpaCampos();
-			showInfo();
+			
 
 		} catch (NullPointerException ex) {
 			alertWarning.setTitle("Aviso");
@@ -671,12 +710,6 @@ public class FXMLPedidoController {
 		}
 	}// closes methods
 
-	@FXML
-	private void relatorio(ActionEvent event) {
-		FormasDePagamento forma = cboFormaDePagamento1.getSelectionModel().getSelectedItem();
-		String formaDePagamento = forma.getNome();
-		DaoRelatorio.vendasFP(formaDePagamento);
-
-	}
+	
 
 }// fecha a clase

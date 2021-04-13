@@ -20,6 +20,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import mz.co.mahs.dao.DaoCategoria;
+import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.models.Categoria;
 import mz.co.mahs.models.Utilizador;
 
@@ -67,7 +68,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 	private Button btnUpdate;
 
 	@FXML
-	private Button btnDelete;
+	private Button btnDelete,btnRelatorio;
 
 	@FXML
 	private void handleMouseClickAction() {
@@ -199,7 +200,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 	@Override
 	public void showInfo() {
 		List<Categoria> list = DaoCategoria.getAllCategoria();
-		System.out.println(list);
+		//System.out.println(list);
 		final ObservableList<Categoria> obserList = FXCollections.observableArrayList(list);
 		colId.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
 		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -207,5 +208,10 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 		tblCategoria.setItems(obserList);
 
+	}
+	/*------------------------------------------------------------*/
+	@FXML
+	private void relatorio(ActionEvent event) {
+		DaoRelatorio.categoriaReport();
 	}
 }

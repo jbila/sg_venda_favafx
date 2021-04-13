@@ -1,7 +1,10 @@
 package mz.co.mahs.dao;
 
 import java.util.List;
-
+/**
+ * Esta interface   e usada para acesso a base de dados
+ * 
+ * */
 public interface BaseDeDados {
 
 

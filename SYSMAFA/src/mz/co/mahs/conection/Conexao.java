@@ -5,13 +5,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-
+/**@author JBILA 
+ * Classe conexao e responsavel por estabelcer a conexao com a base de dado
+ * ela contem metodos de  conectar e desconectar a base de dado
+ * */
 public class Conexao {
  private  static final String USERNAME="root";
  private  static final  String PASSWORD="root";
  private  static final String CONN_STRING
             ="jdbc:mysql://127.0.0.1:3308/db_simafa?autoReconnect=true&useSSL=false";
  
+ /**Este metodo abre a conexao
+  * @param Conexao
+  * 
+  * */
    public static Connection connect(){
 	   Connection conn=null;
    	try {
@@ -28,6 +35,10 @@ public class Conexao {
    	
    }
  //---------------------------------------------------------------------------------------
+   /**Este metodo desconecta a conexao 
+    * ou melhor ela  fecha a conexao
+    * @param Conenextio
+    * */
    public static void disconect(Connection conn){
    	{
    		try {

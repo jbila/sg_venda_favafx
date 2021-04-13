@@ -12,9 +12,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Categoria;
-import mz.co.mahs.models.Funcionario;
 import mz.co.mahs.models.Utilizador;
 
+/**Esta Classe  usa a classe Categoria para gerir categoria
+ * @see Categoria
+ * @author JBILA 
+ * 
+ * 
+ * */
 public class DaoCategoria {
 
 	static Alert alertErro = new Alert(AlertType.ERROR);
@@ -29,6 +34,11 @@ public class DaoCategoria {
 	private static ResultSet rs = null;
 	// private static CallableStatement cs = null;
 	private static PreparedStatement stmt;
+	/**Este metodo insere um objecto na base de dado
+	 * @param categoria
+	 * @exception SQLException 
+	 * 
+	 * */
 
 	public static void add(Categoria categoria) {
 
@@ -62,8 +72,19 @@ public class DaoCategoria {
 		} // fim do try
 
 	}
+	/**Esta Funcao faz update de categoria
+	 * @param categoria
+	 * @author JBILA
+	 * @see Categoria
+	 * */
 
 	// ========================Update=================================
+	/**Esta funcao actualiza categoria
+	 * @param Categoria
+	 * @author JBILA 
+	 * @exception SQLException
+	 * @see {@link Categoria}
+	 * */
 	public static void update(Categoria categoria) {
 
 		try {
@@ -95,6 +116,10 @@ public class DaoCategoria {
 
 	}
 	// =======================Delete=================================
+	/**Esta funcao permite a remocao de uma tupla
+	 * @param Categoria
+	 * @author JBILA
+	 * @see Categoria*/
 
 	public static void delete(Categoria categoria) {
 
@@ -124,7 +149,10 @@ public class DaoCategoria {
 
 	}
 
-//========================================================================================================    
+//========================================================================================================  
+	/**Esta funcao permite a listar todos os elemetos
+	 * da tabela
+	 * */
 	public static List<Categoria> getAllCategoria() {
 
 		List<Categoria> categorias = new ArrayList<>();

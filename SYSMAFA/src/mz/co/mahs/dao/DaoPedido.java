@@ -21,7 +21,7 @@ public class DaoPedido {
 
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
-	private static final String INSERT = "INSERT INTO tbl_pedido(idCliente,idUtilizador,idFormasPagamento,tipo,valorDoPedido,dataRegisto) VALUES(?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO tbl_pedido(idCliente,idUtilizador,idFormasPagamento,tipo,valorPago,valorDoPedido,dataRegisto) VALUES(?,?,?,?,?,?,?)";
 	private static final String LIST = "SELECT * FROM  vw_pedidos order by id DESC";
 	private static final String DELETE = "{CALL ps_Pedido(?)}";
 	private static final String UPDATE = "UPDATE tbl_pedido set idCliente=?,idUtilizador=?,idFformasDepagamento=?,tipo=?,valorPago=?valorDoPedido=? WHERE idPedido=?";
@@ -45,9 +45,9 @@ public class DaoPedido {
 			stmt.setInt(2, pedido.getUtilizador().getIdUtilizador());
 			stmt.setInt(3, pedido.getFormasDepagamento().getId());
 			stmt.setString(4, pedido.getTipo());
-			//stmt.setDouble(5, pedido.getValorPago());
-			stmt.setDouble(5, pedido.getValorPedido());
-			stmt.setString(6, dataRegisto);
+			stmt.setDouble(5, pedido.getValorPago());
+			stmt.setDouble(6, pedido.getValorPedido());
+			stmt.setString(7, dataRegisto);
 			stmt.executeUpdate();
 
 			final ResultSet rs = stmt.getGeneratedKeys();

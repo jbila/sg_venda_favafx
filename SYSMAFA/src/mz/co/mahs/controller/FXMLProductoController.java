@@ -178,6 +178,7 @@ public class FXMLProductoController implements Initializable, Crud {
 	private void add(ActionEvent event) {
 		acessoAdd();
 		showInfo();
+		
 		btnAdd.setVisible(true);
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
@@ -240,13 +241,12 @@ public class FXMLProductoController implements Initializable, Crud {
 		producto.setCodigo(txtCodigo.getText().toUpperCase());
 		producto.setNome(txtNome.getText().toUpperCase());
 		producto.setDescricao(txtDescricao.getText().toUpperCase());
-		producto.setPrecoFornecedor(Double.parseDouble(txtValorCompra.getText()));
-		producto.setPrecoFinal(Double.parseDouble(txtValorVenda.getText()));
-		producto.setQuantidade(Integer.parseInt(txtQty.getText()));
+		producto.setPrecoFornecedor(0.0);
+		producto.setPrecoFinal(0.0);
+		producto.setQuantidade(0);
 		producto.setCategoria(categoria);
 		producto.setFornecedor(fornecedor);
 		producto.setUtilizador(utilizador);
-		producto.setValidade(datePickerValidade.getValue().toString());
 		int idProducto = DaoProducto.add(producto);
 		if (idProducto > 0) {
 			/** SALVA IdProducto e idFornecedor */
@@ -305,7 +305,6 @@ public class FXMLProductoController implements Initializable, Crud {
 		producto.setCodigo(txtCodigo.getText().toUpperCase());
 		producto.setDescricao(txtDescricao.getText().toUpperCase());
 		producto.setQuantidade(Integer.parseInt(txtQty.getText()));
-		producto.setValidade(datePickerValidade.getValue().toString());
 		producto.setPrecoFornecedor(Double.parseDouble(txtValorCompra.getText()));
 		producto.setPrecoFinal(Double.parseDouble(txtValorVenda.getText()));
 		producto.setCategoria(categoria);

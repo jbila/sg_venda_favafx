@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,13 +13,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPaneVendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1901.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidoController">
+<AnchorPane fx:id="anchorPaneVendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1901.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidoController">
    <children>
             <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="381.0" layoutY="3.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="700.0" promptText="PROCURAR PRODUCTO" style="-fx-background-color: #ffffff;" />
-            <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="693.0">
+            <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="693.0" style="-fx-background-color: #FFFFFF;">
               <columns>
                 <TableColumn fx:id="colIdProducto" editable="false" prefWidth="45.0" sortable="false" text="ID" />
                 <TableColumn fx:id="colCodigoProducto" editable="false" sortable="false" text="Codigo" />
@@ -29,7 +32,7 @@
               </columns>
             </TableView>
        
-      <Pane fx:id="paneCarrinha" layoutX="4.0" layoutY="14.0" prefHeight="438.0" prefWidth="386.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="paneCarrinha" layoutX="4.0" layoutY="20.0" prefHeight="438.0" prefWidth="386.0" style="-fx-background-color: #ffffff;">
          <children>
             <TableView fx:id="tblItems" layoutX="-5.0" layoutY="179.0" prefHeight="269.0" prefWidth="388.0">
               <columns>
@@ -45,12 +48,21 @@
             </TableView>
             <HBox layoutX="30.0" layoutY="121.0" prefHeight="25.0" prefWidth="347.0" spacing="5.0">
                <children>
-                  <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#addItems" prefHeight="25.0" prefWidth="100.0" text="adicionar" />
-                  <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#removeItems" prefHeight="25.0" prefWidth="100.0" text="remover" />
+                  <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#addItems" prefHeight="25.0" prefWidth="100.0" text="adicionar">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PLUS" />
+                     </graphic></Button>
+                  <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#removeItems" prefHeight="25.0" prefWidth="100.0" text="remover">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="REMOVE" />
+                     </graphic></Button>
                   <Button fx:id="btnGoPagamento" mnemonicParsing="false" onAction="#avancar" prefHeight="25.0" prefWidth="100.0" text="avancar">
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FORWARD" />
+                     </graphic>
                   </Button>
                </children>
             </HBox>
@@ -68,7 +80,7 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="rootFormasDePagamento" layoutX="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="693.0" style="-fx-background-color: #ffff0f;">
+      <AnchorPane fx:id="rootFormasDePagamento" layoutX="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="693.0" style="-fx-background-color: #5f9ea0;">
          <children>
             <Pane layoutX="-2.0" prefHeight="70.0" prefWidth="693.0" style="-fx-background-color: #263238;">
                <children>
@@ -79,34 +91,40 @@
                   </Label>
                </children>
             </Pane>
-            <TextField fx:id="txtvalorApagar" alignment="CENTER" layoutX="10.0" layoutY="130.0" onKeyReleased="#calcularTrocos" prefHeight="25.0" prefWidth="198.0" promptText="VALOR RECEBIDO" />
+            <VBox layoutX="5.0" layoutY="101.0" spacing="7.0">
+               <children>
+                  <ComboBox fx:id="cboFormaDePagamento1" onAction="#changed" onInputMethodTextChanged="#changed" prefHeight="25.0" prefWidth="210.0" promptText="FORMA DE PAGAMENTO" />
+                  <TextField fx:id="txtvalorApagar" alignment="CENTER" onKeyReleased="#calcularTrocos" prefHeight="25.0" prefWidth="198.0" promptText="VALOR RECEBIDO" />
+                  <TextField fx:id="txtTrocos" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="198.0" promptText="TROCOS" />
+                  <TextField fx:id="txtValorTotal" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="211.0" promptText="VALOR TOTAL A PAGAR" />
+               </children>
+            </VBox>
             <Separator layoutX="-3.0" layoutY="229.0" prefHeight="17.0" prefWidth="693.0" />
-            <Button fx:id="btnConfirmarPagamento" layoutX="435.0" layoutY="471.0" mnemonicParsing="false" onAction="#confirmarPagamento" prefHeight="33.0" prefWidth="246.0" text="CONFIRMAR O PAGAMENTO" />
+            <Button fx:id="btnConfirmarPagamento" layoutX="435.0" layoutY="471.0" mnemonicParsing="false" onAction="#confirmarPagamento" prefHeight="33.0" prefWidth="246.0" style="-fx-background-color: #00fa9a;" text="CONFIRMAR O PAGAMENTO" />
             <Text layoutX="464.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DADOS DO CLIENTE " wrappingWidth="222.99998718500137">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cboCliente1" layoutX="464.0" layoutY="106.0" prefHeight="25.0" prefWidth="211.0" promptText="SELECIONE O CLIENTE" />
-            <ComboBox fx:id="cboFormaDePagamento1" layoutX="8.0" layoutY="101.0" onAction="#changed" onInputMethodTextChanged="#changed" prefHeight="25.0" prefWidth="198.0" promptText="FORMA DE PAGAMENTO" />
-            <Button fx:id="btnCliente1" layoutX="623.0" layoutY="72.0" mnemonicParsing="false" onAction="#clientes" prefHeight="25.0" prefWidth="50.0" text="****" textFill="#221010">
+            <ComboBox fx:id="cboCliente1" layoutX="464.0" layoutY="106.0" prefHeight="25.0" prefWidth="162.0" promptText="SELECIONE O CLIENTE" />
+            <Button fx:id="btnCliente1" layoutX="623.0" layoutY="72.0" mnemonicParsing="false" onAction="#clientes" prefHeight="25.0" prefWidth="50.0" textFill="#221010">
                <font>
                   <Font size="10.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="EYE" />
+               </graphic>
             </Button>
-            <TextField fx:id="txtNomeCliente" alignment="CENTER" editable="false" layoutX="464.0" layoutY="131.0" prefHeight="25.0" prefWidth="211.0" promptText="NOME DO CLIENTE" />
-            <TextField fx:id="txtTelefone" alignment="CENTER" editable="false" layoutX="464.0" layoutY="160.0" prefHeight="25.0" prefWidth="211.0" promptText="TELEFONE DO CLIENTE" />
-            <TextField fx:id="txtEmailCliente" alignment="CENTER" editable="false" layoutX="464.0" layoutY="198.0" prefHeight="25.0" prefWidth="211.0" promptText="EMAIL DO CLIENTE" />
-            <TextField fx:id="txtValorTotal" alignment="CENTER" editable="false" layoutX="5.0" layoutY="203.0" prefHeight="25.0" prefWidth="211.0" promptText="VALOR TOTAL A PAGAR" />
+            <TextField fx:id="txtTelefone" alignment="CENTER" editable="false" layoutX="464.0" layoutY="140.0" prefHeight="25.0" prefWidth="211.0" promptText="TELEFONE DO CLIENTE" />
+            <TextField fx:id="txtEmailCliente" alignment="CENTER" editable="false" layoutX="464.0" layoutY="178.0" prefHeight="25.0" prefWidth="211.0" promptText="EMAIL DO CLIENTE" />
             <Text layoutX="11.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAGAMENTO" wrappingWidth="197.99999010562897">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="txtTrocos" alignment="CENTER" editable="false" layoutX="7.0" layoutY="160.0" prefHeight="25.0" prefWidth="205.0" promptText="TROCOS" />
             <TextField fx:id="txtNumeroParcela" alignment="CENTER" layoutX="14.0" layoutY="244.0" promptText="Nº DE PARCELAS" />
             <Button fx:id="btnParcelar" layoutX="257.0" layoutY="244.0" mnemonicParsing="false" onAction="#parcelar" prefHeight="25.0" prefWidth="170.0" text="PARCELAR" />
-            <TableView fx:id="tblParcelamentos" layoutX="6.0" layoutY="280.0" prefHeight="130.0" prefWidth="674.0">
+            <TableView fx:id="tblParcelamentos" layoutX="6.0" layoutY="280.0" prefHeight="130.0" prefWidth="674.0" style="-fx-background-color: #FFFFFF;">
                <columns>
                   <TableColumn fx:id="colCodigoVenda" editable="false" prefWidth="75.0" sortable="false" text="C.V" />
                   <TableColumn fx:id="colDataApagar" editable="false" prefWidth="123.0" sortable="false" text="D. A LIQUIDAR" />
@@ -115,10 +133,29 @@
                   <TableColumn fx:id="colDataPagamento" editable="false" prefWidth="135.0" sortable="false" text="D.PAGO" />
                </columns>
             </TableView>
-            <Button fx:id="btnVoltar" layoutX="11.0" layoutY="479.0" mnemonicParsing="false" onAction="#voltar" text="VOLTAR" />
+            <Button fx:id="btnVoltar" layoutX="11.0" layoutY="479.0" mnemonicParsing="false" onAction="#voltar" text="VOLTAR">
+               <graphic>
+                  <FontAwesomeIconView glyphName="BACKWARD" />
+               </graphic></Button>
             <ComboBox fx:id="cboTipo" layoutX="238.0" layoutY="101.0" onAction="#changeTipo" prefWidth="150.0" promptText="SELECIONE O TIPO" />
-            <Button fx:id="btnRelatorio" layoutX="231.0" layoutY="72.0" mnemonicParsing="false" onAction="#relatorio" text="Relatorio" />
+            <Button fx:id="btnAddCliente" layoutX="623.0" layoutY="106.0" mnemonicParsing="false" onAction="#addcliente" prefHeight="25.0" prefWidth="50.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" />
+               </graphic>
+            </Button>
          </children>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
       </AnchorPane>
+      <Label layoutY="-2.0" prefHeight="25.0" prefWidth="64.0" text="VENDAS">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Separator layoutX="1.0" layoutY="18.0" prefHeight="8.0" prefWidth="1100.0" />
    </children>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
 </AnchorPane>

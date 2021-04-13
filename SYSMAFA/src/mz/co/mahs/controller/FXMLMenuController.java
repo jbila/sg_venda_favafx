@@ -3,6 +3,8 @@ package mz.co.mahs.controller;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -19,9 +21,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -55,6 +54,9 @@ public class FXMLMenuController implements Initializable {
 	private Button btnProducto;
 
 	@FXML
+	private Button btnEntradaProducto;
+
+	@FXML
 	private Button btnFornecedor;
 
 	@FXML
@@ -84,30 +86,32 @@ public class FXMLMenuController implements Initializable {
 	private MenuItem btnRelatorioFornecedor;
 
 	@FXML
-	private MenuItem btnRelatorioVendaFP;
+	private MenuItem btnRelatorioAdm;
 
 	@FXML
 	private MenuItem btnRelatorioDiario;
 	@FXML
 	private MenuItem btnRelatorioProductoAcabados;
 	@FXML
+	private MenuItem btnRelatorioProductoAvencerEm10;;
+	@FXML
 	private MenuItem btnRelatorioProductoVencidos;
 
 	@FXML
-	private Button btnPedidos,btnLogOut;
+	private Button btnPedidos, btnLogOut;
 	@FXML
 	private Button btnProvinciaDistrito;
 	@FXML
 	private Pane topMenuPane, buttomMenuPane;
 	@FXML
-	private Label lblUserName, lblType,lblLogOut;
+	private Label lblUserName, lblType, lblLogOut;
 
 	// -------------the load method-----------------------------------------------
 	public void initialize(URL url, ResourceBundle rb) {
-		String pp="standard";
+		String pp = "standard";
 		lblType.setText("Profile: " + ControllerLogin.perfil.toUpperCase());
 		lblUserName.setText("User: " + ControllerLogin.username.toUpperCase());
-		if(ControllerLogin.perfil.toUpperCase().equalsIgnoreCase(pp)) {
+		if (ControllerLogin.perfil.toUpperCase().equalsIgnoreCase(pp)) {
 			btnCategoria.setVisible(false);
 			splitMenuButtonRelatorio.setVisible(false);
 			btnFornecedor.setVisible(false);
@@ -115,9 +119,8 @@ public class FXMLMenuController implements Initializable {
 			btnProvinciaDistrito.setVisible(false);
 			btnUtilizador.setVisible(false);
 			btnFuncionario.setVisible(false);
-			
-		
-			
+			btnEntradaProducto.setVisible(false);
+
 		}
 
 	}
@@ -136,7 +139,7 @@ public class FXMLMenuController implements Initializable {
 	@FXML
 	private void handleDashBoard(ActionEvent event) {
 
-		openDashBord();
+		openDashBoard();
 
 	}
 
@@ -148,6 +151,11 @@ public class FXMLMenuController implements Initializable {
 	@FXML
 	private void handleProducto(ActionEvent event) {
 		openProducto();
+	}
+
+	@FXML
+	private void handleentradaProducto(ActionEvent event) {
+		openEntradaProducto();
 	}
 
 	@FXML
@@ -199,15 +207,12 @@ public class FXMLMenuController implements Initializable {
 	@FXML
 	private void handleRelatorioCliente(ActionEvent event) {
 		DaoRelatorio.clienteReport();
-
 	}
 
 	@FXML
 	private void handleRelatorioDiario(ActionEvent event) {
-		String data1 = "2021/04/04";
-		String data2 = "2021/04/04";
+		openRelatorioDiario();
 
-		DaoRelatorio.vendasReport(data1, data2);
 	}
 
 	@FXML
@@ -221,21 +226,32 @@ public class FXMLMenuController implements Initializable {
 	}
 
 	@FXML
-	private void handleRelatorioPorFP(ActionEvent event) {
-		String formaDePagamento = "POS";
-		DaoRelatorio.vendasFP(formaDePagamento);
+	private void handleRelatorioAdm(ActionEvent event) {
+		// String formaDePagamento = "POS";
+		// DaoRelatorio.vendasFP(formaDePagamento);
+	}
 
+	@FXML
+	private void handleRelatorioProductosAvencerEm10(ActionEvent event) {
+
+		LocalDate Localhoje = LocalDate.now();
+		LocalDate localDate = LocalDate.now();
+		String hoje = DateTimeFormatter.ofPattern("yyy-MM-dd").format(Localhoje);
+		String dezDias = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate.plusDays(10));
+		DaoRelatorio.producto10ParaVencer(hoje, dezDias);
 	}
 
 	@FXML
 	private void handleRelatorioProductosAcabados(ActionEvent event) {
 		DaoRelatorio.productoACabados();
 	}
-
 	@FXML
-	private void handleRelatorioProductosVencidos(ActionEvent event) {
-		DaoRelatorio.productoAVencidos();
-	}
+	 private void handleRelatorioProductosVencidos(ActionEvent event) {
+		LocalDate Localhoje = LocalDate.now();
+		String hoje = DateTimeFormatter.ofPattern("yyy-MM-dd").format(Localhoje);
+		DaoRelatorio.productoVencidos(hoje);
+	 }
+	 
 
 	private void openFornecedor() {
 		Stage stage = new Stage();
@@ -279,30 +295,55 @@ public class FXMLMenuController implements Initializable {
 			alertErro.showAndWait();
 		}
 	}
-	// --------------------------------------------------------------------------
-		private void openLogin() {
-			Stage stages= (Stage) this.rootMenu.getScene().getWindow();
 
-			Stage stage = new Stage();
-			try {
+//-----------------------------------------------------------------------------------------------
+	private void openEntradaProducto() {
+		Stage stage = new Stage();
+		try {
 
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLLogin.fxml"));
-				Parent rootFormador = (Parent) fxmlLoader.load();
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("/mz/co/mahs/views/FXMLEntradaProducto.fxml"));
+			Parent rootFormador = (Parent) fxmlLoader.load();
 
-				Scene scene = new Scene(rootFormador);
-				scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
-				stage.setScene(scene);
-				stage.initStyle(StageStyle.UNDECORATED);
-				stage.initModality(Modality.APPLICATION_MODAL);
-				stage.centerOnScreen();
-				stage.show();
-				stages.close();
-			} catch (Exception e) {
-				alertErro.setHeaderText("Erro");
-				alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
-				alertErro.showAndWait();
-			}
+			Scene scene = new Scene(rootFormador);
+			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+			stage.setScene(scene);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			menuPane.setCenter(rootFormador);
+			// stage.show();
+		} catch (Exception e) {
+			alertErro.setHeaderText("Erro");
+			alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
+			alertErro.showAndWait();
 		}
+	}
+
+	// --------------------------------------------------------------------------
+	private void openLogin() {
+		Stage stages = (Stage) this.rootMenu.getScene().getWindow();
+
+		Stage stage = new Stage();
+		try {
+
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLLogin.fxml"));
+			Parent rootFormador = (Parent) fxmlLoader.load();
+
+			Scene scene = new Scene(rootFormador);
+			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+			stage.setScene(scene);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.centerOnScreen();
+			stage.show();
+			stages.close();
+		} catch (Exception e) {
+			alertErro.setHeaderText("Erro");
+			alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
+			alertErro.showAndWait();
+		}
+	}
+
 	// --------------------------------------------------------------------------
 	private void openUtilizador() {
 		Stage stage = new Stage();
@@ -379,12 +420,31 @@ public class FXMLMenuController implements Initializable {
 	}
 
 	// --------------------------------------------------------------------------
-	private void openDashBord() {
-		alertInfo.setTitle("Info");
-		alertInfo.setHeaderText("Informação");
-		alertInfo.setContentText("Wait please, i am still working on it,no pressure!");
-		alertInfo.showAndWait();
-	}
+	private void openDashBoard() {
+		
+			Stage stage = new Stage();
+			try {
+
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLDashBoard.fxml"));
+				Parent rootFormando = (Parent) fxmlLoader.load();
+
+				Scene scene = new Scene(rootFormando);
+				scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+				stage.setScene(scene);
+				stage.initStyle(StageStyle.UNDECORATED);
+				stage.initModality(Modality.APPLICATION_MODAL);
+				menuPane.setCenter(rootFormando);
+				// stage.show();
+			} catch (Exception e) {
+				alertErro.setHeaderText("Erro");
+				alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
+				alertErro.showAndWait();
+			}
+		}
+//----------------------------------------------------------------------------------------
+		
+		
+	
 
 	private void OpenLogin() {
 		Stage stage = new Stage();
@@ -499,15 +559,41 @@ public class FXMLMenuController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	//----------------------------------------------------------------
-	 @FXML
-	   private void logOut(ActionEvent event) {
+
+	// ----------------------------------------------------------------
+	private void openRelatorioDiario() {
+		Stage stage = new Stage();
+		try {
+
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLRelatorio.fxml"));
+			Parent rootFuncionario = (Parent) fxmlLoader.load();
+
+			Scene scene = new Scene(rootFuncionario);
+			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+			stage.setScene(scene);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			menuPane.setCenter(rootFuncionario);
+			menuPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+			// stage.show();
+		} catch (Exception e) {
+			alertErro.setHeaderText("Erro");
+			alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
+			alertErro.showAndWait();
+			e.printStackTrace();
+		}
+	}
+
+	// ----------------------------------------------------------------
+	@FXML
+	private void logOut(ActionEvent event) {
 		alertConfirm.setTitle("LOGOUT");
 		alertConfirm.setHeaderText("CONFIRMAÇÃO DE LOGOUT");
-		alertConfirm.setContentText("SAIR DA APLICAÇÃO?"); 
+		alertConfirm.setContentText("SAIR DA APLICAÇÃO?");
 		Optional<ButtonType> result = alertConfirm.showAndWait();
 		if (result.get() == ButtonType.OK)
 			openLogin();
 	}
-	 
+
 }

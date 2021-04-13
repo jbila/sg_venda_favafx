@@ -22,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.dao.DaoDistrito;
 import mz.co.mahs.dao.DaoProvincia;
@@ -102,7 +103,7 @@ public class FXMLClienteController implements Initializable, Crud {
 	private HBox hBoxButton;
 
 	@FXML
-	private Button btnAdd;
+	private Button btnAdd,closeCliente;
 
 	@FXML
 	private Button btnUpdate;
@@ -167,7 +168,15 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
 	}
+	@FXML
+	private void closeCliente(ActionEvent event) {
+		Stage stage = (Stage) this.rootPane.getScene().getWindow();
+		stage.close();
 
+
+		
+	}
+	
 	@FXML
 	private void actionProvincia(ActionEvent event) {
 		cboDistrito.getItems().clear();
@@ -186,6 +195,8 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 		txtID.setVisible(false);
 		fillProvincia();
+		closeCliente.setVisible(false);
+	
 
 	}
 

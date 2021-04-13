@@ -23,7 +23,7 @@ public class DaoProducto {
 
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
-	private static final String INSERT = "INSERT INTO tbl_producto(nome,codigo,descricao,quantidade,precofinal,precoFornecedor,validade,idCategoria,idUtilizador,dataRegisto) VALUES(?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO tbl_producto(nome,codigo,descricao,quantidade,precofinal,precoFornecedor,idCategoria,idUtilizador,dataRegisto) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String LIST = "SELECT * FROM vw_listProducto";
 	private static final String DELETE = "{CALL sp_Delete_Producto(?)}";
 	private static final String UPDATE = "UPDATE tbl_producto SET nome=?,codigo=?,descricao=?,quantidade=?,precoFinal,precoFornecedor=?,validade=?,idCategoria=? WHERE idProducto=?";
@@ -69,10 +69,10 @@ public class DaoProducto {
 			stmt.setInt(4, producto.getQuantidade());
 			stmt.setDouble(5, producto.getPrecoFinal());
 			stmt.setDouble(6, producto.getPrecoFornecedor());
-			stmt.setString(7, producto.getValidade());
-			stmt.setInt(8, producto.getCategoria().getIdCategoria());
-			stmt.setInt(9, producto.getUtilizador().getIdUtilizador());
-			stmt.setString(10, dataRegisto);
+			//stmt.setString(7, producto.getValidade());
+			stmt.setInt(7, producto.getCategoria().getIdCategoria());
+			stmt.setInt(8, producto.getUtilizador().getIdUtilizador());
+			stmt.setString(9, dataRegisto);
 			stmt.executeUpdate();
 			final ResultSet rs = stmt.getGeneratedKeys();
 			if (rs.next()) {

@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPedidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidosController">
+<AnchorPane fx:id="rootPedidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidosController">
    <children>
      
       <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="-1.0" layoutY="71.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="601.0" promptText="PROCURAR PELO " />
-      <TextField fx:id="txtPedido" alignment="CENTER" layoutX="1.0" layoutY="23.0" prefHeight="25.0" prefWidth="152.0" promptText="NUMERO DO PEDIDO" />
-      <TableView fx:id="tblPedidos" layoutX="1.0" layoutY="96.0" onMouseClicked="#handleClik" prefHeight="402.0" prefWidth="601.0">
+      <TextField fx:id="txtPedido" alignment="CENTER" layoutX="1.0" layoutY="33.0" prefHeight="25.0" prefWidth="152.0" promptText="NUMERO DO PEDIDO" />
+      <TableView fx:id="tblPedidos" layoutX="1.0" layoutY="96.0" onMouseClicked="#handleClik" prefHeight="402.0" prefWidth="601.0" style="-fx-background-color: #FFFFFF;">
         <columns>
           <TableColumn fx:id="colId" editable="false" prefWidth="75.0" sortable="false" text="ID" />
           <TableColumn fx:id="colCliente" editable="false" prefWidth="75.0" sortable="false" text="Cliente" />
@@ -23,7 +28,7 @@
             <TableColumn fx:id="colUtilizador" editable="false" prefWidth="75.0" sortable="false" text="Utilizador" />
         </columns>
       </TableView>
-      <TableView fx:id="tblItems" layoutX="602.0" layoutY="96.0" prefHeight="402.0" prefWidth="263.0">
+      <TableView fx:id="tblItems" layoutX="602.0" layoutY="96.0" prefHeight="402.0" prefWidth="263.0" style="-fx-background-color: #FFFFFF;">
         <columns>
           <TableColumn fx:id="colIdItems" prefWidth="43.0" text="ID" />
           <TableColumn fx:id="colProductoItems" prefWidth="96.0" text="Producto" />
@@ -31,9 +36,15 @@
             <TableColumn fx:id="colPreco" prefWidth="63.0" text="Preco" />
         </columns>
       </TableView>
-      <Button fx:id="btnPagarParcela" layoutX="397.0" layoutY="46.0" mnemonicParsing="false" onAction="#verDividas" prefWidth="100.0" text="Pagar" />
-      <Button fx:id="btnVerItemDoPedido" layoutX="497.0" layoutY="46.0" mnemonicParsing="false" onAction="#verItems" prefWidth="100.0" text="items" />
-      <TableView fx:id="tblParcelas" layoutX="604.0" layoutY="96.0" onMouseClicked="#handleClikParcela" prefHeight="402.0" prefWidth="263.0">
+      <Button fx:id="btnPagarParcela" layoutX="397.0" layoutY="46.0" mnemonicParsing="false" onAction="#verDividas" prefWidth="100.0" text="Pagar">
+         <graphic>
+            <FontAwesomeIconView glyphName="PAYPAL" text="" />
+         </graphic></Button>
+      <Button fx:id="btnVerItemDoPedido" layoutX="497.0" layoutY="46.0" mnemonicParsing="false" onAction="#verItems" prefWidth="100.0" text="items">
+         <graphic>
+            <FontAwesomeIconView glyphName="LIST" />
+         </graphic></Button>
+      <TableView fx:id="tblParcelas" layoutX="604.0" layoutY="96.0" onMouseClicked="#handleClikParcela" prefHeight="402.0" prefWidth="263.0" style="-fx-background-color: #FFFFFF;">
         <columns>
           <TableColumn fx:id="colParcelaValor" editable="false" prefWidth="41.0" sortable="false" text="Valor" />
           <TableColumn fx:id="colParcelaPrevisao" editable="false" sortable="false" text="Previsão" />
@@ -41,7 +52,20 @@
             <TableColumn fx:id="colParcelaEstado" editable="false" maxWidth="100.0" prefWidth="63.0" sortable="false" text="Estado" />
         </columns>
       </TableView>
-      <Button fx:id="btnLiquidar" layoutX="763.0" layoutY="59.0" mnemonicParsing="false" onAction="#liquidar" prefWidth="100.0" text="Liquidar" />
+      <Button fx:id="btnLiquidar" layoutX="763.0" layoutY="59.0" mnemonicParsing="false" onAction="#liquidar" prefWidth="100.0" text="Liquidar">
+         <graphic>
+            <FontAwesomeIconView glyphName="" text="" />
+         </graphic></Button>
       <TextField fx:id="txtNumeroParcela" layoutX="604.0" layoutY="69.0" prefWidth="50.0" />
+      <Separator layoutX="3.0" layoutY="20.0" prefHeight="11.0" prefWidth="1280.0" />
+      <Label layoutX="3.0" layoutY="6.0" prefHeight="20.0" prefWidth="227.0" text="VENDAS E PAGAMENTOS">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Separator layoutX="601.0" layoutY="23.0" orientation="VERTICAL" prefHeight="102.0" prefWidth="6.0" />
    </children>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
 </AnchorPane>

@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import mz.co.mahs.dao.DaoFuncionario;
+import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.dao.DaoUtilizador;
 import mz.co.mahs.models.Funcionario;
 import mz.co.mahs.models.Utilizador;
@@ -93,7 +94,7 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 	private Button btnUpdate;
 
 	@FXML
-	private Button btnDelete;
+	private Button btnDelete,btnRelatorio;
 
 	@FXML
 	private void add(ActionEvent event) {
@@ -306,5 +307,9 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 			cboFuncionario.getItems().add(items);
 	}
 	/*-------------------------------------------------------*/
+	@FXML
+	private void relatorio(ActionEvent event) {
+		DaoRelatorio.utilizadorReport();
+	}
 
 }

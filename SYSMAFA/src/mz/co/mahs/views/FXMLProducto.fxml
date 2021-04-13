@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,13 +17,16 @@
 
 <AnchorPane id="AnchorPane" fx:id="rootProducto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1916.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLProductoController">
    <children>
-      <Separator layoutX="-6.0" layoutY="63.0" prefHeight="5.0" prefWidth="1285.0" valignment="TOP" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="63.0" />
-      <Text layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTO DE PRODUCTO" wrappingWidth="304.13671875">
+      <Separator layoutX="-6.0" layoutY="23.0" prefHeight="5.0" prefWidth="1285.0" valignment="TOP" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="23.0">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding></Separator>
+      <Text layoutX="1.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTO DE PRODUCTO" wrappingWidth="304.13671875">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </Text>
-      <TableView fx:id="tblProducto" layoutX="1.0" layoutY="282.0" onMouseClicked="#handleMouseClickAction" prefHeight="246.0" prefWidth="1145.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="770.0" AnchorPane.topAnchor="282.0">
+      <TableView fx:id="tblProducto" layoutX="1.0" layoutY="282.0" onMouseClicked="#handleMouseClickAction" prefHeight="246.0" prefWidth="1145.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="770.0" AnchorPane.topAnchor="282.0">
         <columns>
           <TableColumn fx:id="colId" editable="false" prefWidth="30.0" sortable="false" text="ID" />
           <TableColumn fx:id="colCodigo" editable="false" prefWidth="54.000030517578125" sortable="false" text="Codigo" />
@@ -40,7 +42,7 @@
             <TableColumn fx:id="colUtilizador" editable="false" prefWidth="108.0" sortable="false" text="Utilizador" />
         </columns>
       </TableView>
-      <VBox layoutX="135.0" layoutY="83.0" prefHeight="145.0" prefWidth="251.0" spacing="5.0">
+      <VBox layoutX="135.0" layoutY="63.0" prefHeight="145.0" prefWidth="251.0" spacing="5.0">
          <children>
             <TextField fx:id="txtCodigo" alignment="CENTER" promptText="CODIGO" />
             <TextField fx:id="txtNome" alignment="CENTER" promptText="Nome" />
@@ -49,7 +51,7 @@
             <ComboBox fx:id="cboFornecedor" prefHeight="25.0" prefWidth="252.0" promptText="Fornecedor" />
          </children>
       </VBox>
-      <VBox layoutX="50.0" layoutY="87.0" spacing="13.0">
+      <VBox layoutX="50.0" layoutY="67.0" spacing="13.0">
          <children>
             <Label text="Codigo" />
             <Label text="Nome" />
@@ -58,35 +60,41 @@
             <Label text="Fornecedor" />
          </children>
       </VBox>
-      <VBox layoutX="412.0" layoutY="85.0" spacing="13.0">
+      <VBox layoutX="412.0" layoutY="65.0" spacing="13.0">
          <children>
             <Label text="Qty" />
             <Label text="Prçoço Compra" />
             <Label text="Preço da Venda" />
-            <Label prefHeight="17.0" prefWidth="70.0" text="Validade" />
          </children>
       </VBox>
-      <VBox layoutX="500.0" layoutY="80.0" prefHeight="116.0" prefWidth="300.0" spacing="5.0">
+      <VBox layoutX="500.0" layoutY="60.0" prefHeight="91.0" prefWidth="300.0" spacing="5.0">
          <children>
-            <TextField fx:id="txtQty" alignment="CENTER" promptText="Introduza a Quantidade" />
-            <TextField fx:id="txtValorCompra" alignment="CENTER" promptText="Introduza o valor da Compra" />
-            <TextField fx:id="txtValorVenda" alignment="CENTER" promptText="Introduza valorda Venda" />
-            <DatePicker fx:id="datePickerValidade" cache="true" editable="false" prefHeight="25.0" prefWidth="301.0" promptText="Validade" showWeekNumbers="true" />
+            <TextField fx:id="txtQty" alignment="CENTER" editable="false" promptText="Introduza a Quantidade" />
+            <TextField fx:id="txtValorCompra" alignment="CENTER" editable="false" promptText="Introduza o valor da Compra" />
+            <TextField fx:id="txtValorVenda" alignment="CENTER" editable="false" promptText="Introduza valorda Venda" />
          </children>
       </VBox>
       <TextField fx:id="txtPesquisar" alignment="CENTER" layoutX="-1.0" layoutY="257.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="1149.0" promptText="PROCURAR..." />
-      <ImageView fx:id="imageProductPhoto" fitHeight="116.0" fitWidth="205.0" layoutX="887.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/John%20VuliGate.jpg" />
-         </image>
-      </ImageView>
-      <HBox fx:id="hBoxButton" layoutX="500.0" layoutY="212.0" prefHeight="25.0" prefWidth="300.0">
+      <HBox fx:id="hBoxButton" layoutX="500.0" layoutY="182.0" prefHeight="25.0" prefWidth="300.0">
          <children>
-            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefWidth="100.0" text="Add" />
-            <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#update" prefWidth="100.0" text="update" />
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="delete" />
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefWidth="100.0" text="Add">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SAVE" />
+               </graphic></Button>
+            <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#update" prefWidth="100.0" text="update">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PENCIL" />
+               </graphic></Button>
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="delete">
+               <graphic>
+                  <FontAwesomeIconView glyphName="REMOVE" />
+               </graphic></Button>
          </children>
       </HBox>
-      <TextField fx:id="txtId" layoutX="50.0" layoutY="65.0" prefHeight="17.0" prefWidth="49.0" promptText="ID" />
+      <TextField fx:id="txtId" layoutX="140.0" layoutY="35.0" prefHeight="17.0" prefWidth="49.0" promptText="ID" />
+      <Separator layoutX="1145.0" layoutY="24.0" orientation="VERTICAL" prefHeight="235.0" prefWidth="7.0" />
    </children>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
 </AnchorPane>

@@ -1,48 +1,32 @@
 
 .button:hover{
-	
-	-fx-text-fill:#e9967a;
+	-fx-text-fill:#fff;
 	-fx-padding:0.0 0.0 0.0;
-	-fx-border-radius:10.0;
-	-fx-font-weight:bold;
-	-fx-font-size:15.0px;	
-	
+	-fx-font-size:12.0px;	
+	-fx-font-family:"FontAwesome";	
+	-fx-background-color:#37474F;
+		-fx-border-radius:10px;	
 }
-
-
-
  .MenuButton:hover {
  
-	-fx-text-fill:#e9967a;
-	-fx-padding: 0.0 0.0 0.0;
+	-fx-padding:0.0 0.0 0.0;
 	-fx-border-radius:10.0;
-	-fx-font-weight:bold;
-	-fx-font-size:15.0px;	
+	-fx-font-size:20.0px;
+		
 }
-
-
-.MenuButton:pressed {
- 
-	-fx-text-fill:#00008b;
-	-fx-font-weight:bold;
-	-fx-font-size:15.0px;	
-	-fx-background-color:#0000ff;
-}
-
 
 .MenuItem:hover{
    
 	-fx-text-fill:#e9967a;
 	-fx-padding:0.0 0.0 0.0;
-	-fx-border-radius:10.0;
+	-fx-border-radius:10px;
 	-fx-font-weight:bold;
-	-fx-font-size:18.0px;	
+	-fx-font-size:18.0px;		
 }
 .text-field{
 	
-	-fx-text-fill: #008b8b;
-	-fx-alignment: center;
-	-fx-font-size:12.0px;
+	-fx-alignment:center;
+	-fx-font-size:12.0px;	
 }
 .combo-Box{
 	-fx-alignment:center;
@@ -51,15 +35,21 @@
 	-fx-font-weight:bold;
 }
 #buttonAdd{
-
-  /*-fx-background:  url('lupa.png')  center no-repeat;*/
-
   		-fx-font-size:12.0px;
 		-fx-font-weight:bold;
 		-fx-color:white;
-		-fx-backgroud-color:black;
-	
+		-fx-backgroud-color:black;	
 		}
+/*Estelizando as Text Fields */
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
 
 
 
