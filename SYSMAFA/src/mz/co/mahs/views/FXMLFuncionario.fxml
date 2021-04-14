@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootFuncionario" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLFuncionarioController">
+<AnchorPane fx:id="rootFuncionario" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLFuncionarioController">
    <children>
       <VBox layoutX="14.0" layoutY="27.0" prefHeight="115.0" prefWidth="197.0">
          <children>
@@ -31,7 +31,7 @@
             <TextField fx:id="txtSalario" alignment="CENTER" layoutX="10.0" layoutY="60.0" prefHeight="20.0" prefWidth="216.0" promptText="Salario" />
          </children>
       </VBox>
-      <TableView fx:id="tblFuncionario" layoutX="5.0" layoutY="202.0" onMouseClicked="#handleFuncionario" prefHeight="396.0" prefWidth="890.0" style="-fx-background-color: #FFFFFF; -fx-background-color: #FFFFFF;">
+      <TableView fx:id="tblFuncionario" layoutX="5.0" layoutY="202.0" onMouseClicked="#handleFuncionario" prefHeight="396.0" prefWidth="890.0" style="-fx-background-color: #ffffff;">
         <columns>
           <TableColumn fx:id="colId" editable="false" prefWidth="66.0" sortable="false" text="ID" />
           <TableColumn fx:id="colNome" editable="false" prefWidth="84.0" sortable="false" text="Nome" />

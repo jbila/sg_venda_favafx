@@ -12,18 +12,39 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Categoria;
+import mz.co.mahs.models.Funcao;
 import mz.co.mahs.models.Utilizador;
-
-/**Esta Classe  usa a classe Categoria para gerir categoria
- * @see Categoria
- * @author JBILA 
+/**
+ * <h1>DaoCategoria</h1>
+ * <p>
+ * Esta classe tem metodos de persistencia de dados, ela comunica directamente
+ * com a base <br>
+ * coma base de dado fazendo as seguintes operacoes
+ * </p>
+ * <li>CREATE</li>
+ * <li>DELETE</li>
+ * <li>UPDATE</li>
+ * <li>LIST</li>
+ * <li>CHECKIFEXIST</li>
+ * <h3>Esta classe recebe os objecto vindo das controladoras ou retorna para a
+ * controladora desde objecto</h3>
+ * <h4>@author JBILA Contacto:848319153 Email:jacinto.billa@gmail.com</h4>
  * 
- * 
- * */
+ */
 public class DaoCategoria {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
+	/**Este comando sao usadas 
+	 * para manipular as base de dado
+	 * */
 
 	private static final String INSERT = "INSERT INTO tbl_categoria(nome,descricao,idUtilizador,dataRegisto) values(?,?,?,?)";
 	private static final String DELETE = "DELETE FROM tbl_categoria WHERE idCategoria=?";
@@ -34,12 +55,11 @@ public class DaoCategoria {
 	private static ResultSet rs = null;
 	// private static CallableStatement cs = null;
 	private static PreparedStatement stmt;
-	/**Este metodo insere um objecto na base de dado
-	 * @param categoria
-	 * @exception SQLException 
+	/**Este metodo insere um objecto  do tipo categoria na base de dado
+	 * @param categoria- recebe um objecto
+	 * @exception SQLException -esta funcao pode geral excecpoes desse tipo
 	 * 
 	 * */
-
 	public static void add(Categoria categoria) {
 
 		try {
@@ -72,18 +92,13 @@ public class DaoCategoria {
 		} // fim do try
 
 	}
-	/**Esta Funcao faz update de categoria
-	 * @param categoria
-	 * @author JBILA
-	 * @see Categoria
-	 * */
+	
 
 	// ========================Update=================================
 	/**Esta funcao actualiza categoria
-	 * @param Categoria
-	 * @author JBILA 
+	 * @param categoria - recebe um objecto que contema os dados alterados
 	 * @exception SQLException
-	 * @see {@link Categoria}
+	 * @see  Categoria
 	 * */
 	public static void update(Categoria categoria) {
 
@@ -117,8 +132,7 @@ public class DaoCategoria {
 	}
 	// =======================Delete=================================
 	/**Esta funcao permite a remocao de uma tupla
-	 * @param Categoria
-	 * @author JBILA
+	 * @param categoria-  vai conter o id para a remocao
 	 * @see Categoria*/
 
 	public static void delete(Categoria categoria) {
@@ -149,10 +163,12 @@ public class DaoCategoria {
 
 	}
 
-//========================================================================================================  
-	/**Esta funcao permite a listar todos os elemetos
-	 * da tabela
-	 * */
+	/**
+	 * <h5>Esta funcao lista Categorias cadastradas</h5>
+	 * @see Categoria
+	 * @return categorias- retorna uma lista de categorias
+	 * 
+	 */
 	public static List<Categoria> getAllCategoria() {
 
 		List<Categoria> categorias = new ArrayList<>();
@@ -195,8 +211,13 @@ public class DaoCategoria {
 
 		return categorias;
 	}
-	//---------------------------------------------------------------------------------
-	public static List<Categoria> search(String nome) {
+	/**
+	 * <h5>Esta funcao procura Categorias cadastradas</h5>
+	 * @see Categoria
+	 * @return categorias- retorna uma lista de categorias
+	 * @param nome- recebe nome da categoria
+	 * 
+	 */	public static List<Categoria> search(String nome) {
 
 		List<Categoria> categorias = new ArrayList<>();
 

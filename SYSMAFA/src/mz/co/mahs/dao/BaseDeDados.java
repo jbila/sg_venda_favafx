@@ -12,7 +12,7 @@ public interface BaseDeDados {
 
 	public List<Object> list();
 
-	public void delete(int id);
+	public void delete(Object object);
 
 	public void update(Object object);
 

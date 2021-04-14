@@ -9,6 +9,13 @@ import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 
 public class DaoLogin {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 	public static int idUtilizador = 0;
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);

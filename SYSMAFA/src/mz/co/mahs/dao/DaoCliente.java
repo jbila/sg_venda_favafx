@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
@@ -17,7 +16,31 @@ import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Utilizador;
 
+/**
+ * <h1>DaoCliente</h1>
+ * <p>
+ * Esta classe tem metodos de persistencia de dados, ela comunica directamente
+ * com a base <br>
+ * coma base de dado fazendo as seguintes operacoes
+ * </p>
+ * <li>CREATE</li>
+ * <li>DELETE</li>
+ * <li>UPDATE</li>
+ * <li>LIST</li>
+ * <li>CHECKIFEXIST</li>
+ * <h3>Esta classe recebe os objecto vindo das controladoras ou retorna para a
+ * controladora desde objecto</h3>
+ * <h4>@author JBILA Contacto:848319153 Email:jacinto.billa@gmail.com</h4>
+ * 
+ */
 public class DaoCliente {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 
@@ -48,27 +71,29 @@ public class DaoCliente {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				stmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
 		return retorno;
 	}
-	// --------------------------------------------------------------------------
 
+	/**
+	 * <h5>Esta funcao persiste um Cliente</h5>
+	 * @param cliente
+	 * @see Cliente
+	 */
 	public static void addCliente(Cliente cliente) {
 
 		try {
 			LocalDate localDate = LocalDate.now();
 			String dataRegisto = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
-			
+
 			conn = Conexao.connect();
 			stmt = conn.prepareStatement(INSERT);
 			// nome,apelido,genero,email,telefone,endereco,idUtilizador,dataRegisto
@@ -100,7 +125,11 @@ public class DaoCliente {
 
 	}
 
-	// --------------------------------------------------------------------------
+	/**
+	 * <h5>Esta funcao elimina o Cliente</h5>
+	 * @param cliente
+	 * @see Cliente
+	 */
 	public static void deleteCliente(Cliente cliente) {
 		try {
 			conn = Conexao.connect();
@@ -124,7 +153,12 @@ public class DaoCliente {
 		}
 	}
 
-//------------------------------------------------------------------------------
+	/**
+	 * <h5>Esta funcao actualiza  Cliente</h5>
+	 * @param cliente - recebe um objecto to tipo cliente
+	 * @see Cliente
+	 * 
+	 */
 	public static void updateCliente(Cliente cliente) {
 		try {
 
@@ -140,11 +174,12 @@ public class DaoCliente {
 			stmt.setInt(8, cliente.getDistrito().getIdDistrito());
 			stmt.setInt(9, cliente.getIdCliente());
 			stmt.executeUpdate();
-			
+
 			/*
-			alertInfo.setHeaderText("Informa��o");
-			alertInfo.setContentText("Formando Actualizado com �xito ");
-			alertInfo.showAndWait();*/
+			 * alertInfo.setHeaderText("Informacao");
+			 * alertInfo.setContentText("Formando Actualizado com �xito ");
+			 * alertInfo.showAndWait();
+			 */
 		}
 
 		catch (SQLException ex) {
@@ -161,7 +196,12 @@ public class DaoCliente {
 		}
 	}
 
-//------------------------------------------------------------------------------
+	/**
+	 * <h5>Esta funcao procura Cliente cadastrados</h5>
+	 * @see Cliente
+	 * @return retorno clientes- lista de clientes
+	 * 
+	 */
 	public static List<Cliente> getAllCliente() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		try {
@@ -173,7 +213,7 @@ public class DaoCliente {
 			while (rs.next()) {
 				// nome,apelido,genero,email,telefone,endereco,idUtilizador
 				Cliente cliente = new Cliente();
-				Distrito distrito=new Distrito();
+				Distrito distrito = new Distrito();
 				distrito.setNome(rs.getString("Distrito"));
 				Utilizador utilizador = new Utilizador();
 				utilizador.setUsername(rs.getString("utilizador"));
@@ -211,17 +251,24 @@ public class DaoCliente {
 
 		return clientes;
 	}
-//------------------------------------------------------------------------------
+
+	/**
+	 * <h5>Esta funcao procura Clientes cadastrados</h5>
+	 * @see Cliente
+	 * @return clientes- retorna uma lista de clientes
+	 * @param nome- rece nome do cliente
+	 * 
+	 */
 	public static List<Cliente> search(String nome) {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		try {
 
 			conn = Conexao.connect();
-			stmt = conn.prepareStatement("SELECT * FROM vw_listAllCliente WHERE nome LIKE '"+nome+"%' ");
+			stmt = conn.prepareStatement("SELECT * FROM vw_listAllCliente WHERE nome LIKE '" + nome + "%' ");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				
+
 				// nome,apelido,genero,email,telefone,endereco,idUtilizador
 				Cliente cliente = new Cliente();
 				Utilizador utilizador = new Utilizador();

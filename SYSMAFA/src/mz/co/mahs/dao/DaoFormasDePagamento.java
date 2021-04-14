@@ -1,5 +1,4 @@
 package mz.co.mahs.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +9,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.FormasDePagamento;
-import mz.co.mahs.models.Utilizador;
 
 public class DaoFormasDePagamento {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 	private static final String LIST = "select * from tbl_formasDePagamento";
@@ -21,7 +26,12 @@ public class DaoFormasDePagamento {
 	private static PreparedStatement stmt = null;
 	// private static CallableStatement cs=null;
 	private static ResultSet rs = null;
-
+	/**
+	 * <h5>Esta funcao lista FormasDePagamento</h5>
+	 * @see FormasDePagamento
+	 * @return FormasDePagamento- retorna uma lista de formas de pagamento
+	 * 
+	 */
 	public static List<FormasDePagamento> getAll() {
 		List<FormasDePagamento> formasDePagamentos = new ArrayList<>();
 

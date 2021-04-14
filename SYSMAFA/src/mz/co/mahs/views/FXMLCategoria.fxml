@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootCategoria" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="1894.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLCategoriaController">
+<AnchorPane id="AnchorPane" fx:id="rootCategoria" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1894.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLCategoriaController">
 	<children>
 		<VBox layoutX="8.0">
 			<children>
@@ -27,7 +27,7 @@
 								<Label text="Descricação" />
 							</children>
 						</VBox>
-						<VBox layoutX="102.0" layoutY="57.0" prefHeight="113.0" prefWidth="622.0" spacing="5.0">
+						<VBox layoutX="102.0" layoutY="57.0" prefHeight="113.0" prefWidth="500.0" spacing="5.0">
 							<children>
 								<TextField fx:id="txtId" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="624.0" promptText="ID" />
 								<TextField fx:id="txtNome" alignment="CENTER" prefHeight="25.0" prefWidth="324.0" promptText="Introduza o nome da categoria">
@@ -42,16 +42,18 @@
 				</Pane>
 			</children>
 		</VBox>
-		<Pane layoutX="1.0" layoutY="253.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="1131.0" style="-fx-background-color: #ffffff;">
+		<Pane layoutX="1.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="1131.0" style="-fx-background-color: #ffffff;">
 			<children>
-				<TextField fx:id="txtSearch" alignment="CENTER" layoutY="-5.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1131.0" promptText="Procurar Curso" />
-				<TableView fx:id="tblCategoria" layoutX="-3.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="246.0" prefWidth="1131.0">
+				<TableView fx:id="tblCategoria" layoutX="-3.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="337.0" prefWidth="1131.0">
 					<columns>
 						<TableColumn fx:id="colId" editable="false" maxWidth="100.0" prefWidth="76.0" sortable="false" text="ID" />
 						<TableColumn fx:id="colNome" editable="false" maxWidth="277.0" prefWidth="277.0" sortable="false" text="Nome" />
 						<TableColumn fx:id="colDescricao" editable="false" maxWidth="919.0000152587891" prefWidth="585.9999694824219" sortable="false" text="Descrição" />
                   <TableColumn fx:id="colUtilizador" prefWidth="191.0" text="Utilizador" />
 					</columns>
+               <padding>
+                  <Insets bottom="1.0" left="2.0" right="1.0" top="1.0" />
+               </padding>
 				</TableView>
 			</children>
 		</Pane>
@@ -78,10 +80,18 @@
             </Button>
          </children>
       </HBox>
-      <Label layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="120.0" text="CATEGORIA">
+      <Label layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="120.0" text="CATEGORIA" AnchorPane.bottomAnchor="573.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="1770.0" AnchorPane.topAnchor="6.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+				<TextField fx:id="txtSearch" alignment="CENTER" layoutX="-2.0" layoutY="239.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1131.0" promptText="Procurar Curso">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </TextField>
 	</children>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
 </AnchorPane>

@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
@@ -15,6 +14,13 @@ import mz.co.mahs.models.ItemsPedidos;
 import mz.co.mahs.models.Producto;
 
 public class DaoItemsPedidos {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);

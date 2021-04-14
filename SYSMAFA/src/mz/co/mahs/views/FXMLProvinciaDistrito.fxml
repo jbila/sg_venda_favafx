@@ -30,13 +30,13 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TableView fx:id="tblProvincia" layoutX="3.0" layoutY="143.0" onMouseClicked="#handleProvincia" prefHeight="362.0" prefWidth="387.0" style="-fx-background-color: #FFFFFF;">
+      <TableView fx:id="tblProvincia" layoutX="3.0" layoutY="143.0" onMouseClicked="#handleProvincia" prefHeight="362.0" prefWidth="387.0">
         <columns>
           <TableColumn fx:id="colIDProvincia" editable="false" prefWidth="75.0" sortable="false" text="ID" />
           <TableColumn fx:id="colProvinciaNome" editable="false" prefWidth="310.0" sortable="false" text="Provincia" />
         </columns>
       </TableView>
-      <TableView fx:id="tblDistritoUrbano" layoutX="392.0" layoutY="143.0" onMouseClicked="#handleDistrito" prefHeight="362.0" prefWidth="407.0" style="-fx-background-color: #FFFFFF;">
+      <TableView fx:id="tblDistritoUrbano" layoutX="392.0" layoutY="143.0" onMouseClicked="#handleDistrito" prefHeight="362.0" prefWidth="407.0">
          <columns>
             <TableColumn fx:id="colId" editable="false" prefWidth="75.0" sortable="false" text="ID" />
             <TableColumn fx:id="colIProv" editable="false" prefWidth="75.0" sortable="false" text="Provincia" />
@@ -79,7 +79,7 @@
       <TextField fx:id="txtIdProvincia" layoutX="4.0" layoutY="48.0" prefHeight="25.0" prefWidth="90.0" />
       <AnchorPane fx:id="rootFuncao" layoutX="799.0" prefHeight="507.0" prefWidth="308.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="tblFuncao" layoutX="1.0" layoutY="144.0" onMouseClicked="#handleFuncao" prefHeight="362.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
+            <TableView fx:id="tblFuncao" layoutX="1.0" layoutY="144.0" onMouseClicked="#handleFuncao" prefHeight="362.0" prefWidth="300.0">
               <columns>
                 <TableColumn fx:id="colIdFuncao" editable="false" prefWidth="75.0" sortable="false" text="ID" />
                 <TableColumn fx:id="colNomeFuncao" editable="false" prefWidth="224.0" sortable="false" text="Nome Fa Função" />

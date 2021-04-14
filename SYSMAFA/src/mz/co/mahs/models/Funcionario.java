@@ -1,5 +1,18 @@
 package mz.co.mahs.models;
 
+/**
+ * <h1><b>Funcionario</b></h1>
+ * <p>
+ * Esta classe representa o corpo de um Funcionario, ela é usada quando se faz
+ * <br>
+ * um registo,remocao,actualizacao, e listagem de Funcionario
+ * </p>
+ * 
+ * @see Pessoa <b>
+ * @see Funcao
+ *      <h3>@author JACINTO BILA TEL:848319153 Email:
+ *      jacinto.billa@gmail.com</h3>
+ */
 public class Funcionario extends Pessoa {
 	private int idFuncionario;
 	private int nuit;
@@ -9,10 +22,19 @@ public class Funcionario extends Pessoa {
 	private double salario;
 	private String dataRegisto;
 
-	// idFuncionario,nome,apelido,genero,email,telefone,endereco,nuit,numeroBi,distrito,funcao,salario
+	/**
+	 * <h2>Contrutor vazio
+	 * <h2>
+	 */
 	public Funcionario() {
 	}
 
+	/**
+	 * <h2>Modificadores de Acesso</h2> <br>
+	 * <p>
+	 * permite acaptura e insercao de dados no objecto
+	 * </p>
+	 */
 	public int getIdFuncionario() {
 		return idFuncionario;
 	}
@@ -68,6 +90,13 @@ public class Funcionario extends Pessoa {
 	public void setDataRegisto(String dataRegisto) {
 		this.dataRegisto = dataRegisto;
 	}
+
+	/**
+	 * <h2>ToString</h2>
+	 * <p>
+	 * Pemite a impressao do objecto
+	 * </p>
+	 */
 
 	@Override
 	public String toString() {

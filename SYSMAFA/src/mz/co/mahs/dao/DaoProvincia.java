@@ -1,5 +1,21 @@
 package mz.co.mahs.dao;
-
+/**
+ * <h1>DaoProvincia</h1>
+ * <p>
+ * Esta classe tem metodos de persistencia de dados, ela comunica directamente
+ * com a base <br>
+ * coma base de dado fazendo as seguintes operacoes
+ * </p>
+ * <li>CREATE</li>
+ * <li>DELETE</li>
+ * <li>UPDATE</li>
+ * <li>LIST</li>
+ * <li>CHECKIFEXIST</li>
+ * <h3>Esta classe recebe os objecto vindo das controladoras ou retorna para a
+ * controladora desde objecto</h3>
+ * <h4>@author JBILA Contacto:848319153 Email:jacinto.billa@gmail.com</h4>
+ * 
+ */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +30,13 @@ import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Provincia;
 
 public class DaoProvincia {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
@@ -27,7 +50,11 @@ public class DaoProvincia {
 	private static ResultSet rs = null;
 	// private static CallableStatement cs = null;
 	private static PreparedStatement stmt;
-
+	/**
+	 * <h5>Esta funcao persiste uma provincia</h5>
+	 * @param Provincia
+	 * @see provincia
+	 */
 	public static void add(Provincia provincia) {
 
 		try {
@@ -60,8 +87,11 @@ public class DaoProvincia {
 
 	}
 
-	// ========================Update=================================
-	public static void update(Provincia provincia) {
+	/**
+	 * <h5>Esta funcao actualiza uma provincia</h5>
+	 * @param Provincia
+	 * @see provincia
+	 */	public static void update(Provincia provincia) {
 
 		try {
 
@@ -88,8 +118,11 @@ public class DaoProvincia {
 		} // fim do try
 
 	}
-	// =======================Delete=================================
-
+	 /**
+		 * <h5>Esta funcao remove uma provincia</h5>
+		 * @param Provincia
+		 * @see provincia
+		 */
 	public static void delete(Provincia provincia) {
 
 		try {
@@ -118,8 +151,11 @@ public class DaoProvincia {
 
 	}
 
-//========================================================================================================    
-	public static List<Provincia> getAllprovincia() {
+	/**
+	 * <h5>Esta funcao lista todas provincia</h5>
+	 * @see provincia
+	 * @return provincias - retorna uma lista de provincias
+	 */	public static List<Provincia> getAllprovincia() {
 
 		List<Provincia> provincias = new ArrayList<>();
 
@@ -156,8 +192,13 @@ public class DaoProvincia {
 
 		return provincias;
 	}
-	//---------------------------------------------------------------------------------
-	public static List<Provincia> search(String nome) {
+	/**
+	 * <h5>Esta funcao procura Provincia cadastradas</h5>
+	 * @see Provincia
+	 * @return provincias- retorna uma lista de provincias
+	 * @param nome- rece nome do da provincia
+	 * 
+	 */	public static List<Provincia> search(String nome) {
 
 		List<Provincia> provincias = new ArrayList<>();
 

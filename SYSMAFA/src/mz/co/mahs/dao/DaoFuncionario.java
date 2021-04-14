@@ -15,11 +15,35 @@ import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Funcao;
 import mz.co.mahs.models.Funcionario;
 
+/**
+ * <h1>DaoFuncionario</h1>
+ * <p>
+ * Esta classe tem metodos de persistencia de dados, ela comunica directamente
+ * com a base <br>
+ * coma base de dado fazendo as seguintes operacoes
+ * </p>
+ * <li>CREATE</li>
+ * <li>DELETE</li>
+ * <li>UPDATE</li>
+ * <li>LIST</li>
+ * <li>CHECKIFEXIST</li>
+ * <h3>Esta classe recebe os objecto vindo das controladoras ou retorna para a
+ * controladora desde objecto</h3>
+ * <h4>@author JBILA Contacto:848319153 Email:jacinto.billa@gmail.com</h4>
+ * 
+ */
 public class DaoFuncionario {
-
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 
+	/** String que sao usadas para operacoes com base de dados */
 	private static final String INSERT = "INSERT INTO tbl_Funcionario(nome,apelido,genero,email,telefone,endereco,nuit,numeroBi,idDistrito,idFuncao,salario,dataRegisto) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String DELETE = "DELETE FROM tbl_Funcionario WHERE idFuncionario=?";
 	private static final String UPDATE = "UPDATE tbl_Funcionario SET nome=?,apelido=?,genero=?,email=?,telefone=?,endereco=?,nuit=?,numeroBi=?,idDistrito=?,idFuncao=?,salario=? WHERE idFuncionario=?";
@@ -30,12 +54,17 @@ public class DaoFuncionario {
 	// private static CallableStatement cs = null;
 	private static PreparedStatement stmt;
 
+	/**
+	 * <h5>Esta funcao persiste um Funcionario</h5>
+	 * 
+	 * @param funcionario
+	 * @see Funcionario
+	 */
 	public static void add(Funcionario funcionario) {
 
 		try {
 			LocalDate localDate = LocalDate.now();
 			String dataRegisto = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
-//nome,apelido,genero,email,telefone,endereco,nuit,numeroBi,idDistrito,idFuncao,salario,dataRegisto
 			conn = Conexao.connect();
 			stmt = conn.prepareStatement(INSERT);
 			stmt.setString(1, funcionario.getNome());
@@ -71,7 +100,12 @@ public class DaoFuncionario {
 
 	}
 
-	// ========================Update=================================
+	/**
+	 * <h5>Esta funcao elimina o Funcionario</h5>
+	 * 
+	 * @param funcionario
+	 * @see Funcionario
+	 */
 	public static void update(Funcionario funcionario) {
 
 		try {
@@ -109,8 +143,14 @@ public class DaoFuncionario {
 		} // fim do try
 
 	}
-	// =======================Delete=================================
 
+	// =======================Delete=================================
+	/**
+	 * <h5>Esta funcao lista todos utilizadores cadastrados</h5>
+	 * 
+	 * @return retorno utilizadorList
+	 * @param username
+	 */
 	public static void delete(Funcionario funcionario) {
 
 		try {
@@ -139,7 +179,13 @@ public class DaoFuncionario {
 
 	}
 
-//========================================================================================================    
+	/**
+	 * <h5>Esta funcao lista todos Funcionarios cadastrados</h5>
+	 * 
+	 * @see Funcionario
+	 * @return retorno funcionarios
+	 * 
+	 */
 	public static List<Funcionario> getAllFuncionario() {
 
 		List<Funcionario> funcionarios = new ArrayList<>();
@@ -194,8 +240,13 @@ public class DaoFuncionario {
 		return funcionarios;
 	}
 
-	// ---------------------------------------------------------------------------------
-	// ========================================================================================================
+	/**
+	 * <h5>Esta funcao pesquisa Funcionarios cadastrados</h5>
+	 * 
+	 * @param nome
+	 * @return retorno funcionarios
+	 * 
+	 */
 	public static List<Funcionario> search(String nome) {
 
 		List<Funcionario> funcionarios = new ArrayList<>();

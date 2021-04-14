@@ -15,8 +15,22 @@ import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Parcela;
 
 public class DaoParcela {
+	/**
+	 * <h4>Alert</h4>
+	 * <p>
+	 * A classe <b>Alert</b> é do javafx equivalente ao JOPtionPane do swing<br>
+	 * com ela pode se ter altertas tipos diferentes
+	 * </p>
+	 */
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
+	/**
+	 * <h4>Consultas SQL</h4>
+	 * <p>
+	 * As<b>Strings abaixo</b> sao usadas para interagir coma basse de dados no acto da remocao,adicionar...<br>
+	 * listar e mais
+	 * </p>
+	 */
 	private static final String INSERT = "INSERT INTO tbl_parcela(idPedido,valor,dataPrevista) VALUES(?,?,?)";
 	private static final String LIST = "select * from tbl_parcela";
 	private static final String DELETE = "{CALL ps_Delete_Parcela(?)}";

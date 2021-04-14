@@ -3,7 +3,20 @@ package mz.co.mahs.models;
 
 import java.time.LocalDate;
 
-public class Utilizador{
+/**
+ * <h1><b>Utilizador</b></h1>
+ * <p>
+ * Esta classe representa o corpo de um Utilizador, ela é usada quando se faz
+ * <br>
+ * um registo,remocao,actualizacao, e listagem de Utilizador
+ * </p>
+ * 
+ * @see Funcionario <b>
+ *      <h3>@author JACINTO BILA TEL:848319153 Email:
+ *      jacinto.billa@gmail.com</h3>
+ */
+
+public class Utilizador {
 	private int idUtilizador;
 	private String status;
 	private String password;
@@ -12,9 +25,19 @@ public class Utilizador{
 	private Funcionario funcionario;
 	private LocalDate dataRegisto;
 
+	/**
+	 * <h2>Contrutor vazio
+	 * <h2>
+	 */
 	public Utilizador() {
 	}
 
+	/**
+	 * <h2>Modificadores de Acesso</h2> <br>
+	 * <p>
+	 * permite acaptura e insercao de dados no objecto
+	 * </p>
+	 */
 	public String getStatus() {
 		return status;
 	}
@@ -71,6 +94,12 @@ public class Utilizador{
 		this.funcionario = funcionario;
 	}
 
+	/**
+	 * <h2>ToString</h2>
+	 * <p>
+	 * Pemite a impressao do objecto
+	 * </p>
+	 */
 	@Override
 	public String toString() {
 

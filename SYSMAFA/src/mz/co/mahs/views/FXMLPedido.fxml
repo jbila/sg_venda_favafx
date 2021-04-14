@@ -20,7 +20,7 @@
 <AnchorPane fx:id="anchorPaneVendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1901.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidoController">
    <children>
             <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="381.0" layoutY="3.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="700.0" promptText="PROCURAR PRODUCTO" style="-fx-background-color: #ffffff;" />
-            <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="693.0" style="-fx-background-color: #FFFFFF;">
+            <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="693.0">
               <columns>
                 <TableColumn fx:id="colIdProducto" editable="false" prefWidth="45.0" sortable="false" text="ID" />
                 <TableColumn fx:id="colCodigoProducto" editable="false" sortable="false" text="Codigo" />

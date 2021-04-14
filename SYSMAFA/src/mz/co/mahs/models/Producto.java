@@ -1,5 +1,17 @@
 
 package mz.co.mahs.models;
+/**
+ * <h1><b>Producto</b></h1>
+ * <p>
+ * Esta classe representa o corpo de um Producto, ela é usada quando se faz
+ * <br>
+ * um registo,remocao,actualizacao, e listagem de Producto
+ * </p>
+ * 
+ *      <h3>@author JACINTO BILA TEL:848319153 Email:
+ *      jacinto.billa@gmail.com</h3>
+ */
+
 public class Producto {
 	
 	private int idProducto;
@@ -9,15 +21,25 @@ public class Producto {
 	private int quantidade;
 	private double precoFinal;
 	private double precoFornecedor;
+	/**<p>A validade nao e adicionada no registo e entra na entrada do producto</p>*/
 	private String validade;
 	private String dataRegisto;
 	/*==========================*/
-	private Categoria categoria;
+	private Categoria categoria; 
     private Utilizador utilizador;
     private Fornecedor fornecedor;
-    
+    /**
+	 * <h2>Contrutor vazio
+	 * <h2>
+	 */
     public  Producto() {}
 
+    /**
+	 * <h2>Modificadores de Acesso</h2> <br>
+	 * <p>
+	 * permite acaptura e insercao de dados no objecto
+	 * </p>
+	 */
 	public String getNome() {
 		return nome;
 	}
@@ -114,7 +136,12 @@ public class Producto {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-
+	/**
+	 * <h2>ToString</h2>
+	 * <p>
+	 * Pemite a impressao do objecto
+	 * </p>
+	 */
 	@Override
 	public String toString() {
 		return  getNome();

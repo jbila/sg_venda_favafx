@@ -1,5 +1,17 @@
 package mz.co.mahs.models;
 
+/**
+ * <h1><b>ItemsPedidos</b></h1>
+ * <p>
+ * Esta classe representa o corpo de ItemsPedidos, ela é usada quando se faz
+ * <br>
+ * um registo, e listagem de ItemsPedidos, tambem e usada para possibilitar ver
+ * os items de um certo pedido <br>
+ *
+ * </p>
+ * 
+ * <h3>@author JACINTO BILA TEL:848319153 Email: jacinto.billa@gmail.com</h3>
+ */
 
 public class ItemsPedidos {
 	private int idItemsPedido;
@@ -7,20 +19,29 @@ public class ItemsPedidos {
 	private Pedido pedido;
 	private int quantidade;
 	private double precoUnitario;
-	private  int idp;//forma errada, ainda a pensar na forma certa
-	private double subTotal;//forma errada, ainda a pensar na forma certa
-	
-	public ItemsPedidos() {}
+	private int idp;// forma errada, ainda a pensar na forma certa
+	private double subTotal;// forma errada, ainda a pensar na forma certa
 
-	public ItemsPedidos( int quantidade, double precoUnitario) {
+	/**
+	 * <h2>Contrutor vazio
+	 * <h2>
+	 */
+	public ItemsPedidos() {
+	}
+
+	public ItemsPedidos(int quantidade, double precoUnitario) {
 		super();
-		
+
 		this.quantidade = quantidade;
 		this.precoUnitario = precoUnitario;
 	}
 
-
-
+	/**
+	 * <h2>Modificadores de Acesso</h2> <br>
+	 * <p>
+	 * permite acaptura e insercao de dados no objecto
+	 * </p>
+	 */
 	public int getIdItemsPedido() {
 		return idItemsPedido;
 	}
@@ -60,7 +81,6 @@ public class ItemsPedidos {
 	public void setPrecoUnitario(double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
-	
 
 	public int getIdp() {
 		return idp;
@@ -85,16 +105,4 @@ public class ItemsPedidos {
 				+ subTotal + "]";
 	}
 
-	
-	}
-
-
-
-
-
-	
-	
-	
-
-	
-
+}

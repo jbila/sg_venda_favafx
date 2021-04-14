@@ -10,10 +10,11 @@ import mz.co.mahs.models.FormasDePagamento;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-/**Esta Classe é a fabrica de Relatórios
- * Ela comunica com a base de dados
- * e puxa o .jasper compilado da jrxml, para poder projectar os relatorios
- * os relatorios estao na disco C
+/**<h1>DaoRelatorio</h1>
+ * <p>Esta Classe é a fabrica de Relatórios<br>
+ * Ela comunica com a base de dados<br>
+ * e puxa o .jasper compilado da jrxml, para poder projectar os relatorios<br>
+ * os relatorios estao na disco C<br></p>
  * @author JACINTO ANDRE BILA
  * @version 1.0
  *

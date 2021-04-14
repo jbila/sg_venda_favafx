@@ -27,6 +27,7 @@ import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.dao.DaoDistrito;
 import mz.co.mahs.dao.DaoProvincia;
 import mz.co.mahs.dao.DaoRelatorio;
+import mz.co.mahs.dao.DaoUtilizador;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Provincia;
@@ -103,14 +104,16 @@ public class FXMLClienteController implements Initializable, Crud {
 	private HBox hBoxButton;
 
 	@FXML
-	private Button btnAdd,closeCliente;
+	private Button btnAdd;
 
 	@FXML
 	private Button btnUpdate;
 
 	@FXML
 	private Button btnDelete,btnRelatorio;
-
+	/**Chama a funcao que faz a operacao de inserir os dados
+	 * @see acessoAdd()
+	 * @see showInfo()*/
 	@FXML
 	private void add(ActionEvent event) {
 		acessoAdd();
@@ -168,14 +171,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);
 	}
-	@FXML
-	private void closeCliente(ActionEvent event) {
-		Stage stage = (Stage) this.rootPane.getScene().getWindow();
-		stage.close();
-
-
-		
-	}
+	
 	
 	@FXML
 	private void actionProvincia(ActionEvent event) {
@@ -195,11 +191,16 @@ public class FXMLClienteController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 		txtID.setVisible(false);
 		fillProvincia();
-		closeCliente.setVisible(false);
 	
 
 	}
-
+	/**Estafuncao  e responsavel do preencher o objecto a
+	 * a ser gravado
+	 * @see Cliente 
+	 * @see DaoCliente
+	 * @exception NullPointerException
+	 * 
+	 * */
 	@Override
 	public void acessoAdd() {
 		try {
@@ -239,7 +240,12 @@ public class FXMLClienteController implements Initializable, Crud {
 	public void acessoIsRecorded() {
 
 	}
+	/**<p>Funcao Responsavel por chamar e preencher objecto para a sua alteracao
+	 * Para esta ser satisfeita, deve se selecionar o registo ou pesquisar o registo em causa
+	 * para posterior editar se necessario</p>
+	 * @see <h3>DaoCliente.updateCliente(cliente);<h3>
 
+	 * */
 	@Override
 	public void acessoUpdate() {
 		try {
@@ -274,7 +280,12 @@ public class FXMLClienteController implements Initializable, Crud {
 		}
 
 	}
-
+	/**Esta funcao é responsável por eliminar o registo selecionado
+	 * Nota,see o registo pretendido for vinculado numa venda, isto é apagar um cliente qque tenha
+	 * vendas feitas, o sistem não lhe permitirá 
+	 * completar o processo,
+	 * @exception SecurityException
+	 * @see  DaoCliente ver*/
 	@Override
 	public void acessoDelete() {
 		Cliente cliente = new Cliente();
@@ -282,7 +293,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		DaoCliente.deleteCliente(cliente);
 		limpar();
 	}
-
+	/**<h1>Esta Funcao limpa os campos </h>*/
 	@Override
 	public void limpar() {
 		// nome,genero,email,telefone,endereco
@@ -293,7 +304,11 @@ public class FXMLClienteController implements Initializable, Crud {
 		txtApelido.setText("");
 
 	}
-
+	/**<h2>Esta Funcao lista a informacao na tabela
+	 * vindo duma lista
+	 * @see DaoCliente.getAllCliente()</h2>
+	 * 
+	 * */
 	@Override
 	public void showInfo() {
 		// nome,genero,email,telefone,endereco
@@ -319,6 +334,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		for (Provincia items : list)
 			cboProvincia.getItems().add(items);
 	}
+	/**<h3>Esta funcao chama o relatorio do</h3>*/
 	@FXML
 	private void relatorio(ActionEvent event) {
 		DaoRelatorio.clienteReport();
