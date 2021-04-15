@@ -122,6 +122,7 @@ public class FXMLMenuController implements Initializable {
 			btnEntradaProducto.setVisible(false);
 
 		}
+		openDashBoard();
 
 	}
 

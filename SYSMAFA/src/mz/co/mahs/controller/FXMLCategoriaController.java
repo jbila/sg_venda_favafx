@@ -23,7 +23,24 @@ import mz.co.mahs.dao.DaoCategoria;
 import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.models.Categoria;
 import mz.co.mahs.models.Utilizador;
-
+/**
+ * <h1>FXMLCategoriaController</h1>
+ * <p>
+ * Esta classe tem eventos que controla a entrada de dados,<b>validacoes de
+ * campos</b> e <b>preenchimento de combobox como de tabelas</b><br>
+ * ela comunica directamente com as classes que estao no pacote Dao e Model <br>
+ * Possibilitando a troca de dados entre o utilizador e o sistema
+ * </p>
+ * <P>
+ * Salientar que esta classe captura os dados das Telas que sao da extensao
+ * <b>FXML do javaFX</b>
+ * </P>
+ * 
+ * @author JACINTO BILA
+ *         <h3>Contacto:848319153 Email:jacinto.billa@gmail.com
+ *         </h3>
+ * 
+ */
 public class FXMLCategoriaController implements Initializable, Crud {
 	Alert alert = new Alert(AlertType.INFORMATION);
 	Alert alertConfirm = new Alert(AlertType.CONFIRMATION);
@@ -69,7 +86,13 @@ public class FXMLCategoriaController implements Initializable, Crud {
 
 	@FXML
 	private Button btnDelete,btnRelatorio;
-
+	/**Este evento ocorre quando uma linha da tabela for clicado
+	 * o evento preenche o campos usando para a insercao de dados
+	 * possibilitando o utilizador de 
+	 * <li>Eliminar ou registo</li>
+	 * <li>Actualizar</li>
+	 * <p>Quando isso acontece o botao adicionar fica invesivel</p>
+	 * */
 	@FXML
 	private void handleMouseClickAction() {
 		Categoria categoria = tblCategoria.getSelectionModel().getSelectedItem();
@@ -81,6 +104,9 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		btnDelete.setVisible(true);
 	}
 
+	/**O evento faz a validacao dos campos e posterior chama a funcao
+	 * que preenche o objecto para a 
+	 * */
 	@FXML
 	private void add(ActionEvent event) {
 		if (!(txtNome.getText().isEmpty() && txtDescricao.getText().isEmpty())) {
@@ -96,7 +122,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 			alterWarning.showAndWait();
 		}
 	}
-
+	/**Este evento faz busca*/
 	@FXML
 	private void procurar(KeyEvent event) {
 		txtSearch.setOnKeyReleased(E -> {
@@ -104,7 +130,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		});
 
 	}
-
+	/**Este evento chama a funcao que faz a remocao da tupla selecionada*/
 	@FXML
 	private void delete(ActionEvent event) {
 		acessoDelete();
@@ -114,7 +140,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 		btnAdd.setVisible(true);
 	}
-
+	/**Este evento faz a busca na tabela*/
 	@FXML
 	private void search(KeyEvent event) {
 		txtSearch.setOnKeyReleased(e -> {
@@ -129,6 +155,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		});
 
 	}
+	/**Este evento chama a funcao que faz a actualizacao da tupla selecionada*/
 
 	@FXML
 	private void update(ActionEvent event) {
@@ -146,7 +173,7 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 
 	}
-
+	/**Este  metodo insere uma categoria no objecto*/
 	@Override
 	public void acessoAdd() {
 

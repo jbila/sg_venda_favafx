@@ -19,7 +19,7 @@
 
 <AnchorPane fx:id="anchorPaneVendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1901.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidoController">
    <children>
-            <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="381.0" layoutY="3.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="700.0" promptText="PROCURAR PRODUCTO" style="-fx-background-color: #ffffff;" />
+            <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="381.0" layoutY="3.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="700.0" promptText="PROCURAR PRODUCTO" />
             <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="693.0">
               <columns>
                 <TableColumn fx:id="colIdProducto" editable="false" prefWidth="45.0" sortable="false" text="ID" />
@@ -84,9 +84,9 @@
          <children>
             <Pane layoutX="-2.0" prefHeight="70.0" prefWidth="693.0" style="-fx-background-color: #263238;">
                <children>
-                  <Label layoutX="10.0" layoutY="3.0" prefHeight="22.0" prefWidth="223.0" text="FORMAS DE PAGAMENTO" textFill="WHITE">
+                  <Label layoutX="10.0" layoutY="-5.0" prefHeight="22.0" prefWidth="223.0" text="FORMAS DE PAGAMENTO" textFill="WHITE">
                      <font>
-                        <Font name="Garamond" size="18.0" />
+                        <Font name="FontAwesome Regular" size="14.0" />
                      </font>
                   </Label>
                </children>
@@ -153,7 +153,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Separator layoutX="1.0" layoutY="18.0" prefHeight="8.0" prefWidth="1100.0" />
+      <Separator layoutX="1.0" layoutY="19.0" prefHeight="7.0" prefWidth="1285.0" />
    </children>
    <padding>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

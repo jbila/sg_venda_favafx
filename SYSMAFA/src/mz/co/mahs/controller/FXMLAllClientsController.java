@@ -1,8 +1,6 @@
 package mz.co.mahs.controller;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +16,24 @@ import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Utilizador;
+/**
+ * <h1>FXMLAllClientsController</h1>
+ * <p>
+ * Esta classe tem eventos que controla a entrada de dados,<b>validacoes de
+ * campos</b> e <b>preenchimento de combobox como de tabelas</b><br>
+ * ela comunica directamente com as classes que estao no pacote Dao e Model <br>
+ * Possibilitando a troca de dados entre o utilizador e o sistema
+ * </p>
+ * <P>
+ * Salientar que esta classe captura os dados das Telas que sao da extensao
+ * <b>FXML do javaFX</b>
+ * </P>
+ * 
+ * @author JACINTO BILA
+ *         <h3>Contacto:848319153 Email:jacinto.billa@gmail.com
+ *         </h3>
+ * 
+ */
 
 public class FXMLAllClientsController {
 	FXMLFormasPagamentoController f=new FXMLFormasPagamentoController();
@@ -57,7 +73,10 @@ public class FXMLAllClientsController {
 
 	@FXML
 	private TableColumn<Cliente, Utilizador> colUtilizador;
-
+	/**
+	 * Este evento e o primeiro a ser chamado que chama a funcao 
+	 * que popula os dados na tabela 
+	 */
 	@FXML
 	private void initialize() {
 		showInfo();
@@ -80,6 +99,10 @@ public class FXMLAllClientsController {
 			//e.printStackTrace();
 		}
 	}
+	/**Este evento chama a funcao que esta  no DaoCliente
+	 * @see DaoCliente  que conte o metodo de busca
+	 * 
+	 * */
 	@FXML
 	 private void procurar(KeyEvent event) {
 		  txtProcurar.setOnKeyReleased(e->{
@@ -99,6 +122,8 @@ public class FXMLAllClientsController {
 		  
 		  });
 		  }
+	/**Esta Funcoa  prepara os dados para ser populados na tabela vindo de uma ListView
+	 * que esta na classe @see DaoCliente*/
 	public void showInfo() {
 		List<Cliente> list = DaoCliente.getAllCliente();
 		final ObservableList<Cliente> obserList = FXCollections.observableArrayList(list);

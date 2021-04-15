@@ -28,15 +28,38 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mz.co.mahs.conection.Conexao;
 
+/**
+ * <h1>ControllerLogin</h1>
+ * <p>
+ * Esta classe tem evento que controla a entrada de dados,<b>validacoes de
+ * campos</b> e <b>preenchimento de combobox como de tabelas</b><br>
+ * ela comunica directamente com as classes que estao no pacote Dao e Model <br>
+ * Possibilitando a troca de dados entre o utilizador e o sistema
+ * </p>
+ * <P>
+ * Salientar que esta classe captura os dados das Telas que sao da extensao
+ * <b>FXML do javaFX</b>
+ * </P>
+ * 
+ * @author JACINTO BILA
+ *         <h3>Contacto:848319153 Email:jacinto.billa@gmail.com
+ *         </h3>
+ * 
+ */
 public class ControllerLogin implements Initializable {
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 	Alert alertErro = new Alert(AlertType.ERROR);
 
-	public static int idUsuario = 0;// it will be used in other class
+	public static int idUsuario = 0;// Este idUsuario e usado para armazenar o id do utilizador vindo da base de
+									// dado
+	/**
+	 * o status vai armazenar o estado do utilizador que esta alogar no sistema, se
+	 * o estado estiver <b>ACTIVO</b> vai abrir o menu principal
+	 */
 	public String status = "";
-	public static String perfil = "";
-	public static String username = "";
-	public String password = "";
+	public static String perfil = "";// Armazena o Perfil vindo da base de dado
+	public static String username = "";// Armazena o username
+	public String password = "";// Armazena a Password
 
 	@FXML
 	private HBox hboximage;
@@ -61,11 +84,20 @@ public class ControllerLogin implements Initializable {
 	@FXML
 	private AnchorPane rootPane;
 
+	/**
+	 * Este evento chama o metodo que fecha a app
+	 */
 	@FXML
 	private void handleBtnCancel(ActionEvent event) {
 		cancel();
 	}
 
+	/**
+	 * Esta evento verifica se os dados do utilizador que esta a logar sao validos ou
+	 * nao fazendo comparacao com os dados existentes na base de dados se o perfil
+	 * encontrado for <b>STANDARD</b> vai habilitar um perfil que responde ao esse
+	 * utilizador caso nao vai abrir a conta principal que e do administrador
+	 */
 	@FXML
 	private void handleActionLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) this.btnLogin.getScene().getWindow();
@@ -137,6 +169,7 @@ public class ControllerLogin implements Initializable {
 	}
 
 //------------------------------------------------------------------------------
+	// Esta funcao fecha aplicacao
 	private void cancel() {
 		System.exit(0);
 	}
@@ -148,16 +181,21 @@ public class ControllerLogin implements Initializable {
 		Scene scene = new Scene(root);
 		stage.initStyle(StageStyle.UNIFIED);
 		// stage.setFullScreen(true); //when i enable this the forms slow alot to save
-		// data and stop the app, to solve it
-		// wheen it opens forms in maximazed you have to resize after that you can do
-		// all operations with no problem
+		// when it opens forms in maximazed you have to resize after that you can do
+
 		scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
 		stage.setTitle("Menu");
 		stage.setScene(scene);
 		stage.show();
 	}
 
-	// -----------------------------------------------------------------------------
+	/**
+	 * Este evento e o primeiro a ser chamado, que inicializa as text-fields com
+	 * dados do administrador
+	 * <li>username:admin</li> *
+	 * <li>pass:admin</li>
+	 */
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		txtPassword.setText("admin");

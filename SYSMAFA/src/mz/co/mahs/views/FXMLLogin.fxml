@@ -25,18 +25,18 @@
 										<Font size="14.0" />
 									</font>
 								</Label>
-								<TextField fx:id="txtUserName" alignment="CENTER" prefHeight="25.0" prefWidth="271.0" promptText="Username" />
+								<TextField fx:id="txtUserName" alignment="CENTER" prefHeight="25.0" prefWidth="271.0" promptText="Username" style="-fx-border-image-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;;" />
 								<Label fx:id="lblPassword" layoutX="10.0" layoutY="10.0" text="Password">
 									<font>
 										<Font size="14.0" />
 									</font>
 								</Label>
-								<PasswordField fx:id="txtPassword" alignment="CENTER" prefWidth="271.0" promptText="Password" />
+								<PasswordField fx:id="txtPassword" alignment="CENTER" prefWidth="271.0" promptText="Password" style="-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;;" />
 							</children>
 						</VBox>
 						<VBox layoutX="3.0" layoutY="198.0" prefHeight="90.0" prefWidth="271.0" spacing="20.0">
 							<children>
-								<Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleActionLogin" prefHeight="30.0" prefWidth="271.0" style="-fx-background-color: #000000; -fx-border-color: #000000;" text="Login" textFill="FLORALWHITE">
+								<Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleActionLogin" prefHeight="30.0" prefWidth="271.0" style="-fx-background-color: #000000;" text="Login" textFill="FLORALWHITE">
 									<VBox.margin>
 										<Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
 									</VBox.margin>
