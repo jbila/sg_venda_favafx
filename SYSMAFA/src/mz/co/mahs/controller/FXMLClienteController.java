@@ -4,7 +4,6 @@ package mz.co.mahs.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,12 +21,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.dao.DaoDistrito;
 import mz.co.mahs.dao.DaoProvincia;
 import mz.co.mahs.dao.DaoRelatorio;
-import mz.co.mahs.dao.DaoUtilizador;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Provincia;
@@ -168,8 +165,11 @@ public class FXMLClienteController implements Initializable, Crud {
 		acessoUpdate();
 		showInfo();
 		btnAdd.setVisible(true);
-		btnUpdate.setVisible(false);
-		btnDelete.setVisible(false);
+		//btnUpdate.setVisible(false);
+		//btnDelete.setVisible(false);
+		/**/
+		btnUpdate.setDisable(true);
+		btnDelete.setDisable(true);
 	}
 	
 	
@@ -221,8 +221,17 @@ public class FXMLClienteController implements Initializable, Crud {
 		cliente.setGenero(cboSexo.getValue().toLowerCase());
 		cliente.setDistrito(distrito);
 		cliente.setUtilizador(utilizador);
+		if(DaoCliente.isRecorded(txtTelefone.getText(), txtEmail.getText())) {
+			alertWarning.setTitle("Informacao");
+			alertWarning.setHeaderText("Verificação de Dados");
+			alertWarning.setContentText("Este Cliente já existe!");
+			alertWarning.showAndWait();
+		}
+		
+		else {
 		DaoCliente.addCliente(cliente);
 		limpar();
+		}
 		btnAdd.setVisible(true);
 		btnUpdate.setVisible(false);
 		btnDelete.setVisible(false);

@@ -212,7 +212,7 @@ public class DaoPedido {
 		List<Pedido> pedidos = new ArrayList<>();
 		try {
 			conn = Conexao.connect();
-			stmt = conn.prepareCall(LIST);
+			stmt = conn.prepareCall("SELECT * FROM  vw_pedidos WHERE id LIKE'%"+numero+"'");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 

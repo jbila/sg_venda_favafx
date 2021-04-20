@@ -11,7 +11,6 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
-import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Funcao;
 /**
  * <h1>DaoFuncao</h1>
@@ -70,8 +69,9 @@ public class DaoFuncao {
 			alertInfo.setContentText("Funcao adicionada  com êxito ");
 			alertInfo.showAndWait();
 		} catch (SQLException ex) {
-			alertInfo.setHeaderText("Informação");
-			alertInfo.setContentText(" " + ex);
+			alertInfo.setTitle("Informação");
+			alertInfo.setHeaderText("Validação de dados");
+			alertInfo.setContentText("Esta Função já existe ");
 			alertInfo.showAndWait();
 		} finally {
 			try {

@@ -95,7 +95,8 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 
 	@FXML
 	private Button btnDelete,btnRelatorio;
-
+	/**Este evento chama a funcao que  adicionar um utilizador
+	 * */
 	@FXML
 	private void add(ActionEvent event) {
 		acessoAdd();
@@ -105,7 +106,8 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 		btnDelete.setVisible(false);
 
 	}
-
+	/**Esta evento valida os campos primeiro
+	 * depois chama a funcao que elimina o registo*/
 	@FXML
 	private void delete(ActionEvent event) {
 
@@ -223,8 +225,17 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 		utilizador.setUsername(txtuserName.getText().toLowerCase());
 		utilizador.setPassword(txtPassword.getText());
 		utilizador.setStatus(cboEstado.getValue().toUpperCase());
-		DaoUtilizador.addUtilizador(utilizador);
-		limpar();
+		if(DaoUtilizador.isUserNameRecorded(idFuncionario)) {
+			alertWarning.setHeaderText("Infomação");
+			alertWarning.setHeaderText("Verificação de Dados");
+			alertWarning.setContentText("Este utilizador já existe! ");
+			alertWarning.showAndWait();	
+		}
+		else {
+			DaoUtilizador.addUtilizador(utilizador);
+			limpar();
+		}
+		
 		}
 		catch(NullPointerException ex) {
 			alertWarning.setHeaderText("Infomação");

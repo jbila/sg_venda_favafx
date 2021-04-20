@@ -15,7 +15,12 @@
 	<children>
 		<SplitPane dividerPositions="0.29797979797979796" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #fffaf0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<items>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="172.0" style="-fx-background-color: #696969;" />
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="172.0" style="-fx-background-color: #008080;">
+               <children>
+                  <Label alignment="CENTER" layoutX="-3.0" layoutY="4.0" prefHeight="17.0" prefWidth="159.0" text="SEJA BEM VINDO A" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="34.0" prefHeight="17.0" prefWidth="159.0" text=" SUA LOGA" />
+                  <Text layoutX="54.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SYSFAMA" />
+               </children></AnchorPane>
 				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="126.0" prefHeight="288.0" prefWidth="281.0" style="-fx-background-color: #ffffff;">
 					<children>
 						<VBox layoutX="3.0" layoutY="62.0" prefHeight="100.0" prefWidth="271.0" spacing="5.0">
@@ -33,10 +38,13 @@
 								</Label>
 								<PasswordField fx:id="txtPassword" alignment="CENTER" prefWidth="271.0" promptText="Password" style="-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;;" />
 							</children>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
 						</VBox>
 						<VBox layoutX="3.0" layoutY="198.0" prefHeight="90.0" prefWidth="271.0" spacing="20.0">
 							<children>
-								<Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleActionLogin" prefHeight="30.0" prefWidth="271.0" style="-fx-background-color: #000000;" text="Login" textFill="FLORALWHITE">
+								<Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleActionLogin" prefHeight="30.0" prefWidth="271.0" text="Login" textFill="#1e1503">
 									<VBox.margin>
 										<Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
 									</VBox.margin>
@@ -44,7 +52,7 @@
 										<Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
 									</padding>
 								</Button>
-								<Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleBtnCancel" prefHeight="30.0" prefWidth="271.0" style="-fx-background-color: #000000;" text="Cancel" textFill="FLORALWHITE">
+								<Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleBtnCancel" prefHeight="30.0" prefWidth="271.0" text="Cancel" textFill="#171002">
 									<VBox.margin>
 										<Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
 									</VBox.margin>
@@ -53,6 +61,9 @@
 									</padding>
 								</Button>
 							</children>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
 						</VBox>
                   <Text layoutX="114.0" layoutY="38.0" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN IN" textAlignment="CENTER">
                      <font>

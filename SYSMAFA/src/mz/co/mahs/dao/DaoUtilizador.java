@@ -72,12 +72,12 @@ public class DaoUtilizador {
 	 * <h5>Esta funcao verifica se o utilizador existe ou nao</h5>
 	 * 
 	 * @return retorno- true ou false
-	 * @param idUtilizador que vem dentro do objecto
-	 */
-	public static boolean isUserNameRecorded(Utilizador idUtilizador) {
-
-		String sql = "SELECT idFormando FROM Utilizador WHERE idFormando ='" + idUtilizador + "'";
+	 * @param idFuncionario - que vem dentro do objecto
+	 */ 
+	public static boolean isUserNameRecorded(int idFuncionario) {
 		boolean retorno = false;
+		String sql = "SELECT idFuncionario FROM tbl_Utilizador WHERE idFuncionario ='" + idFuncionario + "'";
+		
 		try {
 			conn = Conexao.connect();
 			stmt = conn.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class DaoUtilizador {
 
 		} catch (SQLException e) {
 			alertErro.setHeaderText("Erro");
-			alertErro.setContentText("Erro ao Verificar Utilizador  " + e.getMessage());
+			alertErro.setContentText("Erro ao Verificar  a existencia do Utilizador  " + e.getMessage());
 			alertErro.showAndWait();
 		} finally {
 			try {

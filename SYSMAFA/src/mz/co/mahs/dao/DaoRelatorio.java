@@ -290,7 +290,7 @@ public class DaoRelatorio {
 	}
 
 //---------------------------------------------------------------------
-	public static void fatura(int numero) {
+	public static void fatura(int numero,String cliente,String user) {
 		Connection conn = null;
 		conn = Conexao.connect();
 
@@ -301,6 +301,8 @@ public class DaoRelatorio {
 
 				Map<String, Object> parametro = new HashMap<>();
 				parametro.put("NumeroVenda", numero);
+				parametro.put("Cliente", cliente);
+				parametro.put("User", user);
 
 				String path = "C:/Reports/sysmafa/fatura.jasper";
 				JasperPrint print = JasperFillManager.fillReport(path, parametro, conn);

@@ -45,7 +45,7 @@ public class DaoCliente {
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 
 	private static final String INSERT = "INSERT INTO tbl_cliente(nome,apelido,genero,email,telefone,endereco,idUtilizador,idDistrito,dataRegisto) VALUES(?,?,?,?,?,?,?,?,?)";
-	private static final String LIST = "SELECT * FROM vw_listAllCliente";
+	private static final String LIST = "SELECT * FROM vw_listAllCliente ORDER BY idCliente DESC";
 	private static final String DELETE = "DELETE FROM tbl_cliente WHERE idCliente=?";
 	private static final String UPDATE = "UPDATE tbl_cliente SET nome=?,apelido=?,genero=?,email=?,telefone=?,endereco=?,idUtilizador=?,idDistrito=? WHERE idCliente=? ";
 
@@ -55,7 +55,7 @@ public class DaoCliente {
 
 	public static boolean isRecorded(String telefone, String email) {
 		boolean retorno = false;
-		String sql = "SELECT telefone,email FROM formando WHERE telefone ='" + telefone + "'OR email= '" + email + "'";
+		String sql = "SELECT telefone,email FROM tbl_cliente WHERE telefone ='" + telefone + "'OR email= '" + email + "'";
 
 		try {
 			conn = Conexao.connect();
@@ -136,12 +136,12 @@ public class DaoCliente {
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, cliente.getIdCliente());
 			stmt.execute();
-			alertInfo.setHeaderText("Informa��o");
-			alertInfo.setContentText("Formando Removido com �xito ");
+			alertInfo.setHeaderText("Informacao");
+			alertInfo.setContentText("Cliente Removido com êxito ");
 			alertInfo.showAndWait();
 		} catch (SQLException e) {
 			alertErro.setHeaderText("Erro");
-			alertErro.setContentText("Erro ao Remover Formando  " + e.getMessage());
+			alertErro.setContentText("Erro ao Remover Cliente  " + e.getMessage());
 			alertErro.showAndWait();
 		} finally {
 			try {

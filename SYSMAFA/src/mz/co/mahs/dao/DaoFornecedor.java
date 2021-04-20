@@ -62,10 +62,10 @@ public class DaoFornecedor {
 	 * @param DaoFornecedor
 	 * @see DaoFornecedor
 	 */
-	public static boolean isRecorder(int nome) {
+	public static boolean isRecorder(String telefone,String email) {
 		boolean retorno = false;
 
-		String sql = "SELECT nome FROM tbl_fornecedor WHERE nome ='" + nome + "'";
+		String sql = "SELECT telefone,email FROM tbl_fornecedor WHERE telefone ='" + telefone + "' OR '"+email+"'";
 
 		try {
 			conn = Conexao.connect();

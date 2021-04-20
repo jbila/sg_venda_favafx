@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Categoria;
-import mz.co.mahs.models.Funcao;
 import mz.co.mahs.models.Utilizador;
 /**
  * <h1>DaoCategoria</h1>
@@ -73,8 +72,9 @@ public class DaoCategoria {
 			stmt.setInt(3, categoria.getUtilizador().getIdUtilizador());
 			stmt.setString(4, dataRegisto);
 			stmt.executeUpdate();
-			alertInfo.setHeaderText("Informação");
-			alertInfo.setContentText("Turma Criada  com êxito ");
+			alertInfo.setTitle("Informação");
+			alertInfo.setHeaderText("Validacao de campos");
+			alertInfo.setContentText("Categoria adicionada  com êxito ");
 			alertInfo.showAndWait();
 		} catch (SQLException ex) {
 			alertInfo.setHeaderText("Informação");

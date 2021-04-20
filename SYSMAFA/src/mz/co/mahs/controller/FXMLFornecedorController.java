@@ -170,8 +170,17 @@ public class FXMLFornecedorController implements Initializable,Crud {
 		fornecedor.setTelefone(txtTelefone.getText().toUpperCase());
 		fornecedor.setEndereco(txtEndereco.getText().toUpperCase());
 		fornecedor.setUtilizador(utilizador);
-		DaoFornecedor.addFornecedor(fornecedor);
-		limpar();
+		if(DaoFornecedor.isRecorder(txtTelefone.getText(), txtEmail.getText())) {
+			alertWarining.setTitle("Informação");
+			alertWarining.setHeaderText("Verificação de Dados");
+			alertWarining.setContentText("Este Fornecedor já existe");
+			alertWarining.showAndWait();
+		}
+		else {
+			DaoFornecedor.addFornecedor(fornecedor);
+			limpar();
+		}
+		
 		
 	}
 	@Override

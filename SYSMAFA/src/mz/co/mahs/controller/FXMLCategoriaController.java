@@ -122,13 +122,20 @@ public class FXMLCategoriaController implements Initializable, Crud {
 			alterWarning.showAndWait();
 		}
 	}
-	/**Este evento faz busca*/
+	/**Este evento faz busca
+	 * para que a busca seja completa 
+	 * chama se a funcao que busca que esta no DaoCategoria
+	 */
 	@FXML
 	private void procurar(KeyEvent event) {
-		txtSearch.setOnKeyReleased(E -> {
-
-		});
-
+		
+		List<Categoria> list = DaoCategoria.search(txtNome.getText());
+		final ObservableList<Categoria> obserList = FXCollections.observableArrayList(list);
+		colId.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
+		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
+		tblCategoria.setItems(obserList);
 	}
 	/**Este evento chama a funcao que faz a remocao da tupla selecionada*/
 	@FXML
@@ -184,8 +191,17 @@ public class FXMLCategoriaController implements Initializable, Crud {
 		categoria.setNome(txtNome.getText().toUpperCase());
 		categoria.setDescricao(txtDescricao.getText().toUpperCase());
 		categoria.setUtilizador(utilizador);
-		DaoCategoria.add(categoria);
-		limpar();
+		if(DaoCategoria.isRecorded(txtNome.getText())) {
+			alterWarning.setTitle("Informação");
+			alterWarning.setHeaderText("Validação de Dados");
+			alterWarning.setContentText("Está categoria já existe!");
+			alterWarning.showAndWait();
+		}
+		else {
+			DaoCategoria.add(categoria);
+			limpar();
+		}
+	;
 
 	}
 
@@ -227,7 +243,6 @@ public class FXMLCategoriaController implements Initializable, Crud {
 	@Override
 	public void showInfo() {
 		List<Categoria> list = DaoCategoria.getAllCategoria();
-		//System.out.println(list);
 		final ObservableList<Categoria> obserList = FXCollections.observableArrayList(list);
 		colId.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
 		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));

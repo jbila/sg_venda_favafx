@@ -114,7 +114,25 @@ public class FXMLPedidosController {
 
 	@FXML
 	private void procurador(KeyEvent event) {
-
+		try {
+		List<Pedido> list = DaoPedido.search(Integer.parseInt(txtProcurar.getText()));
+		final ObservableList<Pedido> obsList = FXCollections.observableArrayList(list);
+		colId.setCellValueFactory(new PropertyValueFactory<>("idPedido"));
+		colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+		colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		colTotal.setCellValueFactory(new PropertyValueFactory<>("valorPedido"));
+		colPago.setCellValueFactory(new PropertyValueFactory<>("valorPago"));
+		colPagoVia.setCellValueFactory(new PropertyValueFactory<>("formasDepagamento"));
+		colData.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
+		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
+		tblPedidos.setItems(obsList);
+		}
+		catch(NumberFormatException ex) {
+			alertWarning.setTitle("Aviso");
+			alertWarning.setHeaderText("Excepcao ");
+			alertWarning.setContentText("O número da venda deve ser Inteiro");
+			alertWarning.showAndWait();
+		}
 	}
 
 	@FXML

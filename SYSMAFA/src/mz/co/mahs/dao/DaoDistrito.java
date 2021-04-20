@@ -41,12 +41,14 @@ public class DaoDistrito {
 			stmt.setInt(2, distrito.getProvincia().getIdProvincia());
 			stmt.setString(3, dataRegisto);
 			stmt.executeUpdate();
-			alertInfo.setHeaderText("Informação");
+			alertInfo.setTitle("Informação");
+			alertInfo.setHeaderText("Validação de Campos");
 			alertInfo.setContentText("Distrito adicionado  com êxito ");
 			alertInfo.showAndWait();
 		} catch (SQLException ex) {
-			alertInfo.setHeaderText("Informação");
-			alertInfo.setContentText(" " + ex);
+			alertInfo.setTitle("Informação");
+			alertInfo.setHeaderText("Validação de campos");
+			alertInfo.setContentText(" Este Distrito já existe" );
 			alertInfo.showAndWait();
 		} finally {
 			try {

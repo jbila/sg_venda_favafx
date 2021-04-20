@@ -254,11 +254,10 @@ public class DaoFuncionario {
 		try {
 
 			conn = Conexao.connect();
-			stmt = conn.prepareStatement(LIST);
+			stmt = conn.prepareStatement("SELECT * from vw_listFuncionario WHERE nome LIKE '"+nome+"%' ");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				// nome,apelido,genero,email,telefone,endereco,nuit,numeroBi,idDistrito,idFuncao,salario,dataRegisto
 				Funcionario funcionario = new Funcionario();
 				Funcao funcao = new Funcao();
 				funcao.setNome(rs.getString("Funcao"));

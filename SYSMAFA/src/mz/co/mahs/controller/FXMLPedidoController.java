@@ -1,4 +1,5 @@
 package mz.co.mahs.controller;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -44,10 +45,15 @@ import mz.co.mahs.models.Utilizador;
 
 public class FXMLPedidoController {
 	/**
-	 * <p>Esta variavel armazena o <b>codigo</b> da venda ou pedido para posterior ser gravado
-	 * na tabela items da venda ou items do pedido</p>
+	 * <p>
+	 * Esta variavel armazena o <b>codigo</b> da venda ou pedido para posterior ser
+	 * gravado na tabela items da venda ou items do pedido
+	 * </p>
 	 */
-	int idPedido = 0;
+	 int idPedido = 0;
+	 String userName = "";
+	 String cliente = "";
+
 	List<ItemsPedidos> data = new ArrayList<>();
 	public static double total = 0, subTotal = 0, diminuir = 0;
 	Alert alertInfo = new Alert(AlertType.INFORMATION);
@@ -98,7 +104,11 @@ public class FXMLPedidoController {
 	private TextField txtProcurar, txtValidade;
 	/** usada para pesquisar dentro da tabela */
 
-	/** <p>SEGUNDA TABELA items</p> */
+	/**
+	 * <p>
+	 * SEGUNDA TABELA items
+	 * </p>
+	 */
 	@FXML
 	public TableView<ItemsPedidos> tblItems = new TableView<ItemsPedidos>();
 	@FXML
@@ -144,7 +154,7 @@ public class FXMLPedidoController {
 	@FXML
 	public Label lblTotal = new Label();
 	@FXML
-	private Button btnGoPagamento,btnAddCliente;
+	private Button btnGoPagamento, btnAddCliente;
 	@FXML
 	private Button btnCliente, btnCliente1, btnParcelar;
 	@FXML
@@ -174,20 +184,22 @@ public class FXMLPedidoController {
 		fillCliente();
 		fillFormasDePagamento();
 		total = 0;
-		
+
 		txtNumeroParcela.setVisible(false);
 		btnParcelar.setVisible(false);
 	}
+
 	@FXML
 	private void addcliente(ActionEvent event) {
 		openCliente();
-		
-		
+
 	}
-	/**Esta funcao chama o formulario de cliente para
-	 * se poder adicionar, caso nao esteja registado
-	 * */
-	
+
+	/**
+	 * Esta funcao chama o formulario de cliente para se poder adicionar, caso nao
+	 * esteja registado
+	 */
+
 	private void openCliente() {
 		Stage stage = new Stage();
 		try {
@@ -198,20 +210,17 @@ public class FXMLPedidoController {
 			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
 			stage.setScene(scene);
 			stage.initModality(Modality.APPLICATION_MODAL);
-	        stage.initStyle(StageStyle.UNDECORATED);//DECORATED
+			stage.initStyle(StageStyle.UNDECORATED);// DECORATED
 
-			 stage.show();
+			stage.show();
 		} catch (Exception e) {
 			alertErro.setHeaderText("Erro");
 			alertErro.setContentText("Erro ao Carregar o Ficheiro " + e);
 			alertErro.showAndWait();
 		}
-		
+
 	}
-	
-	
-	
-	
+
 	/**
 	 * Esta metodo chama o formulario de formas de pagamento que inclui o total da
 	 * venda,nome do cliente as formas de pagamento
@@ -235,9 +244,14 @@ public class FXMLPedidoController {
 		 * chamado metodo addItems, que adiciona os itens da venda ou pedido
 		 */
 	}
-	/**<p>A funcao chama o metodo de adicionar pedido ou venda<br>
-	 * dentro de metodo @see addVenda(), e chamada o metodo que adiciona os
-	 * <br> items da mesma venda</p>*/
+
+	/**
+	 * <p>
+	 * A funcao chama o metodo de adicionar pedido ou venda<br>
+	 * dentro de metodo @see addVenda(), e chamada o metodo que adiciona os <br>
+	 * items da mesma venda
+	 * </p>
+	 */
 	@FXML
 	private void confirmarPagamento(ActionEvent event) {
 		addPedido();
@@ -246,24 +260,24 @@ public class FXMLPedidoController {
 	}
 
 	/**
-	 * Este metodo assegura a seleccao de <b>VENDA</b> de forma que quando a selecao for
-	 * parcelada o botao parcelar e o campo de numero de fique habilitado parcelas
+	 * Este metodo assegura a seleccao de <b>VENDA</b> de forma que quando a selecao
+	 * for parcelada o botao parcelar e o campo de numero de fique habilitado
+	 * parcelas
 	 * 
 	 */
 	@FXML
 	private void changeTipo(ActionEvent event) {
-		
-			if ((cboTipo.getSelectionModel().getSelectedItem()).equalsIgnoreCase("PARCELADA")) {
 
-				txtNumeroParcela.setVisible(true);
-				btnParcelar.setVisible(true);
+		if ((cboTipo.getSelectionModel().getSelectedItem()).equalsIgnoreCase("PARCELADA")) {
 
-			} else {
+			txtNumeroParcela.setVisible(true);
+			btnParcelar.setVisible(true);
 
-				txtNumeroParcela.setVisible(false);
-				btnParcelar.setVisible(false);
-			}
-		
+		} else {
+
+			txtNumeroParcela.setVisible(false);
+			btnParcelar.setVisible(false);
+		}
 
 	}
 
@@ -273,18 +287,27 @@ public class FXMLPedidoController {
 		});
 	}
 
-	/**<p>Chama afuncao que faz o parcelamento da venda
-	 * </p><br>
-	 * s@see calcularParcela()*/
+	/**
+	 * <p>
+	 * Chama afuncao que faz o parcelamento da venda
+	 * </p>
+	 * <br>
+	 * s@see calcularParcela()
+	 */
 	@FXML
 	private void parcelar(ActionEvent event) {
 		// tblParcelamentos.getItems().clear();
 		calcularParcela();
 	}
 
-	/**<p>volta de um ponto para outro, isto é  estando no c
-	 * ampode efecuar o pagamento<br> ainda pode voltar diminuir a quantidade com aumentar</p>
-	 * ------------------------------------*/
+	/**
+	 * <p>
+	 * volta de um ponto para outro, isto é estando no c ampode efecuar o
+	 * pagamento<br>
+	 * ainda pode voltar diminuir a quantidade com aumentar
+	 * </p>
+	 * ------------------------------------
+	 */
 	@FXML
 	private void voltar(ActionEvent event) {
 		tblProducto.setVisible(true);
@@ -293,11 +316,16 @@ public class FXMLPedidoController {
 		rootFormasDePagamento.setVisible(false);
 	}
 
-	/**<h2>calcularTrocos</h2>
-	 * <p>Funciona estilo uma mini-calculadora<br></P>
-	 * <p>que ajuda o caixa a fazer os trocos</p>
+	/**
+	 * <h2>calcularTrocos</h2>
+	 * <p>
+	 * Funciona estilo uma mini-calculadora<br>
+	 * </P>
+	 * <p>
+	 * que ajuda o caixa a fazer os trocos
+	 * </p>
 	 * 
-	 * */
+	 */
 	@FXML
 	private void calcularTrocos(KeyEvent event) {
 		try {
@@ -315,10 +343,16 @@ public class FXMLPedidoController {
 		}
 
 	}
-	/**<h2>Clicando sobre a tabela</h2>
-	 * <p>quando clica-se sobre a linha da tabela a mesma é levada para os campos</p>
-	 * <p>dando possibilidade de eliminar ou actualizar o registo</p>
-	 * */
+
+	/**
+	 * <h2>Clicando sobre a tabela</h2>
+	 * <p>
+	 * quando clica-se sobre a linha da tabela a mesma é levada para os campos
+	 * </p>
+	 * <p>
+	 * dando possibilidade de eliminar ou actualizar o registo
+	 * </p>
+	 */
 	@FXML
 	public void handleMouseClickAction(MouseEvent event) {
 		Producto producto = tblProducto.getSelectionModel().getSelectedItem();
@@ -330,10 +364,15 @@ public class FXMLPedidoController {
 
 	}
 
-	/**<p>Neste metodo faz se a verificacao de campos para posterior adicionar na carrinha</p> <br>
+	/**
+	 * <p>
+	 * Neste metodo faz se a verificacao de campos para posterior adicionar na
+	 * carrinha
+	 * </p>
+	 * <br>
 	 * <li>Validacao de campos vazios</li>
 	 * 
-	 * */
+	 */
 	@FXML
 	private void addItems(ActionEvent event) {
 		if (txtQty.getText().isEmpty() && txtSutotal.getText().isEmpty()) {
@@ -393,7 +432,7 @@ public class FXMLPedidoController {
 	/** Este metodo adiciona producto que estao na base de dados */
 	public void showInfo() {
 		List<Producto> list = DaoProducto.getAllPratileira();
-		ObservableList<Producto> obserList=FXCollections.observableArrayList(list);
+		ObservableList<Producto> obserList = FXCollections.observableArrayList(list);
 		colIdProducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
 		colCodigoProducto.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		colNomeProducto.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -401,12 +440,17 @@ public class FXMLPedidoController {
 		colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		colPrecoProducto.setCellValueFactory(new PropertyValueFactory<>("precoFinal"));
-		//tblProducto.getItems().addAll(list); tambem pode ser usado
+		// tblProducto.getItems().addAll(list); tambem pode ser usado
 		tblProducto.setItems(obserList);
 	}
 
-	/**<p>chama o metodo openAllclinte</p>
-	 * @see openAllCliente*/
+	/**
+	 * <p>
+	 * chama o metodo openAllclinte
+	 * </p>
+	 * 
+	 * @see openAllCliente
+	 */
 	@FXML
 	private void clientes(ActionEvent event) {
 		openAllClients();
@@ -424,7 +468,7 @@ public class FXMLPedidoController {
 			scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.DECORATED);
-			//stage.initModality(Modality.APPLICATION_MODAL);
+			// stage.initModality(Modality.APPLICATION_MODAL);
 			stage.centerOnScreen();
 			stage.show();
 		} catch (Exception e) {
@@ -443,29 +487,37 @@ public class FXMLPedidoController {
 			cboCliente1.getItems().add(cliente);
 	}
 
-	/** <h2>filFormasDePagamento</h2>
-	 * <p>preeche a comboBox de Formas de pagamento</p>
-	 *@see DaoFormasDePagamento.getAll()
-	 * */
+	/**
+	 * <h2>filFormasDePagamento</h2>
+	 * <p>
+	 * preeche a comboBox de Formas de pagamento
+	 * </p>
+	 * 
+	 * @see DaoFormasDePagamento.getAll()
+	 */
 	private void fillFormasDePagamento() {
 		listFormasDePagamento = DaoFormasDePagamento.getAll();
 		for (FormasDePagamento formasDePagamento : listFormasDePagamento)
 			cboFormaDePagamento1.getItems().add(formasDePagamento);
 	}
 
-	/**<h2>Adicionar uma linha ou item na carrinha</h2> 
-	 * <p>Este metodo adiciona itens na tabela</p><br>
+	/**
+	 * <h2>Adicionar uma linha ou item na carrinha</h2>
+	 * <p>
+	 * Este metodo adiciona itens na tabela
+	 * </p>
+	 * <br>
 	 * com as seguintes validacoes
 	 * <li>Validacao em dia</li>
 	 * <li>Validacao das quantidades do cliente comparando com o stock</li>
-	 *  */
+	 */
 	private void addRow() {
 		if ((Integer.parseInt(txtQty.getText()) <= (Integer.parseInt(txtQuantidadeNoStock.getText()))
 				&& (Integer.parseInt(txtQty.getText()) != 0))) {
 			LocalDate localToday = LocalDate.now();
 			LocalDate localValidade = LocalDate.parse(txtValidade.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			if (localToday.isBefore(localValidade)) {
-				//System.out.println("Da para vender");
+				// System.out.println("Da para vender");
 				ItemsPedidos items = new ItemsPedidos();
 				Producto producto = new Producto();
 				producto.setNome(txtNome.getText());
@@ -507,22 +559,32 @@ public class FXMLPedidoController {
 			alertWarning.showAndWait();
 		}
 	}
-/**<h2>Remocao da linha ou producto do trollery</h2>
- * <p>Ao diminuir um item da carrinha automaticamente a qty total deminui</p>*/
+
+	/**
+	 * <h2>Remocao da linha ou producto do trollery</h2>
+	 * <p>
+	 * Ao diminuir um item da carrinha automaticamente a qty total deminui
+	 * </p>
+	 */
 	private void deleteRow() {
-			ItemsPedidos selectedItem = tblItems.getSelectionModel().getSelectedItem();
-			for (int i = 0; i < tblItems.getItems().size(); i++) {
-				ItemsPedidos itemsPedido = new ItemsPedidos();
-				itemsPedido.setSubTotal(colSubTotal.getCellData(i));
-			}
-		tblItems.getItems().remove(selectedItem);	
-		double subtotal=selectedItem.getQuantidade()*selectedItem.getPrecoUnitario();
-		total=total-subtotal;
-		lblTotal.setText(""+total);
+		ItemsPedidos selectedItem = tblItems.getSelectionModel().getSelectedItem();
+		for (int i = 0; i < tblItems.getItems().size(); i++) {
+			ItemsPedidos itemsPedido = new ItemsPedidos();
+			itemsPedido.setSubTotal(colSubTotal.getCellData(i));
+		}
+		tblItems.getItems().remove(selectedItem);
+		double subtotal = selectedItem.getQuantidade() * selectedItem.getPrecoUnitario();
+		total = total - subtotal;
+		lblTotal.setText("" + total);
 	}
 
-	/**<h2>Salvar venda ou pedido</h2>
-	 * <p>Este medido adicona o pedido ou a venda</p> <br>
+	/**
+	 * <h2>Salvar venda ou pedido</h2>
+	 * <p>
+	 * Este medido adicona o pedido ou a venda
+	 * </p>
+	 * <br>
+	 * 
 	 * @exception NullPointerException
 	 */
 	private void addPedido() {
@@ -565,12 +627,22 @@ public class FXMLPedidoController {
 			/** --------------------------------------------------------- */
 			idPedido = DaoPedido.add(pedido);
 			addItmes(idPedido);
-			DaoRelatorio.fatura(idPedido);
+			/**
+			 * Esta funcao imprime o recibo da venda
+			 * 
+			 * @param userName
+			 * @param clienteName
+			 * @param idPedido
+			 */
+			userName=ControllerLogin.username;
+			cliente=cboCliente1.getSelectionModel().getSelectedItem();
+			//System.out.println(userName+"<>"+cliente);
+			
+			DaoRelatorio.fatura(idPedido, ""+cliente, userName);
 			/*--------------------------------------------*/
 			actualizarStock();
 			calcularParcelaII();
 			limpaCampos();
-			
 
 		} catch (NullPointerException ex) {
 			alertWarning.setTitle("Aviso");
@@ -610,10 +682,14 @@ public class FXMLPedidoController {
 		lblTotal.setText(total + "0.0");
 	}
 
-	/** <h2>procurador</h2> 
-	 * <p> Este metodo faz a pesquisas </p>
+	/**
+	 * <h2>procurador</h2>
+	 * <p>
+	 * Este metodo faz a pesquisas
+	 * </p>
+	 * 
 	 * @see <b>DaoProducto.searchAllPratileira(String nome);</b>
-	 * */
+	 */
 	@FXML
 	private void procurador(KeyEvent event) {
 		List<Producto> list = DaoProducto.searchAllPratileira(txtProcurar.getText());
@@ -639,9 +715,14 @@ public class FXMLPedidoController {
 
 	}
 
-	/**<h2>actualizarStock</h2>
-	 * <p>Este metodo actualiza o stock em cada venda do producto levando consigo uma<br>
-	 * lista de productos que contem os ids de productos e a quantidade a se retirar</P>
+	/**
+	 * <h2>actualizarStock</h2>
+	 * <p>
+	 * Este metodo actualiza o stock em cada venda do producto levando consigo
+	 * uma<br>
+	 * lista de productos que contem os ids de productos e a quantidade a se retirar
+	 * </P>
+	 * 
 	 * @see DaoProducto.updateQty(idItems);
 	 */
 	public void actualizarStock() {
@@ -657,12 +738,16 @@ public class FXMLPedidoController {
 		DaoProducto.updateQty(idItems);
 	}
 
-/**<h2>calcularParcela</h2>
- * <br>
- * <p>Este metodo calcula as parcelas, a parcela so e valida se total for maior que 1000</p>
- * @exception NumberFormatException,{@link NullPointerException}
- * */
-	
+	/**
+	 * <h2>calcularParcela</h2> <br>
+	 * <p>
+	 * Este metodo calcula as parcelas, a parcela so e valida se total for maior que
+	 * 1000
+	 * </p>
+	 * 
+	 * @exception NumberFormatException- pode lancar uma exepcao do tipo formato de numero
+	 */
+
 	private void calcularParcela() {
 		tblParcelamentos.getItems().clear();
 		List<Parcela> parcelas = new ArrayList<>();// esta lista contem as parcelas dos pedidos
@@ -738,7 +823,5 @@ public class FXMLPedidoController {
 
 		}
 	}// closes methods
-
-	
 
 }// fecha a clase
