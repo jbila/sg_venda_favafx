@@ -14,7 +14,6 @@ import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Fornecedor;
 import mz.co.mahs.models.Funcionario;
-import mz.co.mahs.models.Utilizador;
 
 /**
  * <h1>DaoFornecedor</h1>
@@ -46,10 +45,10 @@ public class DaoFornecedor {
 
 	/** String que sao usadas para operacoes com base de dados */
 
-	private static final String INSERT = "INSERT INTO tbl_fornecedor(nome,apelido,genero,email,telefone,endereco,idUtilizador,dataRegisto) VALUES(?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO tbl_fornecedor(nome,apelido,genero,email,telefone,endereco,dataRegisto) VALUES(?,?,?,?,?,?,?)";
 	private static final String LIST = "select * from vw_listFornecedor";
 	private static final String DELETE = "DELETE FROM tbl_fornecedor WHERE idFornecedor=?";
-	private static final String UPDATE = "UPDATE tbl_fornecedor SET nome=?,apelido=?,genero=?,email=?,telefone=?,endereco=?,idUtilizador=? WHERE idFornecedor=?";
+	private static final String UPDATE = "UPDATE tbl_fornecedor SET nome=?,apelido=?,genero=?,email=?,telefone=?,endereco=? WHERE idFornecedor=?";
 
 	private static Connection conn = null;
 	private static PreparedStatement stmt = null;
@@ -110,8 +109,7 @@ public class DaoFornecedor {
 			stmt.setString(4, fornecedor.getEmail());
 			stmt.setString(5, fornecedor.getTelefone());
 			stmt.setString(6, fornecedor.getEndereco());
-			stmt.setInt(7, fornecedor.getUtilizador().getIdUtilizador());
-			stmt.setString(8, dataRegisto);
+			stmt.setString(7, dataRegisto);
 			stmt.executeUpdate();
 
 			alertInfo.setHeaderText("Informação");
@@ -183,8 +181,7 @@ public class DaoFornecedor {
 			stmt.setString(4, fornecedor.getEmail());
 			stmt.setString(5, fornecedor.getTelefone());
 			stmt.setString(6, fornecedor.getEndereco());
-			stmt.setInt(7, fornecedor.getUtilizador().getIdUtilizador());
-			stmt.setInt(8, fornecedor.getIdFornecedor());
+			stmt.setInt(7, fornecedor.getIdFornecedor());
 			stmt.executeUpdate();
 			/*
 			 * alertInfo.setHeaderText("Informação");
@@ -227,16 +224,12 @@ public class DaoFornecedor {
 			while (rs.next()) {
 				Fornecedor fornecedor = new Fornecedor();
 
-				Utilizador utilizador = new Utilizador();
-				utilizador.setUsername(rs.getString("utilizador"));
-
+				
 				fornecedor.setIdFornecedor(rs.getInt("idFornecedor"));
 				fornecedor.setNome(rs.getString("nome"));
 				fornecedor.setEmail(rs.getString("email"));
 				fornecedor.setTelefone(rs.getString("telefone"));
 				fornecedor.setEndereco(rs.getString("endereco"));
-				fornecedor.setUtilizador(utilizador);
-
 				fornecedores.add(fornecedor);
 
 			}
@@ -275,15 +268,11 @@ public class DaoFornecedor {
 
 			while (rs.next()) {
 				Fornecedor fornecedor = new Fornecedor();
-				Utilizador utilizador = new Utilizador();
-				utilizador.setUsername(rs.getString("utilizador"));
 				fornecedor.setIdFornecedor(rs.getInt("idFornecedor"));
 				fornecedor.setNome(rs.getString("nome"));
 				fornecedor.setEmail(rs.getString("email"));
 				fornecedor.setTelefone(rs.getString("telefone"));
 				fornecedor.setEndereco(rs.getString("endereco"));
-				fornecedor.setUtilizador(utilizador);
-
 				fornecedores.add(fornecedor);
 
 			}

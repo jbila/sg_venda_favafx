@@ -14,7 +14,7 @@ import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
-import mz.co.mahs.models.Utilizador;
+
 
 /**
  * <h1>DaoCliente</h1>
@@ -44,10 +44,10 @@ public class DaoCliente {
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 
-	private static final String INSERT = "INSERT INTO tbl_cliente(nome,apelido,genero,email,telefone,endereco,idUtilizador,idDistrito,dataRegisto) VALUES(?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO tbl_cliente(nome,apelido,genero,email,telefone,endereco,idDistrito,dataRegisto) VALUES(?,?,?,?,?,?,?,?)";
 	private static final String LIST = "SELECT * FROM vw_listAllCliente ORDER BY idCliente DESC";
 	private static final String DELETE = "DELETE FROM tbl_cliente WHERE idCliente=?";
-	private static final String UPDATE = "UPDATE tbl_cliente SET nome=?,apelido=?,genero=?,email=?,telefone=?,endereco=?,idUtilizador=?,idDistrito=? WHERE idCliente=? ";
+	private static final String UPDATE = "UPDATE tbl_cliente SET nome=?,apelido=?,genero=?,email=?,telefone=?,endereco=?,idDistrito=? WHERE idCliente=? ";
 
 	private static Connection conn = null;
 	private static PreparedStatement stmt;
@@ -103,9 +103,8 @@ public class DaoCliente {
 			stmt.setString(4, cliente.getEmail());
 			stmt.setString(5, cliente.getTelefone());
 			stmt.setString(6, cliente.getEndereco());
-			stmt.setInt(7, cliente.getUtilizador().getIdUtilizador());
-			stmt.setInt(8, cliente.getDistrito().getIdDistrito());
-			stmt.setString(9, dataRegisto);
+			stmt.setInt(7, cliente.getDistrito().getIdDistrito());
+			stmt.setString(8, dataRegisto);
 			stmt.executeUpdate();
 			alertInfo.setHeaderText("Informacao");
 			alertInfo.setContentText("Cliente Registado com Exito ");
@@ -170,9 +169,8 @@ public class DaoCliente {
 			stmt.setString(4, cliente.getEmail());
 			stmt.setString(5, cliente.getTelefone());
 			stmt.setString(6, cliente.getEndereco());
-			stmt.setInt(7, cliente.getUtilizador().getIdUtilizador());
-			stmt.setInt(8, cliente.getDistrito().getIdDistrito());
-			stmt.setInt(9, cliente.getIdCliente());
+			stmt.setInt(7, cliente.getDistrito().getIdDistrito());
+			stmt.setInt(8, cliente.getIdCliente());
 			stmt.executeUpdate();
 
 			/*
@@ -215,8 +213,6 @@ public class DaoCliente {
 				Cliente cliente = new Cliente();
 				Distrito distrito = new Distrito();
 				distrito.setNome(rs.getString("Distrito"));
-				Utilizador utilizador = new Utilizador();
-				utilizador.setUsername(rs.getString("utilizador"));
 				cliente.setIdCliente(rs.getInt("idCliente"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setApelido(rs.getString("apelido"));
@@ -226,7 +222,6 @@ public class DaoCliente {
 				cliente.setDistrito(distrito);
 				cliente.setEndereco(rs.getString("endereco"));
 				cliente.setDataRegisto(rs.getString("dataRegisto"));
-				cliente.setUtilizador(utilizador);
 				clientes.add(cliente);
 			}
 
@@ -271,8 +266,6 @@ public class DaoCliente {
 
 				// nome,apelido,genero,email,telefone,endereco,idUtilizador
 				Cliente cliente = new Cliente();
-				Utilizador utilizador = new Utilizador();
-				utilizador.setUsername(rs.getString("utilizador"));
 				cliente.setIdCliente(rs.getInt("idCliente"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setApelido(rs.getString("apelido"));
@@ -281,7 +274,6 @@ public class DaoCliente {
 				cliente.setTelefone(rs.getString("telefone"));
 				cliente.setEndereco(rs.getString("endereco"));
 				cliente.setDataRegisto(rs.getString("dataRegisto"));
-				cliente.setUtilizador(utilizador);
 				clientes.add(cliente);
 			}
 

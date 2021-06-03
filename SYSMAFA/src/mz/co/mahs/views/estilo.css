@@ -2,16 +2,16 @@
 .button:hover{
 	-fx-text-fill:#ffffff;
 	-fx-padding:0.0 0.0 0.0;
-	-fx-font-size:12.0px;	
-	-fx-font-family:"FontAwesome";	
+	-fx-font-size:10.0px;	
+/* 	-fx-font-family:"FontAwesome";	*/
 	-fx-background-color:#f08080;
-	-fx-border-radius:10px;	
+	/*-fx-border-radius:10px;	*/
 }
  .MenuButton:hover {
  
 	-fx-padding:0.0 0.0 0.0;
 	-fx-border-radius:10.0;
-	-fx-font-size:20.0px;
+	-fx-font-size:14.0px;
 		
 }
 

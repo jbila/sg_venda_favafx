@@ -47,7 +47,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="txtTrocos" alignment="CENTER" editable="false" layoutX="7.0" layoutY="160.0" prefHeight="25.0" prefWidth="205.0" promptText="TROCOS" />
+      <TextField fx:id="txtTrocos" alignment="CENTER" editable="false" layoutX="8.0" layoutY="160.0" prefHeight="25.0" prefWidth="205.0" promptText="TROCOS" />
       <Label fx:id="lblNumero" layoutX="231.0" layoutY="105.0" prefHeight="25.0" prefWidth="211.0" text="Label" />
       <TextField fx:id="txtNumeroParcela" alignment="CENTER" layoutX="14.0" layoutY="244.0" promptText="Nº DE PARCELAS" />
       <Button fx:id="btnParcelar" layoutX="257.0" layoutY="244.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="PARCELAR" />

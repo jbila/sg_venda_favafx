@@ -179,12 +179,12 @@ public class ControllerLogin implements Initializable {
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/mz/co/mahs/views/FXMLMenu.fxml"));//
 		Scene scene = new Scene(root);
-		stage.initStyle(StageStyle.UNIFIED);
+	    stage.initStyle(StageStyle.UNIFIED);//DECORATED
+	    stage.setTitle("SISTEMA D GESTÃO DE STOCK");
 		// stage.setFullScreen(true); //when i enable this the forms slow alot to save
 		// when it opens forms in maximazed you have to resize after that you can do
 
 		scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
-		stage.setTitle("Menu");
 		stage.setScene(scene);
 		stage.show();
 	}

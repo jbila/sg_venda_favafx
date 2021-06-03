@@ -61,6 +61,8 @@ public class FXMLMenuController implements Initializable {
 
 	@FXML
 	private Button btnCliente;
+	@FXML
+	private Button btnCotacao;
 
 	@FXML
 	private Button btnCategoria;
@@ -96,7 +98,9 @@ public class FXMLMenuController implements Initializable {
 	private MenuItem btnRelatorioProductoAvencerEm10;;
 	@FXML
 	private MenuItem btnRelatorioProductoVencidos;
-
+	@FXML
+	private MenuItem btnRelatorioProductoBaixoStock;
+	
 	@FXML
 	private Button btnPedidos, btnLogOut;
 	@FXML
@@ -136,7 +140,10 @@ public class FXMLMenuController implements Initializable {
 	private void handleCliente(ActionEvent event) {
 		openCliente();
 	}
-
+	@FXML
+	private void handleCotacao(ActionEvent event) {
+		openCotacao();
+	}
 	@FXML
 	private void handleDashBoard(ActionEvent event) {
 
@@ -228,8 +235,7 @@ public class FXMLMenuController implements Initializable {
 
 	@FXML
 	private void handleRelatorioAdm(ActionEvent event) {
-		// String formaDePagamento = "POS";
-		// DaoRelatorio.vendasFP(formaDePagamento);
+		DaoRelatorio.adminstracao();
 	}
 
 	@FXML
@@ -252,7 +258,10 @@ public class FXMLMenuController implements Initializable {
 		String hoje = DateTimeFormatter.ofPattern("yyy-MM-dd").format(Localhoje);
 		DaoRelatorio.productoVencidos(hoje);
 	 }
-	 
+	@FXML
+	private void handleRelatorioProductosBaixoStock(ActionEvent event) {
+		DaoRelatorio.nivelBaixoStock();
+	}
 
 	private void openFornecedor() {
 		Stage stage = new Stage();
@@ -296,7 +305,27 @@ public class FXMLMenuController implements Initializable {
 			alertErro.showAndWait();
 		}
 	}
+	// --------------------------------------------------------------------------
+		private void openCotacao() {
+			Stage stage = new Stage();
+			try {
 
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mz/co/mahs/views/FXMLCotacao.fxml"));
+				Parent rootCotacao = (Parent) fxmlLoader.load();
+
+				Scene scene = new Scene(rootCotacao);
+				scene.getStylesheets().add(getClass().getResource("/mz/co/mahs/views/estilo.css").toExternalForm());
+				stage.setScene(scene);
+				stage.initStyle(StageStyle.UNDECORATED);
+				stage.initModality(Modality.APPLICATION_MODAL);
+				menuPane.setCenter(rootCotacao);
+				// stage.show();
+			} catch (Exception e) {
+				alertErro.setHeaderText("Erro");
+				alertErro.setContentText("Erro ao Carregar o Ficheiro Cotacao " + e);
+				alertErro.showAndWait();
+			}
+		}
 //-----------------------------------------------------------------------------------------------
 	private void openEntradaProducto() {
 		Stage stage = new Stage();
@@ -443,10 +472,6 @@ public class FXMLMenuController implements Initializable {
 			}
 		}
 //----------------------------------------------------------------------------------------
-		
-		
-	
-
 	private void OpenLogin() {
 		Stage stage = new Stage();
 		try {

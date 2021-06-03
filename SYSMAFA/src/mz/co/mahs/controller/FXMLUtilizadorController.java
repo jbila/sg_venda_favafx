@@ -145,6 +145,12 @@ public class FXMLUtilizadorController implements Initializable, Crud {
 		Utilizador utilizador = tblUtilizador.getSelectionModel().getSelectedItem();
 		txtID.setText("" + utilizador.getIdUtilizador());
 		txtuserName.setText("" + utilizador.getUsername());
+		//String funcionario=(""+utilizador.getFuncionario().getNome());
+		//System.out.println(funcionario);
+		//perfil.add(""+utilizador.getPerfil());
+		//cboPerfil.setItems(perfil);
+		//estado.setAll(""+utilizador.getStatus());
+		//cboEstado.setItems(estado);
 		btnAdd.setVisible(false);
 		btnUpdate.setVisible(true);
 		btnDelete.setVisible(true);

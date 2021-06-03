@@ -4,6 +4,7 @@ package mz.co.mahs.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +29,6 @@ import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
 import mz.co.mahs.models.Provincia;
-import mz.co.mahs.models.Utilizador;
 
 public class FXMLClienteController implements Initializable, Crud {
 	Alert alert = new Alert(AlertType.INFORMATION);
@@ -74,9 +74,7 @@ public class FXMLClienteController implements Initializable, Crud {
 
 	@FXML
 	private TableColumn<Cliente, Distrito> colDistritoUrbano;
-	@FXML
-	private TableColumn<Cliente, Utilizador> colUtilizador;
-
+	
 	@FXML
 	private TableColumn<Cliente, String> colDataRegisto;
 
@@ -154,7 +152,6 @@ public class FXMLClienteController implements Initializable, Crud {
 			colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 			colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 			colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
-			colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 			colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 			tblCliente.setItems(obserList);
 		});
@@ -206,13 +203,13 @@ public class FXMLClienteController implements Initializable, Crud {
 		try {
 		// nome,genero,email,telefone,endereco
 		Cliente cliente = new Cliente();
-		Utilizador utilizador = new Utilizador();
+		//Utilizador utilizador = new Utilizador();
 		Distrito distrito = new Distrito();
 		Distrito dis = (Distrito) cboDistrito.getSelectionModel().getSelectedItem();
 		final int idDistrito = dis.getIdDistrito();
 		distrito.setIdDistrito(idDistrito);
 
-		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
+		//utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		cliente.setNome(txtNome.getText().toUpperCase());
 		cliente.setApelido(txtApelido.getText().toUpperCase());
 		cliente.setEmail(txtEmail.getText().toLowerCase());
@@ -220,7 +217,7 @@ public class FXMLClienteController implements Initializable, Crud {
 		cliente.setEndereco(txtEndereco.getText().toUpperCase());
 		cliente.setGenero(cboSexo.getValue().toLowerCase());
 		cliente.setDistrito(distrito);
-		cliente.setUtilizador(utilizador);
+		//cliente.setUtilizador(utilizador);
 		if(DaoCliente.isRecorded(txtTelefone.getText(), txtEmail.getText())) {
 			alertWarning.setTitle("Informacao");
 			alertWarning.setHeaderText("Verificação de Dados");
@@ -259,15 +256,12 @@ public class FXMLClienteController implements Initializable, Crud {
 	public void acessoUpdate() {
 		try {
 		Cliente cliente = new Cliente();
-
-		Utilizador utilizador = new Utilizador();
-
 		Distrito distrito = new Distrito();
 		Distrito dis = (Distrito) cboDistrito.getSelectionModel().getSelectedItem();
 		final int idDistrito = dis.getIdDistrito();
 		distrito.setIdDistrito(idDistrito);
 
-		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
+		
 		cliente.setNome(txtNome.getText().toUpperCase());
 		cliente.setApelido(txtApelido.getText().toUpperCase());
 		cliente.setEmail(txtEmail.getText().toLowerCase());
@@ -275,7 +269,6 @@ public class FXMLClienteController implements Initializable, Crud {
 		cliente.setEndereco(txtEndereco.getText().toUpperCase());
 		cliente.setGenero(cboSexo.getValue().toUpperCase());
 		cliente.setDistrito(distrito);
-		cliente.setUtilizador(utilizador);
 		cliente.setIdCliente(Integer.parseInt(txtID.getText()));
 		DaoCliente.updateCliente(cliente);
 		limpar();
@@ -332,7 +325,6 @@ public class FXMLClienteController implements Initializable, Crud {
 		colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
-		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 		colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 		tblCliente.setItems(obserList);
 

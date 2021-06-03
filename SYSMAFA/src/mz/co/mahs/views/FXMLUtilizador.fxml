@@ -16,30 +16,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootUtilizador" prefHeight="509.0" prefWidth="1737.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLUtilizadorController">
+<AnchorPane fx:id="rootUtilizador" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="945.0" style="-fx-background-color: #008080; -fx-background-position: center; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLUtilizadorController">
    <children>
-            <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="1769.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane id="AnchorPane" layoutX="21.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="889.0" style="-fx-background-color: #008080;">
             	<children>
             		<VBox layoutX="8.0">
             			<children>
-            				<Pane prefHeight="252.0" prefWidth="0.0" style="-fx-background-color: #ffffff;" />
+            				<Pane prefHeight="263.0" prefWidth="0.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Separator layoutX="-5.0" layoutY="26.0" orientation="VERTICAL" prefHeight="210.0" prefWidth="6.0" />
+                     </children></Pane>
             			</children>
             		</VBox>
-            		<Pane layoutX="-2.0" layoutY="235.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="1132.0" style="-fx-background-color: FFFFFF;">
+            		<Pane layoutX="-6.0" layoutY="235.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="921.0">
             			<children>
-            				<TextField fx:id="txtProcurar" alignment="CENTER" layoutX="1.0" layoutY="2.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1132.0" promptText="Procurar Utilizador" />
-            				<TableView fx:id="tblUtilizador" layoutX="2.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="252.0" prefWidth="1132.0">
+            				<TextField fx:id="txtProcurar" alignment="CENTER" layoutX="8.0" layoutY="2.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="900.0" promptText="Procurar Utilizador">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></TextField>
+            				<TableView fx:id="tblUtilizador" layoutX="9.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="199.0" prefWidth="900.0">
             					<columns>
             						<TableColumn fx:id="colID" editable="false" maxWidth="54.0" prefWidth="54.0" sortable="false" text="ID" />
-            						<TableColumn fx:id="colFuncionarioNome" editable="false" maxWidth="128.0" prefWidth="128.0" sortable="false" text="Nome" />
-            						<TableColumn fx:id="ColUserName" editable="false" maxWidth="224.0" prefWidth="147.0" sortable="false" text="UserName" />
-            						<TableColumn fx:id="ColEstado" editable="false" maxWidth="331.0" prefWidth="207.0" sortable="false" text="Estado" />
-            						<TableColumn fx:id="colPerfil" editable="false" maxWidth="489.0" prefWidth="175.0" sortable="false" text="Perfil" />
+            						<TableColumn fx:id="colFuncionarioNome" editable="false" maxWidth="171.0" prefWidth="171.0" sortable="false" text="Nome" />
+            						<TableColumn fx:id="ColUserName" editable="false" maxWidth="224.0" prefWidth="173.0" sortable="false" text="UserName" />
+            						<TableColumn fx:id="ColEstado" editable="false" maxWidth="331.0" prefWidth="206.0" sortable="false" text="Estado" />
+            						<TableColumn fx:id="colPerfil" editable="false" maxWidth="527.0" prefWidth="325.0" sortable="false" text="Perfil" />
             					</columns>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
             				</TableView>
             			</children>
             		</Pane>
-            		<VBox layoutX="364.0" layoutY="35.0" prefHeight="145.0" prefWidth="68.0" spacing="15.0">
+            		<VBox layoutX="194.0" layoutY="35.0" prefHeight="145.0" prefWidth="68.0" spacing="15.0">
             			<children>
                   <Label text="Funcionario" />
             				<Label text="Username" />
@@ -48,7 +57,7 @@
             				<Label prefHeight="17.0" prefWidth="69.0" text="Password" />
             			</children>
             		</VBox>
-            		<VBox layoutX="444.0" layoutY="35.0" prefHeight="145.0" prefWidth="374.0" spacing="5.0">
+            		<VBox layoutX="264.0" layoutY="35.0" prefHeight="145.0" prefWidth="374.0" spacing="5.0" style="-fx-background-position: center;">
             			<children>
                   <ComboBox fx:id="cboFuncionario" prefHeight="25.0" prefWidth="373.0" promptText="Selecione o Funcionario" />
             				<TextField fx:id="txtuserName" alignment="CENTER" prefHeight="25.0" prefWidth="437.0" promptText="userName" />
@@ -57,8 +66,8 @@
             				<PasswordField fx:id="txtPassword" alignment="CENTER" promptText="Password" />
             			</children>
             		</VBox>
-                  <TextField fx:id="txtID" alignment="CENTER" editable="false" layoutX="845.0" layoutY="35.0" prefHeight="25.0" prefWidth="95.0" promptText="ID" />
-                  <HBox fx:id="hBoxButton" layoutX="446.0" layoutY="192.0" prefHeight="25.0" prefWidth="374.0">
+                  <TextField fx:id="txtID" alignment="CENTER" editable="false" layoutX="652.0" layoutY="207.0" prefHeight="25.0" prefWidth="36.0" promptText="ID" />
+                  <HBox fx:id="hBoxButton" layoutX="266.0" layoutY="192.0" prefHeight="25.0" prefWidth="374.0">
                      <children>
                         <Button id="buttonAdd" fx:id="btnAdd" minWidth="-Infinity" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="100.0" text="Add">
                      <graphic>
@@ -79,16 +88,16 @@
                      </graphic></Button>
                      </children>
                   </HBox>
-            <Separator layoutX="5.0" layoutY="16.0" prefHeight="17.0" prefWidth="1125.0" />
-            <Label layoutX="7.0" prefHeight="17.0" prefWidth="123.0" text="UTILIZADOR">
+            <Separator layoutX="5.0" layoutY="16.0" prefHeight="17.0" prefWidth="892.0" />
+            <Label prefHeight="22.0" prefWidth="130.0" text="UTILIZADOR">
                <padding>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                  <Insets bottom="1.0" left="5.0" right="1.0" top="1.0" />
                </padding>
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Separator layoutX="1127.0" layoutY="23.0" orientation="VERTICAL" prefHeight="214.0" prefWidth="1.0" />
+            <Separator layoutX="893.0" layoutY="25.0" orientation="VERTICAL" prefHeight="214.0" prefWidth="1.0" />
             	</children>
          <padding>
             <Insets left="2.0" />

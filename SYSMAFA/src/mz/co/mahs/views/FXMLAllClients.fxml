@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLAllClientsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="689.0" style="-fx-background-position: center; -fx-background-radius: 25; -fx-background-color: #008080;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLAllClientsController">
    <children>
-      <Pane onMouseClicked="#handleMouseClickAction" prefHeight="104.0" prefWidth="688.0" style="-fx-background-color: #263238;">
+      <Pane layoutY="20.0" onMouseClicked="#handleMouseClickAction" prefHeight="84.0" prefWidth="688.0" style="-fx-background-color: #008080;">
          <children>
             <Text fill="WHITE" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos osClientes" textAlignment="JUSTIFY">
                <font>
@@ -19,7 +19,7 @@
             </Text>
          </children></Pane>
       <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="-8.0" layoutY="104.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="695.0" promptText="Procurar  Cliente" />
-      <TableView fx:id="tblCliente" layoutX="-6.0" layoutY="129.0" onMouseClicked="#handleMouseClickAction" prefHeight="350.0" prefWidth="695.0">
+      <TableView fx:id="tblCliente" layoutX="-6.0" layoutY="129.0" onMouseClicked="#handleMouseClickAction" prefHeight="333.0" prefWidth="695.0">
         <columns>
           <TableColumn fx:id="colId" editable="false" maxWidth="142.0" prefWidth="50.0" sortable="false" text="ID" />
           <TableColumn fx:id="colNome" editable="false" maxWidth="206.0" prefWidth="75.0" sortable="false" text="Nome" />
@@ -30,7 +30,7 @@
             <TableColumn fx:id="colEndereco" editable="false" maxWidth="234.0" prefWidth="100.0" sortable="false" text="Endereço" />
             <TableColumn fx:id="colDistritoUrbano" editable="false" maxWidth="200.0" prefWidth="159.0" sortable="false" text="Distrito Urbano" />
             <TableColumn fx:id="colDataRegisto" maxWidth="237.0" prefWidth="63.0" text="Registo" />
-            <TableColumn fx:id="colUtilizador" prefWidth="82.0" text="Utilizador" />
+            
         </columns>
       </TableView>
    </children>

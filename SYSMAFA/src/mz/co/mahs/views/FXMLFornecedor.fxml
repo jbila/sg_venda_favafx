@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootFornecedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1927.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLFornecedorController">
+<AnchorPane id="AnchorPane" fx:id="rootFornecedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="986.0" style="-fx-background-color: #008080; -fx-background-position: center; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLFornecedorController">
 	<children>
 		<VBox layoutX="8.0">
 			<children>
@@ -43,26 +43,24 @@
 				</Pane>
 			</children>
 		</VBox>
-		<Pane layoutX="4.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="1134.0" style="-fx-background-color: #ffffff;">
+		<Pane layoutX="23.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="943.0" style="-fx-background-color: #ffffff;">
 			<children>
 				<TextField alignment="CENTER" layoutX="171.0" layoutY="2.0" prefHeight="25.0" prefWidth="444.0" promptText="Procurar Utilizador" />
-      				<TableView fx:id="tblFornecedor" layoutX="-4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="340.0" prefWidth="1134.0">
-      					<columns>
+      				<TableView fx:id="tblFornecedor" layoutX="-4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickAction" prefHeight="261.0" prefWidth="949.0">
+      						<columns>
       						<TableColumn fx:id="colId" editable="false" maxWidth="51.0" prefWidth="51.0" sortable="false" text="ID" />
       						<TableColumn fx:id="colNome" editable="false" maxWidth="177.99996948242188" prefWidth="177.99996948242188" sortable="false" text="Nome" />
       						<TableColumn fx:id="colEmail" editable="false" maxWidth="244.0" minWidth="-1.0" prefWidth="189.0" sortable="false" text="Email" />
       						<TableColumn fx:id="colEndereco" editable="false" maxWidth="267.0" minWidth="129.0" prefWidth="198.0" sortable="false" text="Endereço" />
-      						<TableColumn fx:id="colTelefone" editable="false" maxWidth="462.0" prefWidth="324.0" sortable="false" text="Telefone" />
-      						<TableColumn fx:id="colUtilizador" editable="false" maxWidth="510.0" minWidth="-Infinity" prefWidth="193.0" sortable="false" text="Utilizador" />
-      						
-                  					</columns>
+      						<TableColumn fx:id="colTelefone" editable="false" maxWidth="517.0" prefWidth="512.0" sortable="false" text="Telefone" />      						
+                  			</columns>
                <padding>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
       				</TableView>
 			</children>
 		</Pane>
-      <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="1.0" layoutY="217.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="1134.0" promptText="PROCURAR FORNECEDOR ..." />
+      <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="20.0" layoutY="217.0" onKeyReleased="#procurar" prefHeight="25.0" prefWidth="949.0" promptText="PROCURAR FORNECEDOR ..." />
       <TextField fx:id="txtId" alignment="CENTER" editable="false" layoutX="235.0" layoutY="25.0" prefHeight="25.0" prefWidth="46.0" promptText="ID" />
       <HBox fx:id="hBoxButton" layoutX="235.0" layoutY="179.0" prefHeight="25.0" prefWidth="404.0">
          <children>
@@ -74,7 +72,7 @@
                <graphic>
                   <FontAwesomeIconView glyphName="PENCIL" />
                </graphic></Button>
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="APAHAR">
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="APAGAR">
                <graphic>
                   <FontAwesomeIconView glyphName="REMOVE" />
                </graphic></Button>
@@ -89,12 +87,10 @@
          <font>
             <Font size="14.0" />
          </font>
-         <padding>
-            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-         </padding>
       </Label>
-      <Separator layoutX="14.0" layoutY="25.0" prefHeight="3.0" prefWidth="1118.0" />
-      <Separator layoutX="1132.0" layoutY="28.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Separator layoutX="23.0" layoutY="20.0" prefHeight="8.0" prefWidth="943.0" />
+      <Separator layoutX="963.0" layoutY="26.0" orientation="VERTICAL" prefHeight="194.0" prefWidth="6.0" />
+      <Separator layoutX="23.0" layoutY="26.0" orientation="VERTICAL" prefHeight="194.0" prefWidth="6.0" />
 	</children>
    <padding>
       <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import mz.co.mahs.dao.DaoCliente;
 import mz.co.mahs.models.Cliente;
 import mz.co.mahs.models.Distrito;
-import mz.co.mahs.models.Utilizador;
 /**
  * <h1>FXMLAllClientsController</h1>
  * <p>
@@ -71,8 +70,7 @@ public class FXMLAllClientsController {
 	@FXML
 	private TableColumn<Cliente, String> colDataRegisto;
 
-	@FXML
-	private TableColumn<Cliente, Utilizador> colUtilizador;
+	
 	/**
 	 * Este evento e o primeiro a ser chamado que chama a funcao 
 	 * que popula os dados na tabela 
@@ -88,10 +86,10 @@ public class FXMLAllClientsController {
 
 		try {
 
-			Cliente cliente = tblCliente.getSelectionModel().getSelectedItem();
-			String id=("" + cliente.getIdCliente());
-			String nome=("" + cliente.getNome());
-			String telefone=("" + cliente.getTelefone());
+			//Cliente cliente = tblCliente.getSelectionModel().getSelectedItem();
+			//String id=("" + cliente.getIdCliente());
+			//String nome=("" + cliente.getNome());
+			//String telefone=("" + cliente.getTelefone());
 			
 			stage.close();
 		} catch (java.lang.NullPointerException e) {
@@ -116,7 +114,6 @@ public class FXMLAllClientsController {
 				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 				colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 				colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-				colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 				colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 				tblCliente.setItems(obserList); 
 		  
@@ -135,7 +132,6 @@ public class FXMLAllClientsController {
 		colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 		colDistritoUrbano.setCellValueFactory(new PropertyValueFactory<>("distrito"));
-		colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 		colDataRegisto.setCellValueFactory(new PropertyValueFactory<>("dataRegisto"));
 		tblCliente.setItems(obserList);
 

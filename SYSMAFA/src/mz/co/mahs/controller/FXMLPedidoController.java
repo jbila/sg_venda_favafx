@@ -459,6 +459,7 @@ public class FXMLPedidoController {
 
 	// --------------------------------------------------------------------------
 	private void openAllClients() {
+		//Stage stage =(Stage) this.rootFormasDePagamento.getScene().getWindow();
 		Stage stage = new Stage();
 		try {
 
@@ -702,7 +703,7 @@ public class FXMLPedidoController {
 	}
 
 	/** Este metodo limpa campos de e esvazia a tabela de itens */
-	public void limpaCampos() {
+	private void limpaCampos() {
 		txtId.clear();
 		txtNome.clear();
 		txtPreco.clear();

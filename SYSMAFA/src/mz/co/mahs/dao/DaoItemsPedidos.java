@@ -1,12 +1,12 @@
 package mz.co.mahs.dao;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import mz.co.mahs.conection.Conexao;
@@ -25,13 +25,13 @@ public class DaoItemsPedidos {
 	static Alert alertErro = new Alert(AlertType.ERROR);
 	static Alert alertInfo = new Alert(AlertType.INFORMATION);
 	private static final String INSERT = "INSERT INTO tbl_ItemsPedidos(idProducto,idPedido,quantidade,precoUnitario) VALUES(?,?,?,?)";
-	private static final String LIST = "select * from tbl_ItemsPedidos order by id desc";
+	//private static final String LIST = "select * from tbl_ItemsPedidos order by id desc";
 	private static final String DELETE = "{CALL ps_Delete_User(?)}";
 	private static final String UPDATE = "UPDATE tbl_ItemsPedidos  ";
 
 	private static Connection conn = null;
 	private static PreparedStatement stmt;
-	private static CallableStatement cs = null;
+	//private static CallableStatement cs = null;
 	private static ResultSet rs = null;
 
 	public static void add(List<ItemsPedidos> itemsPedidos) {

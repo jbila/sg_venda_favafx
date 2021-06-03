@@ -13,8 +13,9 @@ public class Conexao {
  private  static final String USERNAME="root";
  private  static final  String PASSWORD="root";
  private  static final String CONN_STRING
-            ="jdbc:mysql://127.0.0.1:3308/db_simafa?autoReconnect=true&useSSL=false";
- 
+            //="jdbc:mysql://localhost:3308/db_simafa";
+     =  "jdbc:mysql://localhost:3308/db_simafa?autoReconnect=false&useSSL=false";
+
  /**Este metodo abre a conexao
   * @param Conexao
   * 

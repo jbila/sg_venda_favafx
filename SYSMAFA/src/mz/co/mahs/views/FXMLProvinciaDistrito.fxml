@@ -13,38 +13,64 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootProvinciaDistrito" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLProvinciaDistritoController">
+<AnchorPane fx:id="rootProvinciaDistrito" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="986.0" style="-fx-background-color: #008080; -fx-background-position: CENTER; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLProvinciaDistritoController">
    <children>
-      <AnchorPane fx:id="rootDistrito" layoutX="392.0" layoutY="7.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #fffffF;">
+      <AnchorPane fx:id="rootDistrito" layoutX="322.0" layoutY="8.0" prefHeight="499.0" prefWidth="339.0" style="-fx-background-color: #008080;">
          <children>
             <Label layoutX="1.0" layoutY="-6.0" text="Registo de Distrito">
                <font>
                   <Font size="14.0" />
-               </font></Label>
+               </font>
+               <padding>
+                  <Insets left="15.0" top="15.0" />
+               </padding></Label>
             <TextField fx:id="txtNomeDistrito" alignment="CENTER" layoutY="58.0" prefHeight="25.0" prefWidth="243.0" promptText="Nome do Distrito" />
             <ComboBox fx:id="cboProvincia" layoutX="3.0" layoutY="92.0" prefHeight="25.0" prefWidth="243.0" promptText="Selecione o Nome da Provincia" />
             <TextField fx:id="txtIdDistrito" layoutX="-1.0" layoutY="34.0" prefHeight="25.0" prefWidth="90.0" />
+            <VBox layoutX="252.0" layoutY="46.0" prefHeight="75.0" prefWidth="87.0">
+               <children>
+                  <Button fx:id="btnAdicionarDistrito" mnemonicParsing="false" onAction="#addDistrito" prefHeight="25.0" prefWidth="86.0" text="Adicionar">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SAVE" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnActualizarDistrito" mnemonicParsing="false" onAction="#updateDistrito" prefHeight="25.0" prefWidth="86.0" text="Actualizar">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PENCIL" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnAgarDistrito" mnemonicParsing="false" onAction="#deleteDistrito" prefHeight="25.0" prefWidth="86.0" text="Apagar">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="REMOVE" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <TableView fx:id="tblDistritoUrbano" layoutX="-1.0" layoutY="138.0" onMouseClicked="#handleDistrito" prefHeight="350.0" prefWidth="344.0">
+               <columns>
+                  <TableColumn fx:id="colId" editable="false" prefWidth="75.0" sortable="false" text="ID" />
+                  <TableColumn fx:id="colIProv" editable="false" prefWidth="75.0" sortable="false" text="Provincia" />
+                  <TableColumn fx:id="colDistritoUrbano" editable="false" prefWidth="192.0" sortable="false" text="Distrito Urbano" />
+               </columns>
+            </TableView>
+            <Separator layoutX="337.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="152.0" prefWidth="9.0" />
          </children>
       </AnchorPane>
       <Label layoutX="4.0" layoutY="-4.0" text="Registo de Provincia">
          <font>
             <Font size="14.0" />
-         </font></Label>
-      <TableView fx:id="tblProvincia" layoutX="3.0" layoutY="143.0" onMouseClicked="#handleProvincia" prefHeight="362.0" prefWidth="387.0">
+         </font>
+         <padding>
+            <Insets left="15.0" top="15.0" />
+         </padding></Label>
+      <TableView fx:id="tblProvincia" layoutX="9.0" layoutY="143.0" onMouseClicked="#handleProvincia" prefHeight="350.0" prefWidth="300.0">
         <columns>
           <TableColumn fx:id="colIDProvincia" editable="false" prefWidth="75.0" sortable="false" text="ID" />
-          <TableColumn fx:id="colProvinciaNome" editable="false" prefWidth="310.0" sortable="false" text="Provincia" />
+          <TableColumn fx:id="colProvinciaNome" editable="false" prefWidth="224.0" sortable="false" text="Provincia" />
         </columns>
       </TableView>
-      <TableView fx:id="tblDistritoUrbano" layoutX="392.0" layoutY="143.0" onMouseClicked="#handleDistrito" prefHeight="362.0" prefWidth="407.0">
-         <columns>
-            <TableColumn fx:id="colId" editable="false" prefWidth="75.0" sortable="false" text="ID" />
-            <TableColumn fx:id="colIProv" editable="false" prefWidth="75.0" sortable="false" text="Provincia" />
-            <TableColumn fx:id="colDistritoUrbano" editable="false" prefWidth="256.0" sortable="false" text="Distrito Urbano" />
-         </columns>
-      </TableView>
-      <TextField fx:id="txtProvincia" alignment="CENTER" layoutX="4.0" layoutY="86.0" prefHeight="25.0" prefWidth="230.0" promptText="Nome de Provincia" />
-      <VBox layoutX="299.0" layoutY="63.0" prefHeight="75.0" prefWidth="90.0">
+      <TextField fx:id="txtProvincia" alignment="CENTER" layoutX="4.0" layoutY="86.0" prefHeight="25.0" prefWidth="170.0" promptText="Nome de Provincia" />
+      <VBox layoutX="219.0" layoutY="63.0" prefHeight="75.0" prefWidth="90.0">
          <children>
             <Button fx:id="btnAddProvincia" mnemonicParsing="false" onAction="#addProvincia" prefHeight="25.0" prefWidth="86.0" text="Adiccionar">
                <graphic>
@@ -60,38 +86,25 @@
                </graphic></Button>
          </children>
       </VBox>
-      <VBox layoutX="702.0" layoutY="63.0" prefHeight="75.0" prefWidth="87.0">
-         <children>
-            <Button fx:id="btnAdicionarDistrito" mnemonicParsing="false" onAction="#addDistrito" prefHeight="25.0" prefWidth="86.0" text="Adicionar">
-               <graphic>
-                  <FontAwesomeIconView glyphName="SAVE" />
-               </graphic></Button>
-            <Button fx:id="btnActualizarDistrito" mnemonicParsing="false" onAction="#updateDistrito" prefHeight="25.0" prefWidth="86.0" text="Actualizar">
-               <graphic>
-                  <FontAwesomeIconView glyphName="PENCIL" />
-               </graphic></Button>
-            <Button fx:id="btnAgarDistrito" mnemonicParsing="false" onAction="#deleteDistrito" prefHeight="25.0" prefWidth="86.0" text="Apagar">
-               <graphic>
-                  <FontAwesomeIconView glyphName="REMOVE" />
-               </graphic></Button>
-         </children>
-      </VBox>
       <TextField fx:id="txtIdProvincia" layoutX="4.0" layoutY="48.0" prefHeight="25.0" prefWidth="90.0" />
-      <AnchorPane fx:id="rootFuncao" layoutX="799.0" prefHeight="507.0" prefWidth="308.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane fx:id="rootFuncao" layoutX="667.0" layoutY="1.0" prefHeight="515.0" prefWidth="317.0">
          <children>
-            <TableView fx:id="tblFuncao" layoutX="1.0" layoutY="144.0" onMouseClicked="#handleFuncao" prefHeight="362.0" prefWidth="300.0">
+            <TableView fx:id="tblFuncao" layoutX="4.0" layoutY="146.0" onMouseClicked="#handleFuncao" prefHeight="343.0" prefWidth="300.0">
               <columns>
                 <TableColumn fx:id="colIdFuncao" editable="false" prefWidth="75.0" sortable="false" text="ID" />
                 <TableColumn fx:id="colNomeFuncao" editable="false" prefWidth="224.0" sortable="false" text="Nome Fa Função" />
               </columns>
             </TableView>
             <TextField fx:id="txtIdFuncao" alignment="CENTER" layoutX="4.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" promptText="ID  Funcao" />
-            <TextField fx:id="txtNomeFuncao" alignment="CENTER" layoutY="90.0" prefHeight="25.0" prefWidth="191.0" promptText="Nome da Funcao" />
+            <TextField fx:id="txtNomeFuncao" alignment="CENTER" layoutX="1.0" layoutY="88.0" prefHeight="25.0" prefWidth="186.0" promptText="Nome da Funcao" />
             <Label layoutY="-3.0" text="Registo de Função">
                <font>
                   <Font size="14.0" />
-               </font></Label>
-            <VBox layoutX="215.0" layoutY="59.0" prefHeight="75.0" prefWidth="90.0">
+               </font>
+               <padding>
+                  <Insets left="15.0" top="15.0" />
+               </padding></Label>
+            <VBox layoutX="195.0" layoutY="41.0" prefHeight="75.0" prefWidth="90.0">
                <children>
                   <Button fx:id="btnAdicionarFuncao" mnemonicParsing="false" onAction="#addFuncao" prefHeight="25.0" prefWidth="86.0" text="Adicionar">
                      <graphic>
@@ -107,11 +120,9 @@
                      </graphic></Button>
                </children>
             </VBox>
-            <Separator layoutX="302.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </AnchorPane>
-      <Separator layoutX="384.0" layoutY="2.0" orientation="VERTICAL" prefHeight="177.0" prefWidth="9.0" />
-      <Separator layoutX="796.0" layoutY="-9.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Separator layoutX="305.0" layoutY="7.0" orientation="VERTICAL" prefHeight="177.0" prefWidth="9.0" />
    </children>
    <padding>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

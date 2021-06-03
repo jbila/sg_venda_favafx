@@ -15,31 +15,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="rootProducto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1916.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLProductoController">
+<AnchorPane id="AnchorPane" fx:id="rootProducto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="986.0" style="-fx-background-color: #008080; -fx-background-position: CENTER; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLProductoController">
    <children>
-      <Separator layoutX="-6.0" layoutY="23.0" prefHeight="5.0" prefWidth="1285.0" valignment="TOP" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="23.0">
+      <Separator layoutX="-4.0" layoutY="25.0" prefHeight="5.0" prefWidth="978.0" valignment="TOP" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="24.0">
          <padding>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding></Separator>
-      <Text layoutX="1.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTO DE PRODUCTO" wrappingWidth="304.13671875">
+      <Text layoutX="13.546875" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTO DE PRODUCTO" wrappingWidth="304.13671875" AnchorPane.rightAnchor="668.31640625">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TableView fx:id="tblProducto" layoutX="1.0" layoutY="282.0" onMouseClicked="#handleMouseClickAction" prefHeight="246.0" prefWidth="1145.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="770.0" AnchorPane.topAnchor="282.0">
+      <TableView fx:id="tblProducto" layoutX="6.0" layoutY="261.0" onMouseClicked="#handleMouseClickAction" prefHeight="235.0" prefWidth="972.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="260.0">
         <columns>
           <TableColumn fx:id="colId" editable="false" prefWidth="30.0" sortable="false" text="ID" />
           <TableColumn fx:id="colCodigo" editable="false" prefWidth="54.000030517578125" sortable="false" text="Codigo" />
           <TableColumn fx:id="colNome" editable="false" prefWidth="94.00003051757812" sortable="false" text="Nome" />
             <TableColumn fx:id="colDescricao" editable="false" prefWidth="149.99996948242188" sortable="false" text="Descrição" />
-            <TableColumn fx:id="colQty" editable="false" prefWidth="74.00003051757812" sortable="false" text="Qty" />
-            <TableColumn fx:id="colValorCompra" editable="false" prefWidth="70.0" sortable="false" text="V. compra" />
-            <TableColumn fx:id="colValorVenda" editable="false" prefWidth="85.00003051757812" sortable="false" text="V.Venda" />
-            <TableColumn fx:id="colCategoria" editable="false" prefWidth="135.0" sortable="false" text="Categoria" />
-            <TableColumn fx:id="colFornecedor" editable="false" prefWidth="113.0" sortable="false" text="Fornecedor" />
-            <TableColumn fx:id="colValidade" editable="false" prefWidth="120.0" sortable="false" text="Validade" />
-            <TableColumn fx:id="colDataRegisto" editable="false" prefWidth="110.0" sortable="false" text="Data de Registo" />
-            <TableColumn fx:id="colUtilizador" editable="false" prefWidth="108.0" sortable="false" text="Utilizador" />
+            <TableColumn fx:id="colQty" editable="false" prefWidth="50.0" sortable="false" text="Qty" />
+            <TableColumn fx:id="colValorCompra" editable="false" prefWidth="63.0" sortable="false" text="V. compra" />
+            <TableColumn fx:id="colValorVenda" editable="false" prefWidth="59.0" sortable="false" text="V.Venda" />
+            <TableColumn fx:id="colCategoria" editable="false" prefWidth="121.0" sortable="false" text="Categoria" />
+            <TableColumn fx:id="colFornecedor" editable="false" prefWidth="124.0" sortable="false" text="Fornecedor" />
+            <TableColumn fx:id="colValidade" editable="false" prefWidth="88.0" sortable="false" text="Validade" />
+            <TableColumn fx:id="colDataRegisto" editable="false" maxWidth="74.0" prefWidth="74.0" sortable="false" text="Data de Registo" />
+            <TableColumn fx:id="colUtilizador" editable="false" prefWidth="63.0" sortable="false" text="Utilizador" />
         </columns>
       </TableView>
       <VBox layoutX="135.0" layoutY="63.0" prefHeight="145.0" prefWidth="251.0" spacing="5.0">
@@ -74,7 +74,10 @@
             <TextField fx:id="txtValorVenda" alignment="CENTER" editable="false" promptText="Introduza valorda Venda" />
          </children>
       </VBox>
-      <TextField fx:id="txtPesquisar" alignment="CENTER" layoutX="-1.0" layoutY="257.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="1149.0" promptText="PROCURAR..." />
+      <TextField fx:id="txtPesquisar" alignment="CENTER" layoutX="8.0" layoutY="227.0" onKeyReleased="#procurador" prefHeight="29.0" prefWidth="962.0" promptText="PROCURAR...">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
       <HBox fx:id="hBoxButton" layoutX="500.0" layoutY="182.0" prefHeight="25.0" prefWidth="300.0">
          <children>
             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefWidth="100.0" text="Add">
@@ -92,7 +95,7 @@
          </children>
       </HBox>
       <TextField fx:id="txtId" layoutX="140.0" layoutY="35.0" prefHeight="17.0" prefWidth="49.0" promptText="ID" />
-      <Separator layoutX="1145.0" layoutY="24.0" orientation="VERTICAL" prefHeight="235.0" prefWidth="7.0" />
+      <Separator layoutX="969.0" layoutY="25.0" orientation="VERTICAL" prefHeight="235.0" prefWidth="7.0" />
    </children>
    <padding>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

@@ -17,10 +17,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPaneVendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1901.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidoController">
+<AnchorPane fx:id="anchorPaneVendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="986.0" style="-fx-background-color: #008080; -fx-background-position: center; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.mahs.controller.FXMLPedidoController">
    <children>
-            <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="381.0" layoutY="3.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="700.0" promptText="PROCURAR PRODUCTO" />
-            <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="693.0">
+            <TextField fx:id="txtProcurar" alignment="CENTER" layoutX="391.0" layoutY="-7.0" onKeyReleased="#procurador" prefHeight="25.0" prefWidth="593.0" promptText="PROCURAR PRODUCTO">
+         <padding>
+            <Insets left="5.0" right="5.0" top="5.0" />
+         </padding></TextField>
+            <TableView fx:id="tblProducto" layoutX="391.0" layoutY="28.0" onMouseClicked="#handleMouseClickAction" prefHeight="488.0" prefWidth="593.0">
               <columns>
                 <TableColumn fx:id="colIdProducto" editable="false" prefWidth="45.0" sortable="false" text="ID" />
                 <TableColumn fx:id="colCodigoProducto" editable="false" sortable="false" text="Codigo" />
@@ -32,9 +35,9 @@
               </columns>
             </TableView>
        
-      <Pane fx:id="paneCarrinha" layoutX="4.0" layoutY="20.0" prefHeight="438.0" prefWidth="386.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="paneCarrinha" layoutX="4.0" layoutY="20.0" prefHeight="448.0" prefWidth="386.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="tblItems" layoutX="-5.0" layoutY="179.0" prefHeight="269.0" prefWidth="388.0">
+            <TableView fx:id="tblItems" layoutX="7.0" layoutY="179.0" prefHeight="269.0" prefWidth="376.0">
               <columns>
                 <TableColumn fx:id="colId" editable="false" prefWidth="50.0" sortable="false" text="ID" />
                 <TableColumn fx:id="colNome" editable="false" prefWidth="102.0" sortable="false" text="NOME" />
@@ -67,9 +70,15 @@
                </children>
             </HBox>
             <TextField fx:id="txtPreco" alignment="CENTER" editable="false" layoutX="182.0" layoutY="17.0" prefHeight="25.0" prefWidth="198.0" promptText="PRECO" />
-            <TextField fx:id="txtQty" alignment="CENTER" layoutX="-2.0" layoutY="54.0" onKeyReleased="#calcularSubtotal" prefHeight="25.0" prefWidth="186.0" promptText="QTY" />
+            <TextField fx:id="txtQty" alignment="CENTER" layoutX="8.0" layoutY="54.0" onKeyReleased="#calcularSubtotal" prefHeight="25.0" prefWidth="176.0" promptText="QTY">
+               <padding>
+                  <Insets left="10.0" />
+               </padding></TextField>
             <TextField fx:id="txtSutotal" alignment="CENTER" editable="false" layoutX="184.0" layoutY="54.0" prefHeight="25.0" prefWidth="198.0" promptText="SUB-TOTAL" />
-            <TextField fx:id="txtNome" alignment="CENTER" editable="false" layoutX="1.0" layoutY="17.0" prefHeight="25.0" prefWidth="186.0" promptText="NOME" />
+            <TextField fx:id="txtNome" alignment="CENTER" editable="false" layoutX="11.0" layoutY="17.0" prefHeight="25.0" prefWidth="176.0" promptText="NOME">
+               <padding>
+                  <Insets left="10.0" />
+               </padding></TextField>
             <TextField fx:id="txtId" alignment="CENTER" layoutX="4.0" layoutY="86.0" prefHeight="25.0" prefWidth="35.0" promptText="ID" />
             <TextField fx:id="txtQuantidadeNoStock" editable="false" layoutX="55.0" layoutY="86.0" prefHeight="25.0" prefWidth="50.0" promptText="Stock" />
             <TextField fx:id="txtValidade" editable="false" layoutX="121.0" layoutY="86.0" prefHeight="25.0" prefWidth="50.0" promptText="validade" />
@@ -80,9 +89,9 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="rootFormasDePagamento" layoutX="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="693.0" style="-fx-background-color: #5f9ea0;">
+      <AnchorPane fx:id="rootFormasDePagamento" layoutX="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="593.0" style="-fx-background-color: #008080; -fx-background-radius: 25;">
          <children>
-            <Pane layoutX="-2.0" prefHeight="70.0" prefWidth="693.0" style="-fx-background-color: #263238;">
+            <Pane layoutX="-2.0" layoutY="5.0" prefHeight="65.0" prefWidth="593.0">
                <children>
                   <Label layoutX="10.0" layoutY="-5.0" prefHeight="22.0" prefWidth="223.0" text="FORMAS DE PAGAMENTO" textFill="WHITE">
                      <font>
@@ -99,15 +108,15 @@
                   <TextField fx:id="txtValorTotal" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="211.0" promptText="VALOR TOTAL A PAGAR" />
                </children>
             </VBox>
-            <Separator layoutX="-3.0" layoutY="229.0" prefHeight="17.0" prefWidth="693.0" />
-            <Button fx:id="btnConfirmarPagamento" layoutX="435.0" layoutY="471.0" mnemonicParsing="false" onAction="#confirmarPagamento" prefHeight="33.0" prefWidth="246.0" style="-fx-background-color: #00fa9a;" text="CONFIRMAR O PAGAMENTO" />
-            <Text layoutX="464.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DADOS DO CLIENTE " wrappingWidth="222.99998718500137">
+            <Separator layoutX="-3.0" layoutY="229.0" prefHeight="17.0" prefWidth="593.0" />
+            <Button fx:id="btnConfirmarPagamento" layoutX="305.0" layoutY="471.0" mnemonicParsing="false" onAction="#confirmarPagamento" prefHeight="33.0" prefWidth="246.0" style="-fx-background-color: #00fa9a;" text="CONFIRMAR O PAGAMENTO" />
+            <Text layoutX="353.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DADOS DO CLIENTE " wrappingWidth="169.999986410141">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cboCliente1" layoutX="464.0" layoutY="106.0" prefHeight="25.0" prefWidth="162.0" promptText="SELECIONE O CLIENTE" />
-            <Button fx:id="btnCliente1" layoutX="623.0" layoutY="72.0" mnemonicParsing="false" onAction="#clientes" prefHeight="25.0" prefWidth="50.0" textFill="#221010">
+            <ComboBox fx:id="cboCliente1" layoutX="400.0" layoutY="101.0" prefHeight="25.0" prefWidth="149.0" promptText="SELECIONE O CLIENTE" />
+            <Button fx:id="btnCliente1" layoutX="512.0" layoutY="73.0" mnemonicParsing="false" onAction="#clientes" prefHeight="25.0" prefWidth="64.0" textFill="#221010">
                <font>
                   <Font size="10.0" />
                </font>
@@ -115,8 +124,6 @@
                   <FontAwesomeIconView glyphName="EYE" />
                </graphic>
             </Button>
-            <TextField fx:id="txtTelefone" alignment="CENTER" editable="false" layoutX="464.0" layoutY="140.0" prefHeight="25.0" prefWidth="211.0" promptText="TELEFONE DO CLIENTE" />
-            <TextField fx:id="txtEmailCliente" alignment="CENTER" editable="false" layoutX="464.0" layoutY="178.0" prefHeight="25.0" prefWidth="211.0" promptText="EMAIL DO CLIENTE" />
             <Text layoutX="11.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAGAMENTO" wrappingWidth="197.99999010562897">
                <font>
                   <Font size="14.0" />
@@ -124,13 +131,13 @@
             </Text>
             <TextField fx:id="txtNumeroParcela" alignment="CENTER" layoutX="14.0" layoutY="244.0" promptText="Nº DE PARCELAS" />
             <Button fx:id="btnParcelar" layoutX="257.0" layoutY="244.0" mnemonicParsing="false" onAction="#parcelar" prefHeight="25.0" prefWidth="170.0" text="PARCELAR" />
-            <TableView fx:id="tblParcelamentos" layoutX="6.0" layoutY="280.0" prefHeight="130.0" prefWidth="674.0" style="-fx-background-color: #FFFFFF;">
+            <TableView fx:id="tblParcelamentos" layoutX="6.0" layoutY="280.0" prefHeight="130.0" prefWidth="583.0" style="-fx-background-color: #FFFFFF;">
                <columns>
                   <TableColumn fx:id="colCodigoVenda" editable="false" prefWidth="75.0" sortable="false" text="C.V" />
                   <TableColumn fx:id="colDataApagar" editable="false" prefWidth="123.0" sortable="false" text="D. A LIQUIDAR" />
                   <TableColumn fx:id="colValor" editable="false" prefWidth="47.0" sortable="false" text="VALOR" />
                   <TableColumn fx:id="colEstado" editable="false" prefWidth="55.0" sortable="false" text="ESTADO" />
-                  <TableColumn fx:id="colDataPagamento" editable="false" prefWidth="135.0" sortable="false" text="D.PAGO" />
+                  <TableColumn fx:id="colDataPagamento" editable="false" prefWidth="282.0" sortable="false" text="D.PAGO" />
                </columns>
             </TableView>
             <Button fx:id="btnVoltar" layoutX="11.0" layoutY="479.0" mnemonicParsing="false" onAction="#voltar" text="VOLTAR">
@@ -138,7 +145,7 @@
                   <FontAwesomeIconView glyphName="BACKWARD" />
                </graphic></Button>
             <ComboBox fx:id="cboTipo" layoutX="238.0" layoutY="101.0" onAction="#changeTipo" prefWidth="150.0" promptText="SELECIONE O TIPO" />
-            <Button fx:id="btnAddCliente" layoutX="623.0" layoutY="106.0" mnemonicParsing="false" onAction="#addcliente" prefHeight="25.0" prefWidth="50.0">
+            <Button fx:id="btnAddCliente" layoutX="544.0" layoutY="101.0" mnemonicParsing="false" onAction="#addcliente" prefHeight="25.0" prefWidth="35.0">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" />
                </graphic>
@@ -152,8 +159,10 @@
          <font>
             <Font size="14.0" />
          </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <Separator layoutX="1.0" layoutY="19.0" prefHeight="7.0" prefWidth="1285.0" />
    </children>
    <padding>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

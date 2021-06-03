@@ -1,6 +1,5 @@
 package mz.co.mahs.dao;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,13 +31,13 @@ public class DaoParcela {
 	 * </p>
 	 */
 	private static final String INSERT = "INSERT INTO tbl_parcela(idPedido,valor,dataPrevista) VALUES(?,?,?)";
-	private static final String LIST = "select * from tbl_parcela";
-	private static final String DELETE = "{CALL ps_Delete_Parcela(?)}";
+	//private static final String LIST = "select * from tbl_parcela";
+	//private static final String DELETE = "{CALL ps_Delete_Parcela(?)}";
 	private static final String UPDATE = "UPDATE tbl_parcela SET estado=?,dataPagamento=? WHERE idParcela=?";
 
 	private static Connection conn = null;
 	private static PreparedStatement stmt;
-	private static CallableStatement cs = null;
+	//private static CallableStatement cs = null;
 	private static ResultSet rs = null;
 
 	public static void add(List<Parcela> parcelas) {

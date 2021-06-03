@@ -24,7 +24,6 @@ import javafx.scene.layout.HBox;
 import mz.co.mahs.dao.DaoFornecedor;
 import mz.co.mahs.dao.DaoRelatorio;
 import mz.co.mahs.models.Fornecedor;
-import mz.co.mahs.models.Utilizador;
 
 public class FXMLFornecedorController implements Initializable,Crud {
 	Alert alert = new Alert(AlertType.INFORMATION);
@@ -62,8 +61,7 @@ public class FXMLFornecedorController implements Initializable,Crud {
 	@FXML
 	private TableColumn<Fornecedor, String> colTelefone;
 
-	@FXML
-	private TableColumn<Fornecedor, Utilizador> colUtilizador;
+	
 
 	@FXML
 	private TextField txtId;
@@ -154,7 +152,6 @@ public class FXMLFornecedorController implements Initializable,Crud {
 				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 				colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 				colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-				colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 				tblFornecedor.setItems(obserList);
 		  });
 
@@ -163,13 +160,13 @@ public class FXMLFornecedorController implements Initializable,Crud {
 	public void acessoAdd() {
 		//idFornecedor,nome,email,telefone,endereco,utilizador
 		Fornecedor fornecedor=new Fornecedor();
-		Utilizador utilizador=new Utilizador();
-		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
+		//Utilizador utilizador=new Utilizador();
+		//utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		fornecedor.setNome(txtNome.getText().toUpperCase());
 		fornecedor.setEmail(txtEmail.getText().toLowerCase());
 		fornecedor.setTelefone(txtTelefone.getText().toUpperCase());
 		fornecedor.setEndereco(txtEndereco.getText().toUpperCase());
-		fornecedor.setUtilizador(utilizador);
+		//fornecedor.setUtilizador(utilizador);
 		if(DaoFornecedor.isRecorder(txtTelefone.getText(), txtEmail.getText())) {
 			alertWarining.setTitle("Informação");
 			alertWarining.setHeaderText("Verificação de Dados");
@@ -190,13 +187,13 @@ public class FXMLFornecedorController implements Initializable,Crud {
 	@Override
 	public void acessoUpdate() {
 		Fornecedor fornecedor=new Fornecedor();
-		Utilizador utilizador=new Utilizador();
-		utilizador.setIdUtilizador(ControllerLogin.idUsuario);
+		//Utilizador utilizador=new Utilizador();
+		//utilizador.setIdUtilizador(ControllerLogin.idUsuario);
 		fornecedor.setNome(txtNome.getText().toUpperCase());
 		fornecedor.setEmail(txtEmail.getText().toLowerCase());
 		fornecedor.setTelefone(txtTelefone.getText().toUpperCase());
 		fornecedor.setEndereco(txtEndereco.getText().toUpperCase());
-		fornecedor.setUtilizador(utilizador);
+		//fornecedor.setUtilizador(utilizador);
 		fornecedor.setIdFornecedor(Integer.parseInt(txtId.getText()));
 		DaoFornecedor.updateFornecedor(fornecedor);
 		limpar();
@@ -231,7 +228,6 @@ public class FXMLFornecedorController implements Initializable,Crud {
 				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 				colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 				colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-				colUtilizador.setCellValueFactory(new PropertyValueFactory<>("utilizador"));
 				tblFornecedor.setItems(obserList);
 		
 	}

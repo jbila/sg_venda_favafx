@@ -81,6 +81,62 @@ public class DaoRelatorio {
 			}
 
 		}
+	/**Este relatorio visa dar informacao sobre :
+	 * custo de producto
+	 * Lucro 
+	 * valor total investido
+	 * */
+	public static void adminstracao() {
+		Connection conn = null;
+		conn = Conexao.connect();
+
+		int confirm = JOptionPane.showConfirmDialog(null, "Confirmar a emissão deste relatório?", "Atenção",
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_NO_OPTION) {
+			try {
+				String caminho = "C:/Reports/sysmafa/Administracao.jasper";
+				JasperPrint print = JasperFillManager.fillReport(caminho, null, conn);
+				JasperViewer.viewReport(print, false);
+				conn.close();
+
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatório de Adminstrativo " + ex);
+
+			} catch (java.lang.NoClassDefFoundError e) {
+				JOptionPane.showMessageDialog(null, "ERRO " + e);
+
+			}
+
+		}
+
+	}
+	/**Esta funcao imprime um jasperReport da lista dos 
+	 * productos que estao no nivel baixo do stock
+	 * */
+	public static void nivelBaixoStock() {
+		Connection conn = null;
+		conn = Conexao.connect();
+
+		int confirm = JOptionPane.showConfirmDialog(null, "Confirmar a emissão deste relatório?", "Atenção",
+				JOptionPane.YES_NO_OPTION);
+		if (confirm == JOptionPane.YES_NO_OPTION) {
+			try {
+				String caminho = "C:/Reports/sysmafa/stockbaixo.jasper";
+				JasperPrint print = JasperFillManager.fillReport(caminho, null, conn);
+				JasperViewer.viewReport(print, false);
+				conn.close();
+
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Erro ao emetir o Relatório de Stock baixo " + ex);
+
+			} catch (java.lang.NoClassDefFoundError e) {
+				JOptionPane.showMessageDialog(null, "ERRO " + e);
+
+			}
+
+		}
+
+	}
 	//-----------------------------------Relatorio de Productos que acabaram nas pratileras----------------------------------------------------------------
 		/**Este metodo retorna um relatorio dos productos dos productos que já venceram
 		 * isto é todos os productos que a sua validade é menor que a data de hoje serão 
